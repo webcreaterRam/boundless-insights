@@ -1,83 +1,475 @@
 <!DOCTYPE html>
-<html>
-    <head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-   <title>EduVerse</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
-    </head>
-    <body>
-        <header>
-            <div class="top-banner">
-            <h1 class="banner-head">EduVerse</h1>
-            <p class="banner-text">Upgrade Your Skills Anytime, Anywhere!</p>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RamTechVersatile - Cosmic Frontend Explorer</title>
+  <meta name="description" content="Cosmic Portfolio of Ramkumar, a self-taught frontend developer with a passion for cosmic-themed web designs, showcasing skills in HTML, CSS, and Javascript." />
+  <meta property="og:title" content="Ramkumar's Cosmic Portfolio" />
+  <meta property="og:description" content="Explore the cosmic-themed portfolio of Ramkumar, a self-taught frontend developer." />
+    <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    .font-orbitron { font-family: 'Orbitron', Arial, sans-serif; }
+    .font-poppins { font-family: 'Poppins', Arial, sans-serif; }
+    body {
+      background: #0b0c10;
+      color: #cccccc;
+      font-family: Arial, sans-serif;
+      min-height: 100vh;
+      margin: 0;
+      overflow-x: hidden;
+    }
+    .navbar-bg {
+      background: rgba(15, 32, 39, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+    .fractal-bg {
+      position: fixed;
+      inset: 0;
+      z-index: -10;
+      pointer-events: none;
+      background-image:
+        url('https://www.transparenttextures.com/patterns/stardust.png'),
+        linear-gradient(120deg, #232946 0%, #0b0c10 100%);
+      background-size: 600px 600px, cover;
+      background-repeat: repeat, no-repeat;
+      background-attachment: fixed;
+      opacity: 0.18;
+      will-change: transform;
+    }
+    #hero {
+      min-height: 100vh;
+      height: 100vh;
+      max-height: none;
+      position: relative;
+    }
+    #star-canvas, #noise-canvas {
+      position: absolute !important;
+      top: 0; left: 0; width: 100%; height: 100%;
+      display: block;
+      pointer-events: none;
+    }
+    @keyframes hero-fade-in {
+      from { opacity: 0; transform: translateY(40px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
+    .animate-hero-fade-in {
+      animation: hero-fade-in 1s cubic-bezier(.4,0,.2,1) forwards;
+    }
+    .animate-hero-fade-in.delay-150 {
+      animation-delay: 0.15s;
+    }
+    .cta {
+      position: relative;
+      z-index: 1;
+      overflow: visible;
+    }
+    .cta::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 9999px;
+      box-shadow: 0 0 0 rgba(0,255,247,0.5);
+      animation: pulse 2s infinite ease-in-out;
+      z-index: -1;
+      pointer-events: none;
+      transition: box-shadow 0.2s;
+    }
+    @keyframes pulse {
+      0%,100% { box-shadow: 0 0 0 rgba(0,255,247,0); }
+      50%    { box-shadow: 0 0 20px rgba(0,255,247,0.5); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .cta-glow::before { animation: none !important; }
+      #star-canvas, #noise-canvas { filter: none !important; }
+    }
+  </style>
+</head>
+<body class="bg-[#0b0c10] text-[#cccccc] font-poppins antialiased">
+  <div class="fractal-bg"></div>
+  <a href="#main-content" class="sr-only focus:not-sr-only">Skip to content</a>
+  <header class="fixed top-0 inset-x-0 z-50">
+    <nav aria-label="Primary navigation"
+      class="navbar-bg max-w-6xl mx-auto flex items-center justify-between px-6 py-4 shadow-2xl rounded-b-3xl border border-[#00FFF7]/30 relative transition-all duration-500 backdrop-blur-xl">
+      <div class="site-logo flex items-center gap-2" aria-label="To home">
+        <span class="inline-block w-8 h-8 rounded-full bg-gradient-to-br from-[#00FFF7] to-[#2a2e4a] shadow-lg flex items-center justify-center">
+          <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" stroke-width="2"
+            viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10" />
+            <path d="M12 6v6l4 2" />
+          </svg>
+        </span>
+        <a href="#hero" class="text-white text-2xl md:text-3xl font-bold font-orbitron tracking-widest drop-shadow-[0_2px_8px_#00FFF7cc] hover:text-[#00FFF7] transition-all duration-300">Cosmic Portfolio</a>
+      </div>
+      <ul class="nav-links hidden md:flex space-x-6 text-[#CCCCCC] text-center font-poppins text-lg">
+        <li>
+          <a href="#hero" class="relative group px-3 py-1 hover:text-[#00FFF7] transition">
+            Home
+            <span class="absolute left-1/2 -bottom-1 w-0 group-hover:w-full h-0.5 bg-[#00FFF7] rounded-full transition-all duration-300 group-hover:left-0"></span>
+          </a>
+        </li>
+        <li>
+          <a href="#about" class="relative group px-3 py-1 hover:text-[#00FFF7] transition">
+            About
+            <span class="absolute left-1/2 -bottom-1 w-0 group-hover:w-full h-0.5 bg-[#00FFF7] rounded-full transition-all duration-300 group-hover:left-0"></span>
+          </a>
+        </li>
+        <li>
+          <a href="#skills" class="relative group px-3 py-1 hover:text-[#00FFF7] transition">
+            Skills
+            <span class="absolute left-1/2 -bottom-1 w-0 group-hover:w-full h-0.5 bg-[#00FFF7] rounded-full transition-all duration-300 group-hover:left-0"></span>
+          </a>
+        </li>
+        <li>
+          <a href="#projects" class="relative group px-3 py-1 hover:text-[#00FFF7] transition">
+            Projects
+            <span class="absolute left-1/2 -bottom-1 w-0 group-hover:w-full h-0.5 bg-[#00FFF7] rounded-full transition-all duration-300 group-hover:left-0"></span>
+          </a>
+        </li>
+        <li>
+          <a href="#blog" class="relative group px-3 py-1 hover:text-[#00FFF7] transition">
+            Blog
+            <span class="absolute left-1/2 -bottom-1 w-0 group-hover:w-full h-0.5 bg-[#00FFF7] rounded-full transition-all duration-300 group-hover:left-0"></span>
+          </a>
+        </li>
+        <li>
+          <a href="#contact" class="relative group px-3 py-1 hover:text-[#00FFF7] transition">
+            Contact
+            <span class="absolute left-1/2 -bottom-1 w-0 group-hover:w-full h-0.5 bg-[#00FFF7] rounded-full transition-all duration-300 group-hover:left-0"></span>
+          </a>
+        </li>
+      </ul>
+      <button 
+        id="mobile-menu-button"
+        type="button"
+        class="md:hidden focus:outline-none rounded-full p-2 bg-[#232946]/60 border border-[#00FFF7]/30 shadow-lg hover:bg-[#00FFF7]/20 transition"
+        aria-label="Toggle navigation menu">
+        <svg class="w-7 h-7 text-[#00FFF7]" fill="none" stroke="currentColor" stroke-width="2"
+          viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+      <div id="mobile-menu" class="hidden absolute top-full left-0 w-full bg-[#181a22] z-50 md:hidden rounded-b-xl shadow-2xl border-t border-[#00FFF7]/20 animate-fade-in-down">
+        <ul class="flex flex-col px-4 py-6 space-y-4 text-lg">
+          <li><a href="#hero"    class="block text-white hover:text-[#00FFF7] transition">Home</a></li>
+          <li><a href="#about"   class="block text-white hover:text-[#00FFF7]">About</a></li>
+          <li><a href="#skills"  class="block text-white hover:text-[#00FFF7]">Skills</a></li>
+          <li><a href="#projects"class="block text-white hover:text-[#00FFF7]">Projects</a></li>
+          <li><a href="#blog"    class="block text-white hover:text-[#00FFF7]">Blog</a></li>
+          <li><a href="#contact" class="block text-white hover:text-[#00FFF7]">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+    <div class="h-20"></div>
+  </header>
+
+  <section id="hero" class="relative min-h-screen h-[100dvh] max-h-none overflow-hidden flex items-center justify-center">
+    <canvas id="star-canvas" class="absolute inset-0 w-full h-full"></canvas>
+    <div class="relative z-20 flex flex-col items-center justify-center h-full text-center px-4">
+      <h1 class="font-orbitron font-bold text-white drop-shadow-lg text-[2rem] md:text-[6vw] leading-tight tracking-widest transition-all duration-700 opacity-0 animate-hero-fade-in">
+        RamTechVersatile
+      </h1>
+      <p class="mt-4 text-[#cccccc] text-[1.125rem] md:text-[1.25rem] font-poppins max-w-2xl transition-all duration-700 opacity-0 animate-hero-fade-in delay-150">
+        Cosmic-Inspired
+      </p>
+      <a href="#projects"
+        class="cta mt-8 inline-block rounded-full px-10 py-4 bg-white/15 border-2 border-[#00fff7] text-[#00fff7] font-bold text-lg font-orbitron tracking-wide backdrop-blur-md transition-all duration-300 hover:bg-white/30 focus:outline-none"
+      >
+        View My Work
+      </a>
+    </div>
+  </section>
+  <main id="main-content">
+   <!-- About Section -->
+<section id="about" aria-labelledby="about-title" class="py-16 sm:py-20 px-4 md:px-0 bg-[#12131a]/90 rounded-2xl shadow-2xl max-w-5xl mx-auto mt-10 md:mt-16 mb-8 md:mb-12 border border-[#00FFF7]/10 backdrop-blur-md">
+  <header>
+    <h2 id="about-title" class="font-orbitron text-3xl sm:text-4xl md:text-5xl text-[#00fff7] font-bold mb-6 tracking-widest drop-shadow-[0_2px_8px_#00FFF7cc]">About Me</h2>
+  </header>
+  <div class="flex flex-col md:flex-row items-start gap-6 md:gap-10"> 
+    <!-- Profile Image -->
+    <div class="shrink-0 flex justify-center w-full md:w-auto">
+      <img src="ProfileImage.jpeg" alt="Profile photo"
+        class="rounded-full border-4 border-[#00fff7] shadow object-cover w-28 h-28 sm:w-36 sm:h-36 md:w-44 md:h-44 lg:w-56 lg:h-56 transition-all duration-300"
+        loading="lazy" />
+    </div>
+    <!-- About Text -->
+    <div class="text-base sm:text-lg md:text-xl font-poppins text-[#cccccc] leading-relaxed flex-1">
+      <p class="mb-4">
+        Hi, I'm <span class="text-[#00fff7] font-bold">Ramkumar</span>, a self-taught frontend developer passionate about crafting immersive, cosmic-inspired web experiences. I love blending creativity with code to build interfaces that feel magical, performant, and accessible.
+      </p>
+      <ul class="list-disc pl-5 space-y-1">
+        <li>B.Com Final Year Student</li>
+        <li>Self-taught Web Developer</li>
+        <li>HTML • CSS • JavaScript • React</li>
+        <li>Cosmic Enthusiast & UI Explorer</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- Skills Section -->
+<section id="skills" aria-labelledby="skills-title" class="py-20 px-4 md:px-0 bg-[#181a22]/90 rounded-2xl shadow-2xl max-w-5xl mx-auto mb-12 border border-[#00FFF7]/10 backdrop-blur-md">
+  <header>
+    <h2 id="skills-title" class="font-orbitron text-3xl sm:text-4xl md:text-5xl text-[#00fff7] font-bold mb-6 tracking-widest drop-shadow-[0_2px_8px_#00FFF7cc]">Skills</h2>
+  </header>
+  <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 sm:gap-8 mt-6 sm:mt-8">
+    <!-- Skill Cards -->
+    <div class="bg-[#232946]/80 rounded-xl p-6 flex flex-col items-center shadow-lg border border-[#00FFF7]/10 hover:scale-105 transition-transform">
+      <span class="material-symbols-outlined text-4xl text-[#ffb347] mb-2">code</span>
+      <span class="font-bold text-[#cccccc] text-center text-sm sm:text-base">HTML5</span>
+    </div>
+    <div class="bg-[#232946]/80 rounded-xl p-6 flex flex-col items-center shadow-lg border border-[#00FFF7]/10 hover:scale-105 transition-transform">
+      <span class="material-symbols-outlined text-4xl text-[#3ddbd9] mb-2">palette</span>
+      <span class="font-bold text-[#cccccc] text-center text-sm sm:text-base">CSS3</span>
+    </div>
+    <div class="bg-[#232946]/80 rounded-xl p-6 flex flex-col items-center shadow-lg border border-[#00FFF7]/10 hover:scale-105 transition-transform">
+      <span class="material-symbols-outlined text-4xl text-[#ffe9c4] mb-2">javascript</span>
+      <span class="font-bold text-[#cccccc] text-center text-sm sm:text-base">JavaScript</span>
+    </div>
+    <div class="bg-[#232946]/80 rounded-xl p-6 flex flex-col items-center shadow-lg border border-[#00FFF7]/10 hover:scale-105 transition-transform">
+      <span class="material-symbols-outlined text-4xl text-[#aabfff] mb-2">integration instructions</span>
+      <span class="font-bold text-[#cccccc] text-center text-sm sm:text-base">React.js</span>
+    </div>
+  </div>
+  <div class="mt-8 text-center text-[#cccccc]/80">
+    <span class="inline-block px-4 py-2 rounded-full bg-[#00fff7]/10 border border-[#00fff7]/30 font-orbitron text-[#00fff7] text-sm sm:text-base tracking-widest shadow">Always learning & exploring new tech!</span>
+  </div>
+</section>
+
+
+    <!-- Projects Section -->
+    <section id="projects" aria-labelledby="project-title" class="py-20 px-4 md:px-0 bg-[#14151d]/90 rounded-2xl shadow-2xl max-w-5xl mx-auto mb-12 border border-[#00FFF7]/10 backdrop-blur-md">
+      <header>
+        <h2 id="project-title" class="font-orbitron text-4xl md:text-5xl text-[#00fff7] font-bold mb-6 tracking-widest drop-shadow-[0_2px_8px_#00FFF7cc]">Projects</h2>
+      </header>
+      <div class="project-grid grid gap-10 md:grid-cols-3">
+        <!-- Project Card 1 -->
+        <article class="project-card bg-[#232946]/80 rounded-xl shadow-lg border border-[#00FFF7]/10 flex flex-col p-6 hover:scale-105 transition-transform">
+          <h3 class="font-orbitron text-2xl text-[#00fff7] font-bold mb-2">Stellar Weather App</h3>
+          <p class="project-meta text-xs text-[#cccccc]/70 mb-2">
+            <time datetime="2024-12-10">Dec 10, 2024</time> &bull; React, OpenWeatherMap API
+          </p>
+          <div class="project-problem-solution text-[#cccccc] text-sm mb-4">
+            <p class="problem mb-1"><strong>Problem:</strong> Most weather apps are visually dull and lack interactivity.</p>
+            <p class="solution"><strong>Solution:</strong> Built a cosmic-themed weather dashboard with animated backgrounds, real-time data, and accessibility-first design. Used React, OpenWeatherMap API, and GSAP for smooth transitions.</p>
+          </div>
+          <a href="https://github.com/webcreaterRam" target="_blank" rel="noopener" class="mt-auto inline-block px-4 py-2 rounded-full bg-[#00fff7]/10 border border-[#00fff7] text-[#00fff7] font-bold font-orbitron tracking-wide hover:bg-[#00fff7]/20 transition">Live Demo</a>
+        </article>
+        <!-- Project Card 2 -->
+        <article class="project-card bg-[#232946]/80 rounded-xl shadow-lg border border-[#00FFF7]/10 flex flex-col p-6 hover:scale-105 transition-transform">
+          <h3 class="font-orbitron text-2xl text-[#00fff7] font-bold mb-2">Galactic Portfolio Template</h3>
+          <p class="project-meta text-xs text-[#cccccc]/70 mb-2">
+            <time datetime="2024-10-01">Oct 1, 2024</time> &bull; Next.js, Tailwind CSS
+          </p>
+          <div class="project-problem-solution text-[#cccccc] text-sm mb-4">
+            <p class="problem mb-1"><strong>Problem:</strong> Developers need a modern, customizable portfolio that stands out.</p>
+            <p class="solution"><strong>Solution:</strong> Designed and coded a fully responsive, accessible portfolio template with dark/light mode, animated hero, and CMS integration. Used by 50+ devs worldwide.</p>
+          </div>
+          <a href="https://github.com/webcreaterRam" target="_blank" rel="noopener" class="mt-auto inline-block px-4 py-2 rounded-full bg-[#00fff7]/10 border border-[#00fff7] text-[#00fff7] font-bold font-orbitron tracking-wide hover:bg-[#00fff7]/20 transition">View on GitHub</a>
+        </article>
+        <!-- Project Card 3 -->
+        <article class="project-card bg-[#232946]/80 rounded-xl shadow-lg border border-[#00FFF7]/10 flex flex-col p-6 hover:scale-105 transition-transform">
+          <h3 class="font-orbitron text-2xl text-[#00fff7] font-bold mb-2">Cosmic Chat App</h3>
+          <p class="project-meta text-xs text-[#cccccc]/70 mb-2">
+            <time datetime="2025-01-15">Jan 15, 2025</time> &bull; React, Firebase, Framer Motion
+          </p>
+          <div class="project-problem-solution text-[#cccccc] text-sm mb-4">
+            <p class="problem mb-1"><strong>Problem:</strong> Real-time chat apps often lack personality and accessibility.</p>
+            <p class="solution"><strong>Solution:</strong> Built a chat app with animated cosmic backgrounds, emoji reactions, and full keyboard navigation. Used Firebase Auth/Firestore and Framer Motion for smooth UX.</p>
+          </div>
+          <a href="https://github.com/webcreaterRam" target="_blank" rel="noopener" class="mt-auto inline-block px-4 py-2 rounded-full bg-[#00fff7]/10 border border-[#00fff7] text-[#00fff7] font-bold font-orbitron tracking-wide hover:bg-[#00fff7]/20 transition">Live Demo</a>
+        </article>
+      </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section id="blog" aria-labelledby="Blogs-title" class="py-20 px-4 md:px-0 bg-[#181a22]/90 rounded-2xl shadow-2xl max-w-5xl mx-auto mb-12 border border-[#00FFF7]/10 backdrop-blur-md">
+      <header>
+        <h2 id="Blogs-title" class="font-orbitron text-4xl md:text-5xl text-[#00fff7] font-bold mb-6 tracking-widest drop-shadow-[0_2px_8px_#00FFF7cc]">Blog</h2>
+      </header>
+      <div class="blog-grid grid gap-10 md:grid-cols-3">
+        <!-- Blog Card 1 -->
+        <article class="blog-card bg-[#232946]/80 rounded-xl shadow-lg border border-[#00FFF7]/10 flex flex-col p-6 hover:scale-105 transition-transform">
+          <h3 class="font-orbitron text-xl text-[#00fff7] font-bold mb-2">How I Designed a Portfolio That Gets Interviews</h3>
+          <p class="post-meta text-xs text-[#cccccc]/70 mb-2">
+            <time datetime="2024-11-20">Nov 20, 2024</time> &bull; Portfolio, UX, Career
+          </p>
+          <p class="mb-4">A deep dive into the design and UX decisions that helped my portfolio stand out to recruiters and land interviews at top tech companies.</p>
+          <a href="https://dev.to/webcreaterram" target="_blank" rel="noopener" class="mt-auto inline-block px-4 py-2 rounded-full bg-[#00fff7]/10 border border-[#00fff7] text-[#00fff7] font-bold font-orbitron tracking-wide hover:bg-[#00fff7]/20 transition">Read More →</a>
+        </article>
+        <!-- Blog Card 2 -->
+        <article class="blog-card bg-[#232946]/80 rounded-xl shadow-lg border border-[#00FFF7]/10 flex flex-col p-6 hover:scale-105 transition-transform">
+          <h3 class="font-orbitron text-xl text-[#00fff7] font-bold mb-2">Modern Frontend Skills for 2025</h3>
+          <p class="post-meta text-xs text-[#cccccc]/70 mb-2">
+            <time datetime="2025-01-05">Jan 5, 2025</time> &bull; Frontend, Trends
+          </p>
+          <p class="mb-4">What skills, frameworks, and tools are most in-demand for frontend developers in 2025? My research and experience from recent job hunts.</p>
+          <a href="https://dev.to/webcreaterram" target="_blank" rel="noopener" class="mt-auto inline-block px-4 py-2 rounded-full bg-[#00fff7]/10 border border-[#00fff7] text-[#00fff7] font-bold font-orbitron tracking-wide hover:bg-[#00fff7]/20 transition">Read More →</a>
+        </article>
+        <!-- Blog Card 3 -->
+        <article class="blog-card bg-[#232946]/80 rounded-xl shadow-lg border border-[#00FFF7]/10 flex flex-col p-6 hover:scale-105 transition-transform">
+          <h3 class="font-orbitron text-xl text-[#00fff7] font-bold mb-2">Accessible Animations: Delight Without Exclusion</h3>
+          <p class="post-meta text-xs text-[#cccccc]/70 mb-2">
+            <time datetime="2024-12-01">Dec 1, 2024</time> &bull; Accessibility, Animation
+          </p>
+          <p class="mb-4">How to use CSS and JS animations that look stunning but remain accessible for all users, including those with motion sensitivities.</p>
+          <a href="https://dev.to/webcreaterram" target="_blank" rel="noopener" class="mt-auto inline-block px-4 py-2 rounded-full bg-[#00fff7]/10 border border-[#00fff7] text-[#00fff7] font-bold font-orbitron tracking-wide hover:bg-[#00fff7]/20 transition">Read More →</a>
+        </article>
+      </div>
+      <div class="mt-10 text-center">
+        <a href="https://dev.to/webcreaterram" target="_blank" rel="noopener" class="inline-block px-6 py-2 rounded-full bg-[#00fff7]/10 border border-[#00fff7] text-[#00fff7] font-bold font-orbitron tracking-wide hover:bg-[#00fff7]/20 transition">See All Posts on Dev.to</a>
+      </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" aria-labelledby="testimonials-title" class="py-20 px-4 md:px-0 bg-[#12131a]/90 rounded-2xl shadow-2xl max-w-3xl mx-auto mb-12 border border-[#00FFF7]/10 backdrop-blur-md">
+      <header>
+        <h2 id="testimonials-title" class="font-orbitron text-4xl md:text-5xl text-[#00fff7] font-bold mb-6 tracking-widest drop-shadow-[0_2px_8px_#00FFF7cc]">Testimonials</h2>
+      </header>
+      <div class="testimonials-container text-lg text-[#cccccc] space-y-8">
+        <blockquote class="bg-[#232946]/80 rounded-xl p-6 border-l-4 border-[#00fff7] shadow">
+          “Ramkumar brought my vision to life with cosmic animations—user engagement increased by 50%!”
+          <footer class="mt-2 text-[#00fff7] font-bold">— John Doe, CEO of StarTech</footer>
+        </blockquote>
+        <blockquote class="bg-[#232946]/80 rounded-xl p-6 border-l-4 border-[#00fff7] shadow">
+          “His frontend skills and attention to detail are out of this world. Highly recommended!”
+          <footer class="mt-2 text-[#00fff7] font-bold">— Jane Smith, Product Manager</footer>
+        </blockquote>
+        <blockquote class="bg-[#232946]/80 rounded-xl p-6 border-l-4 border-[#00fff7] shadow">
+          “Ramkumar's portfolio is a masterclass in modern frontend. The accessibility and performance are top-notch.”
+          <footer class="mt-2 text-[#00fff7] font-bold">— Alex Lee, Senior Frontend Engineer</footer>
+        </blockquote>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" aria-labelledby="contact-title" class="py-20 px-4 md:px-0 bg-[#181a22]/90 rounded-2xl shadow-2xl max-w-3xl mx-auto mb-12 border border-[#00FFF7]/10 backdrop-blur-md">
+      <header>
+        <h2 id="contact-title" class="font-orbitron text-4xl md:text-5xl text-[#00fff7] font-bold mb-6 tracking-widest drop-shadow-[0_2px_8px_#00FFF7cc]">Contact</h2>
+      </header>
+      <div class="contact-container">
+        <!-- IMPORTANT: Update the action URL below to your actual Formspree endpoint! -->
+        <form class="contact-form space-y-6" action="https://formspree.io/f/xzzggkyn" method="POST">
+          <div class="form-group">
+            <label for="name" class="block text-[#cccccc] font-bold mb-1">Name</label>
+            <input type="text" id="name" name="name" placeholder="Your name"
+              class="w-full px-4 py-2 rounded-lg bg-[#232946] text-white border border-[#00fff7] focus:outline-none focus:ring-2 focus:ring-[#00fff7]" />
+          </div>
+          <div class="form-group">
+            <label for="email" class="block text-[#cccccc] font-bold mb-1">Email</label>
+            <input type="email" id="email" name="email" placeholder="you@example.com" required
+              class="w-full px-4 py-2 rounded-lg bg-[#232946] text-white border border-[#00fff7] focus:outline-none focus:ring-2 focus:ring-[#00fff7]" />
+          </div>
+          <div class="form-group">
+            <label for="message" class="block text-[#cccccc] font-bold mb-1">Message</label>
+            <textarea id="message" name="message" rows="4" placeholder="Your message..."
+              class="w-full px-4 py-2 rounded-lg bg-[#232946] text-white border border-[#00fff7] focus:outline-none focus:ring-2 focus:ring-[#00fff7]"></textarea>
+          </div>
+          <button type="submit"
+            class="rounded-full px-8 py-3 bg-white/15 border-2 border-[#00fff7] text-[#00fff7] font-bold text-lg font-orbitron tracking-wide backdrop-blur-md transition-all duration-300 hover:bg-white/30 hover:shadow-[0_0_20px_0_rgba(0,255,247,0.5)] focus:outline-none">
+            Send Message
+          </button>
+        </form>
+        <div class="mt-8 text-center text-[#cccccc]/80">
+          <span class="inline-block px-4 py-2 rounded-full bg-[#00fff7]/10 border border-[#00fff7]/30 font-orbitron text-[#00fff7] text-base tracking-widest shadow">Let's build something cosmic together!</span>
+          <div class="mt-4">
+            <span class="block text-[#cccccc] text-sm">Or email me directly: 
+              <a href="mailto:ramkumar.remote24@gmail.com" class="text-[#00fff7] hover:underline">ramkumar.remote24@gmail.com</a>
+            </span>
+          </div>
         </div>
-            <nav class="navbar">
-                <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Services</a></li>
-                    <li><a href="#">Contact</a></li>
-                </ul>
-            </nav>
-        </header>
-        <section>
-            <h2>Welcome to EduVerse</h2>
-            <p>Education is the passport to the future, for tomorrow belongs to those who prepare for it today.</p>
-        </section>
+      </div>
+    </section>
 
-        <div class="cta">
-            <h3>Explore Our Courses</h3>
-            <p>Choose from a wide range of courses and upgrade your skills.</p>
-        </div>
-      
-        <main class="course-grid">
- 
-            <div class="course-card">
-              <img src="https://careeremployer.com/wp-content/uploads/2022/07/12-Best-Online-Courses-to-Learn-Web-Development--1024x576.png" width="250px;" height="150px;" alt="course 1">
-                <h3>Web Development</h3>
-                  <p>Learn HTML, CSS, & Javascript from scratch.</p>
-                  <span class="rating">⭐⭐⭐⭐⭐</span>
-            </div>
-                  
-            <div class="course-card">
-              <img src="https://thumbs.dreamstime.com/z/python-course-d-illustration-concept-python-programming-language-online-learning-advertisement-python-online-course-python-168699667.jpg" width="250px" height="150px;" alt="course 2">
-                <h3>Python for Beginners</h3>
-                  <p>Learn Python with hands-on projects.</p>
-                     <span class="rating">⭐⭐⭐⭐</span>
-            </div>
-        
-            <div class="course-card">
-               <img src="https://dgmc.org.in/wp-content/uploads/2022/02/Graphic-Design-Course.-1.png" width="250px;" height="150px;"  alt="Course 3">
-               <h3>Graphic Design</h3>
-               <p>Learn Photoshop, Illustrator & more.</p>
-               <span class="rating">⭐⭐⭐⭐⭐</span>
-           </div>
-        
-            <div class="course-card">
-               <img src="https://www.tqmi.com/wp-content/uploads/2022/02/Data-Science-4.webp" width="250px;" height="150px;"  alt="Course 4">
-               <h3>Data Science</h3>
-               <p>Analyze data using Python & Machine Learning.</p>
-               <span class="rating">⭐⭐⭐⭐</span>
-           </div>
-          
-            <div class="course-card">
-               <img src="https://i.ytimg.com/vi/QFJDYwu15jE/maxresdefault.jpg" height="150px;" width="250px;" alt="Course 5">
-               <h3>React.js Mastery</h3>
-               <p>Build modern web apps using React.</p>
-               <span class="rating">⭐⭐⭐⭐⭐</span>
-           </div>
-           
-           </main>
+    <!-- Resume Download & Call to Action -->
+    <section class="max-w-3xl mx-auto mb-16 text-center">
+      <a href="resume.html" class="inline-block px-8 py-3 rounded-full bg-[#00fff7]/10 border border-[#00fff7] text-[#00fff7] font-bold font-orbitron tracking-wide hover:bg-[#00fff7]/20 transition mb-4">View or Download Resume</a>
+      <div class="mt-4 text-[#cccccc]/80">
+        <span class="inline-block px-4 py-2 rounded-full bg-[#00fff7]/10 border border-[#00fff7]/30 font-orbitron text-[#00fff7] text-base tracking-widest shadow">Open to frontend roles, freelance, and collaborations!</span>
+      </div>
+    </section>
+  </main>
 
+      <!-- Contact -->
+  <footer class="text-center">
+<section
+  id="footer-contact"
+  class="mx-auto max-w-sm   <!-- ⬅️  hugging width -->
+         mt-8 bg-gray-800/70 p-4 rounded-lg shadow
+         hover:scale-[1.02] transition"
+>
+  <h2 class="sr-only">Contact</h2>         <!-- visually hidden -->
+  <ul class="flex justify-between gap-4">
 
-        <footer>
-            <p>&copy; <span id="year"></span> EduVerse</p>
+    <!-- E-mail -->
+    <li>
+      <a href="mailto:ramkumar.remote24@gmail.com"
+         aria-label="Email Ramkumar"
+         class="text-blue-300 hover:text-blue-400 transition-transform
+                hover:scale-110">
+        <span class="sr-only">Email</span>
+        <!-- mail-reception-svgrepo-com.svg -->
+        <svg class="w-7 h-7" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M2.25 6.75A2.25 2.25 0 0 1 4.5 4.5h15a2.25 2.25 0 0 1 2.25 2.25v10.5A2.25 2.25 0 0 1 19.5 19.5h-15A2.25 2.25 0 0 1 2.25 17.25V6.75zm1.5 0v.511l8.25 6.188 8.25-6.188V6.75a.75.75 0 0 0-.75-.75h-15a.75.75 0 0 0-.75.75zm16.5 1.822-7.77 5.834a.75.75 0 0 1-.91 0L3.75 8.572v8.678c0 .414.336.75.75.75h15a.75.75 0 0 0 .75-.75V8.572z"/>
+        </svg>
+      </a>
+    </li>
 
-                </footer>
-            </body>
-        </html>
+    <!-- LinkedIn -->
+    <li>
+      <a href="https://www.linkedin.com/in/ramkumar-pal-575949262/"
+         target="_blank" rel="noopener"
+         aria-label="Ramkumar on LinkedIn"
+         class="text-blue-300 hover:text-blue-400 transition-transform
+                hover:scale-110">
+        <span class="sr-only">LinkedIn</span>
+        <!-- linkedin-svgrepo-com.svg -->
+        <svg class="w-7 h-7" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.761 0 5-2.239 5-5v-14c0-2.761-2.239-5-5-5zm-11 19h-3v-9h3v9zm-1.5-10.268c-.966 0-1.75-.784-1.75-1.75s.784-1.75 1.75-1.75 1.75.784 1.75 1.75-.784 1.75-1.75 1.75zm15.5 10.268h-3v-4.604c0-1.099-.021-2.513-1.532-2.513-1.533 0-1.768 1.197-1.768 2.435v4.682h-3v-9h2.881v1.229h.041c.401-.761 1.379-1.563 2.838-1.563 3.036 0 3.6 2.001 3.6 4.599v4.735z"/>
+        </svg>
+      </a>
+    </li>
 
-   
+    <!-- GitHub -->
+    <li>
+      <a href="https://github.com/webcreaterRam"
+         target="_blank" rel="noopener"
+         aria-label="Ramkumar on GitHub"
+         class="text-blue-300 hover:text-blue-400 transition-transform
+                hover:scale-110">
+        <span class="sr-only">GitHub</span>
+        <!-- github-icon-svgrepo-com.svg -->
+        <svg class="w-7 h-7" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 2C6.477 2 2 6.484 2 12.021c0 4.428 2.865 8.184 6.839 9.504.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.342-3.369-1.342-.454-1.154-1.11-1.461-1.11-1.461-.908-.62.069-.608.069-.608 1.004.07 1.532 1.032 1.532 1.032.892 1.53 2.341 1.089 2.91.833.091-.647.35-1.089.636-1.34-2.221-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.254-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.025A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.338 1.909-1.295 2.748-1.025 2.748-1.025.546 1.378.202 2.396.1 2.65.64.7 1.028 1.595 1.028 2.688 0 3.847-2.337 4.695-4.566 4.944.359.309.678.919.678 1.852 0 1.336-.012 2.417-.012 2.747 0 .267.18.577.688.48C19.138 20.203 22 16.447 22 12.021 22 6.484 17.523 2 12 2z"/>
+        </svg>
+      </a>
+    </li>
+
+    <!-- Phone -->
+    <li>
+      <a href="tel:+918957165310"
+         aria-label="Call Ramkumar"
+         class="text-blue-300 hover:text-blue-400 transition-transform
+                hover:scale-110">
+        <span class="sr-only">Phone</span>
+        <!-- contact-phone-talking-svgrepo-com.svg -->
+        <svg class="w-7 h-7" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M17.707 13.293a1 1 0 0 0-1.414 0l-2.086 2.086a11.042 11.042 0 0 1-4.586-4.586l2.086-2.086a1 1 0 0 0 0-1.414l-2.121-2.121a1 1 0 0 0-1.414 0l-1.293 1.293c-.781.781-.977 1.953-.488 2.93 2.02 4.07 5.13 7.18 9.2 9.2.977.489 2.149.293 2.93-.488l1.293-1.293a1 1 0 0 0 0-1.414l-2.121-2.121z"/>
+        </svg>
+      </a>
+    </li>
+
+  </ul>
+
+</section>
+      <div class="max-w-3xl mx-auto px-4 py-8">
+      <p class="text-[#cccccc] text-sm mb-4">© 2025 Ramkumar Pal. All rights reserved.</p>
+      <p class="text-[#cccccc]/70 text-xs">Built with &#128151; using HTML, CSS, and JavaScript.</p>
+    </div>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>

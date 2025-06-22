@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ramkumar Pal | Frontend Developer Resume</title>
+  <meta name="description" content="Resume of Ramkumar Pal, Frontend Developer specializing in React, JavaScript, and modern web technologies." />
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- WEB FONT (Inter renders beautifully both screen & print) -->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+  /* 1. Page size and margins */
+  @page { size: A4 portrait; margin: 22mm 18mm; }
+
+  /* 2. Screen ↔ Print toggles */
+  .screen-only { display: inline-block; }
+  .print-only  { display: none; }
+
+  @media print {
+    html,body {
+      background:#fff !important; color:#000 !important;
+      font-family:"Inter",serif; font-size:10.5pt; line-height:1.45;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+
+    *,*:before,*:after{
+      background:none !important; box-shadow:none !important; border-radius:0 !important;
+      opacity: 1 !important;
+      color: #000 !important;
+    }
+
+    /* Hide anything meant only for the web view */
+    .screen-only { display:none !important; }
+
+    /* Hide navbar brand (Ramkumar Pal) and remove navbar space */
+    nav .text-white.font-bold { display: none !important; }
+    nav {
+      min-height: 0 !important;
+      height: 0 !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      border: none !important;
+      background: none !important;
+      box-shadow: none !important;
+      position: static !important;
+    }
+    nav > div, nav > * {
+      display: none !important;
+    }
+
+    /* Hide print button and mobile nav */
+    button[onclick="window.print()"], #mobile-menu, #menu-btn { display: none !important; }
+
+    /* Hide decorative/animated elements */
+    .pointer-events-none, .animate-ping, .backdrop-blur-md { display: none !important; }
+
+    /* Remove Tailwind utility spacing (optional, for compactness) */
+    .p-10, .p-6, .p-4, .py-3, .px-4, .pt-28, .pb-10 {
+      padding: 0 !important;
+    }
+    .mt-10, .mt-8, .mb-4, .mb-6, .gap-4, .gap-6 {
+      margin: 0 !important;
+    }
+
+    /* Add professional spacing between sections and elements */
+    header, section, footer, .section {
+      margin-bottom: 18px !important;
+      padding-bottom: 8px !important;
+    }
+    h1, h2, h3 {
+      margin-top: 10px !important;
+      margin-bottom: 8px !important;
+    }
+    p, ul, ol, li, .print-spacing {
+      margin-bottom: 8px !important;
+    }
+
+    /* Compact two-column helper (add class where needed) */
+    .print-two-col { column-count:2; column-gap:32px; }
+
+    /* Keep headings/sections together */
+    h2, h3, .section, .keep-together, .education-block, #education { page-break-inside: avoid !important; }
+
+    /* Make main container stretch full width */
+    .wrapper, .max-w-4xl, .max-w-3xl, .mx-auto {
+      max-width:100% !important;
+      width:100% !important;
+    }
+
+    /* Professional links: black, no underline, bold */
+    a, a:visited {
+      color: #000 !important;
+      text-decoration: none !important;
+      font-weight: 600 !important;
+      opacity: 1 !important;
+    }
+
+    /* Remove all opacity utility classes */
+    [class*="opacity-"] { opacity: 1 !important; }
+
+    /* Remove hover/focus/transition/scale for print */
+    [class*="hover:"], [class*="focus:"], [class*="transition"], [class*="scale-"] {
+      filter: none !important;
+      transition: none !important;
+      transform: none !important;
+    }
+
+    /* Show all text and SVG icons */
+    svg {
+      display: inline !important;
+      color: #000 !important;
+      fill: #000 !important;
+      opacity: 1 !important;
+    }
+  }
+</style>
+</head>
+<body class="bg-gradient-to-b from-gray-900 via-gray-800 to-black text-gray-100 font-poppins">
+  <!-- Navbar -->
+  <nav class="fixed top-0 inset-x-0 bg-gray-900 bg-opacity-80 backdrop-blur-md z-50 shadow">
+    <div class="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between">
+      <div><a href="#" class="text-white font-bold text-lg tracking-wide">Ramkumar Pal</a></div>
+      <div class="md:hidden">
+        <button id="menu-btn" class="focus:outline-none">
+          <svg class="w-6 h-6 text-gray-100" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+      <div id="menu" class="hidden md:flex space-x-6">
+        <a href="#summary" class="hover:text-blue-400 transition">Summary</a>
+        <a href="#skills" class="hover:text-blue-400 transition">Skills</a>
+        <a href="#projects" class="hover:text-blue-400 transition">Projects</a>
+        <a href="#experience" class="hover:text-blue-400 transition">Experience</a>
+        <a href="#education" class="hover:text-blue-400 transition">Education</a>
+        <a href="#contact" class="hover:text-blue-400 transition">Contact</a>
+        <a href="Frontend_Developer_Resume.pdf" download class="ml-4 bg-blue-400 text-gray-900 px-3 py-1 rounded-lg font-semibold hover:bg-blue-500 transition">Download PDF</a>
+      </div>
+    </div>
+    <div id="mobile-menu" class="md:hidden hidden bg-gray-800 bg-opacity-95">
+      <a href="#summary" class="block px-4 py-2 hover:bg-gray-700">Summary</a>
+      <a href="#skills" class="block px-4 py-2 hover:bg-gray-700">Skills</a>
+      <a href="#projects" class="block px-4 py-2 hover:bg-gray-700">Projects</a>
+      <a href="#experience" class="block px-4 py-2 hover:bg-gray-700">Experience</a>
+      <a href="#education" class="block px-4 py-2 hover:bg-gray-700">Education</a>
+      <a href="#contact" class="block px-4 py-2 hover:bg-gray-700">Contact</a>
+      <button onclick="window.print()" class="w-full text-left px-4 py-2 bg-blue-400 text-gray-900 hover:bg-blue-500">Download PDF</button>
+    </div>
+  </nav>
+
+  <div class="max-w-4xl mx-auto pt-28 pb-10 px-4">
+    <!-- Header -->
+    <header class="relative bg-gradient-to-r from-blue-700 via-indigo-600 to-purple-700 rounded-lg p-10 text-center shadow-lg">
+      <h1 class="text-5xl font-bold text-white drop-shadow-lg">Ramkumar Pal</h1>
+      <p class="mt-2 text-xl text-gray-200 font-medium">Frontend Developer</p>
+      <div class="mt-6 flex flex-wrap justify-center gap-4 text-base font-medium">
+        <a href="mailto:ramkumar.remote24@gmail.com" class="flex items-center hover:text-blue-200 transition">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-1" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M2.25 6.75A2.25 2.25 0 0 1 4.5 4.5h15a2.25 2.25 0 0 1 2.25 2.25v10.5A2.25 2.25 0 0 1 19.5 19.5h-15A2.25 2.25 0 0 1 2.25 17.25V6.75zm1.5 0v.511l8.25 6.188 8.25-6.188V6.75a.75.75 0 0 0-.75-.75h-15a.75.75 0 0 0-.75.75zm16.5 1.822-7.77 5.834a.75.75 0 0 1-.91 0L3.75 8.572v8.678c0 .414.336.75.75.75h15a.75.75 0 0 0 .75-.75V8.572z"/>
+          </svg>
+          ramkumar.remote24@gmail.com
+        </a>
+        <span class="flex items-center">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-1" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17.707 13.293a1 1 0 0 0-1.414 0l-2.086 2.086a11.042 11.042 0 0 1-4.586-4.586l2.086-2.086a1 1 0 0 0 0-1.414l-2.121-2.121a1 1 0 0 0-1.414 0l-1.293 1.293c-.781.781-.977 1.953-.488 2.93 2.02 4.07 5.13 7.18 9.2 9.2.977.489 2.149.293 2.93-.488l1.293-1.293a1 1 0 0 0 0-1.414l-2.121-2.121z"/>
+          </svg>
+          +91-8957165310
+        </span>
+        <a href="https://www.linkedin.com/in/ramkumar-pal-575949262/" target="_blank" class="flex items-center hover:text-blue-200 transition">🔗 LinkedIn</a>
+        <a href="https://github.com/webcreaterRam" target="_blank" class="flex items-center hover:text-blue-200 transition">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-1" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2C6.477 2 2 6.484 2 12.021c0 4.428 2.865 8.184 6.839 9.504.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.342-3.369-1.342-.454-1.154-1.11-1.461-1.11-1.461-.908-.62.069-.608.069-.608 1.004.07 1.532 1.032 1.532 1.032.892 1.53 2.341 1.089 2.91.833.091-.647.35-1.089.636-1.34-2.221-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.254-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.025A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.338 1.909-1.295 2.748-1.025 2.748-1.025.546 1.378.202 2.396.1 2.65.64.7 1.028 1.595 1.028 2.688 0 3.847-2.337 4.695-4.566 4.944.359.309.678.919.678 1.852 0 1.336-.012 2.417-.012 2.747 0 .267.18.577.688.48C19.138 20.203 22 16.447 22 12.021 22 6.484 17.523 2 12 2z"/>
+          </svg>
+          GitHub
+        </a>
+      </div>
+      <!-- Decorative stars -->
+      <div class="absolute inset-0 pointer-events-none">
+        <div class="w-1 h-1 bg-white rounded-full animate-ping opacity-50 absolute" style="top:10%; left:20%;"></div>
+        <div class="w-1.5 h-1.5 bg-white rounded-full animate-ping opacity-40 absolute" style="top:30%; left:80%;"></div>
+        <div class="w-1 h-1 bg-white rounded-full animate-ping opacity-30 absolute" style="top:70%; left:40%;"></div>
+      </div>
+    </header>
+
+    <!-- Summary -->
+    <section id="summary" class="mt-10 bg-gray-800 bg-opacity-70 p-6 rounded-lg shadow hover:scale-[1.02] transform transition">
+      <h2 class="text-2xl font-semibold text-blue-400 mb-4">Professional Summary</h2>
+      <p>
+        Creative and detail-oriented Frontend Developer with a passion for building visually engaging, accessible, and performant web applications. Experienced in modern JavaScript, React, Tailwind CSS, and animation libraries. Adept at collaborating with cross-functional teams and delivering real-world solutions that delight users and drive business results.
+      </p>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills" class="mt-8 bg-gray-800 bg-opacity-70 p-6 rounded-lg shadow hover:scale-[1.02] transform transition">
+      <h2 class="text-2xl font-semibold text-blue-400 mb-4">Technical Skills</h2>
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+        <span class="bg-gray-700 px-3 py-1 rounded-full text-center">React.js</span>
+        <span class="bg-gray-700 px-3 py-1 rounded-full text-center">JavaScript (ES6+)</span>
+        <span class="bg-gray-700 px-3 py-1 rounded-full text-center">Tailwind CSS</span>
+        <span class="bg-gray-700 px-3 py-1 rounded-full text-center">GSAP Animation</span>
+        <span class="bg-gray-700 px-3 py-1 rounded-full text-center">HTML5 & CSS3</span>
+        <span class="bg-gray-700 px-3 py-1 rounded-full text-center">TypeScript (learning)</span>
+        <span class="bg-gray-700 px-3 py-1 rounded-full text-center">Redux (learning)</span>
+        <span class="bg-gray-700 px-3 py-1 rounded-full text-center">Git & GitHub</span>
+        <span class="bg-gray-700 px-3 py-1 rounded-full text-center">Webpack & Vite</span>
+        <span class="bg-gray-700 px-3 py-1 rounded-full text-center">SEO & Accessibility</span>
+        <span class="bg-gray-700 px-3 py-1 rounded-full text-center">Bitrix24 CRM</span>
+        <span class="bg-gray-700 px-3 py-1 rounded-full text-center">Content Writing</span>
+        <span class="bg-gray-700 px-3 py-1 rounded-full text-center">Clideo</span>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects" class="mt-8 bg-gray-800 bg-opacity-70 p-6 rounded-lg shadow hover:scale-[1.02] transform transition">
+      <h2 class="text-2xl font-semibold text-blue-400 mb-4">Project Highlights</h2>
+      <div class="space-y-6">
+        <div>
+          <h3 class="text-xl font-semibold text-white">RamTechVersatile Portfolio</h3>
+          <a href="http://127.0.0.1:5500/index.html" target="_blank" class="text-blue-300 hover:underline">Live Demo</a>
+          <ul class="list-disc list-inside mt-2 text-gray-200">
+            <li>Cosmic-themed layout with animated shooting stars and responsive hero section using tailwindcss.</li>
+            <li>Semantic HTML, accessible navigation, project gallery, blog preview, and contact form.</li>
+            <li>SEO-optimized, fast loading, and mobile-friendly.</li>
+          </ul>
+        </div>
+        <!-- Add more projects as needed -->
+      </div>
+    </section>
+
+    <!-- Experience -->
+    <section id="experience" class="mt-8 bg-gray-800 bg-opacity-70 p-6 rounded-lg shadow hover:scale-[1.02] transform transition">
+      <h2 class="text-2xl font-semibold text-blue-400 mb-4">Professional Experience</h2>
+      <div class="space-y-6">
+        <div>
+          <h3 class="text-xl font-semibold text-white">CRM & Sales Executive, ECHT Ventures</h3>
+          <p class="italic text-gray-300">June 2024 – October 2024</p>
+          <ul class="list-disc list-inside mt-2 text-gray-200">
+            <li>Achieved 95% satisfaction handling voice & non-voice support for clients.</li>
+            <li>Managed Bitrix24 CRM and generated analytical reports using Excel.</li>
+            <li>Reduced response times by 30% through streamlined communication workflows.</li>
+          </ul>
+        </div>
+        <!-- Add more experience as needed -->
+      </div>
+    </section>
+
+    <!-- Education -->
+    <section id="education" class="mt-8 bg-gray-800 bg-opacity-70 p-6 rounded-lg shadow hover:scale-[1.02] transform transition keep-together">
+      <h2 class="text-2xl font-semibold text-blue-400 mb-4">Education</h2>
+      <div class="education-block">
+        <h3 class="text-xl font-semibold text-white">B.Com, Bundelkhand University Jhansi</h3>
+        <p class="italic text-gray-300">Expected 2025</p>
+        <ul class="list-disc list-inside mt-2 text-gray-200">
+          <li>Business Analytics, Digital Marketing, Project Management coursework.</li>
+          <li>Self-driven web development projects demonstrating adaptability and passion.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Additional & Interests -->
+    <section class="mt-8 bg-gray-800 bg-opacity-70 p-6 rounded-lg shadow hover:scale-[1.02] transform transition">
+      <h2 class="text-2xl font-semibold text-blue-400 mb-4">Additional & Interests</h2>
+      <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+        <span class="bg-gray-700 px-3 py-1 rounded-full text-center">CAT tools</span>
+        <span class="bg-gray-700 px-3 py-1 rounded-full text-center">GSAP Animation</span>
+        <span class="bg-gray-700 px-3 py-1 rounded-full text-center">GIMP</span>
+        <span class="bg-gray-700 px-3 py-1 rounded-full text-center">SEO & Content Writing</span>
+        <span class="bg-gray-700 px-3 py-1 rounded-full text-center">JAMstack & Headless CMS</span>
+        <span class="bg-gray-700 px-3 py-1 rounded-full text-center">AI Dev & No-code Tools</span>
+        <span class="bg-gray-700 px-3 py-1 rounded-full text-center">NoteGPT</span>
+        <span class="bg-gray-700 px-3 py-1 rounded-full text-center">Overleaf.com</span>
+        <span class="bg-gray-700 px-3 py-1 rounded-full text-center">Spline</span>
+        <span class="bg-gray-700 px-3 py-1 rounded-full text-center">Fast Resume & Document Creation using AI Tools</span>
+        <span class="bg-gray-700 px-3 py-1 rounded-full text-center">Strong Time Management & Deadline Handlings</span>
+        <span class="bg-gray-700 px-3 py-1 rounded-full text-center">Smart Use of Automation Tools for Repetitive Tasks</span>
+        <span class="bg-gray-700 px-3 py-1 rounded-full text-center">AI-powered Workflow Optimization (e.g., ChatGPT, Notion, Coda)</span>
+        <span class="bg-gray-700 px-3 py-1 rounded-full text-center">Caffeine App (for continuous screen uptime)</span>
+        <span class="bg-gray-700 px-3 py-1 rounded-full text-center">Google Workspace (Docs, Sheets, Calendar, Drive)</span>
+        <span class="bg-gray-700 px-3 py-1 rounded-full text-center">Grammarly (for error-free writing & emails)</span>
+        <span class="bg-gray-700 px-3 py-1 rounded-full text-center">Pomofocus / Clockify (for focused productivity sessions)</span>
+      </div>
+    </section>
+
+    <!-- Contact -->
+<section
+  id="contact"
+  class="mx-auto max-w-sm   <!-- ⬅️  hugging width -->
+         mt-8 bg-gray-800/70 p-4 rounded-lg shadow
+         hover:scale-[1.02] transition"
+>
+  <h2 class="sr-only">Contact</h2>         <!-- visually hidden -->
+  <ul class="flex justify-between gap-4">
+
+    <!-- E-mail -->
+    <li>
+      <a href="mailto:ramkumar.remote24@gmail.com"
+         aria-label="Email Ramkumar"
+         class="text-blue-300 hover:text-blue-400 transition-transform
+                hover:scale-110">
+        <span class="sr-only">Email</span>
+        <!-- mail-reception-svgrepo-com.svg -->
+        <svg class="w-7 h-7" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M2.25 6.75A2.25 2.25 0 0 1 4.5 4.5h15a2.25 2.25 0 0 1 2.25 2.25v10.5A2.25 2.25 0 0 1 19.5 19.5h-15A2.25 2.25 0 0 1 2.25 17.25V6.75zm1.5 0v.511l8.25 6.188 8.25-6.188V6.75a.75.75 0 0 0-.75-.75h-15a.75.75 0 0 0-.75.75zm16.5 1.822-7.77 5.834a.75.75 0 0 1-.91 0L3.75 8.572v8.678c0 .414.336.75.75.75h15a.75.75 0 0 0 .75-.75V8.572z"/>
+        </svg>
+      </a>
+    </li>
+
+    <!-- LinkedIn -->
+    <li>
+      <a href="https://www.linkedin.com/in/ramkumar-pal-575949262/"
+         target="_blank" rel="noopener"
+         aria-label="Ramkumar on LinkedIn"
+         class="text-blue-300 hover:text-blue-400 transition-transform
+                hover:scale-110">
+        <span class="sr-only">LinkedIn</span>
+        <!-- linkedin-svgrepo-com.svg -->
+        <svg class="w-7 h-7" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.761 0 5-2.239 5-5v-14c0-2.761-2.239-5-5-5zm-11 19h-3v-9h3v9zm-1.5-10.268c-.966 0-1.75-.784-1.75-1.75s.784-1.75 1.75-1.75 1.75.784 1.75 1.75-.784 1.75-1.75 1.75zm15.5 10.268h-3v-4.604c0-1.099-.021-2.513-1.532-2.513-1.533 0-1.768 1.197-1.768 2.435v4.682h-3v-9h2.881v1.229h.041c.401-.761 1.379-1.563 2.838-1.563 3.036 0 3.6 2.001 3.6 4.599v4.735z"/>
+        </svg>
+      </a>
+    </li>
+
+    <!-- GitHub -->
+    <li>
+      <a href="https://github.com/webcreaterRam"
+         target="_blank" rel="noopener"
+         aria-label="Ramkumar on GitHub"
+         class="text-blue-300 hover:text-blue-400 transition-transform
+                hover:scale-110">
+        <span class="sr-only">GitHub</span>
+        <!-- github-icon-svgrepo-com.svg -->
+        <svg class="w-7 h-7" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 2C6.477 2 2 6.484 2 12.021c0 4.428 2.865 8.184 6.839 9.504.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.342-3.369-1.342-.454-1.154-1.11-1.461-1.11-1.461-.908-.62.069-.608.069-.608 1.004.07 1.532 1.032 1.532 1.032.892 1.53 2.341 1.089 2.91.833.091-.647.35-1.089.636-1.34-2.221-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.254-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.025A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.338 1.909-1.295 2.748-1.025 2.748-1.025.546 1.378.202 2.396.1 2.65.64.7 1.028 1.595 1.028 2.688 0 3.847-2.337 4.695-4.566 4.944.359.309.678.919.678 1.852 0 1.336-.012 2.417-.012 2.747 0 .267.18.577.688.48C19.138 20.203 22 16.447 22 12.021 22 6.484 17.523 2 12 2z"/>
+        </svg>
+      </a>
+    </li>
+
+    <!-- Phone -->
+    <li>
+      <a href="tel:+918957165310"
+         aria-label="Call Ramkumar"
+         class="text-blue-300 hover:text-blue-400 transition-transform
+                hover:scale-110">
+        <span class="sr-only">Phone</span>
+        <!-- contact-phone-talking-svgrepo-com.svg -->
+        <svg class="w-7 h-7" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M17.707 13.293a1 1 0 0 0-1.414 0l-2.086 2.086a11.042 11.042 0 0 1-4.586-4.586l2.086-2.086a1 1 0 0 0 0-1.414l-2.121-2.121a1 1 0 0 0-1.414 0l-1.293 1.293c-.781.781-.977 1.953-.488 2.93 2.02 4.07 5.13 7.18 9.2 9.2.977.489 2.149.293 2.93-.488l1.293-1.293a1 1 0 0 0 0-1.414l-2.121-2.121z"/>
+        </svg>
+      </a>
+    </li>
+
+  </ul>
+</section>
+
+    <footer class="mt-10 text-center text-gray-400 text-sm">
+      <span>Future Learning: React, Next.js, TypeScript, Redux, GraphQL, Docker, Advanced Animations, AI Integrations.</span>
+      <br>
+      <span>© 2025 Ramkumar Pal. All rights reserved.</span>
+    </footer>
+  </div>
+
+  <script>
+    const btn = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    btn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+  </script>
+</body>
+</html>
