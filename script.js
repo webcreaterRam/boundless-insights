@@ -1,182 +1,397 @@
+document.addEventListener('DOMContentLoaded', () => {
+  // Boundless Insights Portfolio JavaScript
+  // Clean, robust, and theme-aware
+  
+  // =====================
+  // 1. MOBILE MENU MODULE
+  // =====================
+const setupHamburger = () => {
+  const menuBtn = document.getElementById('menu-btn');
+  const menuBtnMobile = document.getElementById('menu-btn-mobile');
 
-document.addEventListener('DOMContentLoaded', () => {    
-          // Hamburger menu toggle
-      const mobileMenuButton = document.getElementById('mobile-menu-button');
-      const mobileMenu = document.getElementById('mobile-menu');
-      if (mobileMenuButton && mobileMenu) {
-        mobileMenuButton.addEventListener('click', () => {
-          mobileMenu.classList.toggle('hidden');
-        });
-        // Optional: Hide menu when a link is clicked (for better UX)
-        mobileMenu.querySelectorAll('a').forEach(link => {
-          link.addEventListener('click', () => {
-            mobileMenu.classList.add('hidden');
-          });
-        });
+  // Remove any previous menu if exists
+  let menu = document.getElementById('hamburger-nav-menu');
+  if (menu) menu.remove();
+
+  // Create the menu
+  menu = document.createElement('div');
+  menu.id = 'hamburger-nav-menu';
+  menu.style.position = 'fixed';
+  menu.style.top = '70px';
+  menu.style.right = '0';
+  menu.style.background = 'var(--color-navbar)';
+  menu.style.borderRadius = '0.75rem 0 0 0.75rem';
+  menu.style.boxShadow = '0 4px 24px 0 #0008';
+  menu.style.padding = '1.2rem 1.5rem';
+  menu.style.display = 'none';
+  menu.style.zIndex = '9999';
+  menu.style.minWidth = '220px';
+  menu.innerHTML = `
+    <ul style="display:flex;flex-direction:column;gap:1rem;margin:0;padding:0;list-style:none;align-items:flex-start;">
+      <li><a href="#about" class="themed-link">About</a></li>
+      <li><a href="#skills" class="themed-link">Skills</a></li>
+      <li><a href="#projects" class="themed-link">Projects</a></li>
+      <li><a href="#blog" class="themed-link">Blog</a></li>
+      <li><a href="#testimonials" class="themed-link">Testimonials</a></li>
+      <li><a href="#contact" class="themed-link">Contact</a></li>
+      <li><a href="resume.html" class="themed-link">Resume</a></li>
+    </ul>
+  `;
+  document.body.appendChild(menu);
+
+  function toggleMenu(e) {
+    e.stopPropagation();
+    // Position menu below the correct hamburger button, flush right
+    let btn = e.currentTarget;
+    let rect = btn.getBoundingClientRect();
+    menu.style.top = rect.bottom + 8 + 'px';
+    menu.style.right = '0';
+    menu.style.display = menu.style.display === 'none' ? 'block' : 'none';
+  }
+  function hideMenu() {
+    menu.style.display = 'none';
+  }
+
+  if (menuBtn) {
+    menuBtn.onclick = toggleMenu;
+  }
+  if (menuBtnMobile) {
+    menuBtnMobile.onclick = toggleMenu;
+  }
+  // Hide menu when clicking outside
+  document.addEventListener('click', function (e) {
+    if (!menu.contains(e.target) && e.target !== menuBtn && e.target !== menuBtnMobile) {
+      hideMenu();
+    }
+  });
+  // Hide menu on nav link click
+  menu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', hideMenu);
+  });
+}
+  
+  // =====================
+  // 2. THEME SWITCHER MODULE
+  // =====================
+  function setupThemeSwitcher() {
+    const themes = ['theme-cosmic', 'theme-nebula', 'theme-eclipse'];
+    let current = 0;
+    const html = document.documentElement;
+    const themeBtn = document.getElementById('theme-switcher');
+    const themeBtnMobile = document.getElementById('theme-switcher-mobile');
+  
+    function setTheme(idx) {
+      themes.forEach(t => html.classList.remove(t));
+      html.classList.add(themes[idx]);
+      const label = themes[idx].replace('theme-', '').replace(/^[a-z]/, c => c.toUpperCase());
+      if (themeBtn) themeBtn.innerText = label;
+      if (themeBtnMobile) themeBtnMobile.innerText = label;
+      // Dispatch event for background switching and theme-based CSS
+      const evt = new Event('themechange');
+      html.dispatchEvent(evt);
+      if (typeof window.updateCosmicBg === 'function') window.updateCosmicBg();
+    }
+  
+    function switchTheme(e) {
+      if (e && e.preventDefault) e.preventDefault();
+      current = (current + 1) % themes.length;
+      setTheme(current);
+      if (window.localStorage) localStorage.setItem('theme', themes[current]);
+    }
+  
+    if (themeBtn) themeBtn.addEventListener('click', switchTheme);
+    if (themeBtnMobile) themeBtnMobile.addEventListener('click', switchTheme);
+  
+    // Restore theme from localStorage
+    if (window.localStorage) {
+      const saved = localStorage.getItem('theme');
+      if (saved && themes.includes(saved)) {
+        current = themes.indexOf(saved);
       }
-  const canvas = document.getElementById('star-canvas');
-  const hero = document.getElementById('hero');
-  if (!canvas || !hero) return;
-  const ctx = canvas.getContext('2d');
-  if (!ctx) return;
-
-  const STAR_COLORS = ['#fff8e7', '#ffe9c4', '#ffd1a9', '#cce0ff', '#aabfff', '#b5ffd9', '#f7baff', '#ffffff', '#ffd6a5', '#b5ffd9'];
-  const METEOR_HEAD_COLORS = [
-    '#ffecd2', '#fcb69f', '#ff9966', '#ff5e62', '#ff512f', '#dd2476', '#d53369', '#cb2d3e', '#ef473a', '#e94057'
-  ];
-
-  let meteors = [];
-  let width = 0, height = 0;
-  let staticStarsLayer = null;
-  let lastFrameTime = performance.now();
-  let lastMeteorTime = 0;
-  const MAX_METEORS = window.innerWidth < 600 ? 1 : 2;
-  const METEOR_INTERVAL = 3200;
-
-  function getStarCount(width) {
-    if (width < 600) return 40;
-    if (width < 900) return 80;
-    return 120;
+    }
+    setTheme(current);
   }
-
-  function renderStaticStarsLayer(w, h) {
-    const off = document.createElement('canvas');
-    off.width = w;
-    off.height = h;
-    const offctx = off.getContext('2d');
-    const grad = offctx.createRadialGradient(w / 2, h / 2, h * 0.1, w / 2, h / 2, Math.max(w, h) * 0.9);
-    offctx.fillStyle = grad;
-    offctx.fillRect(0, 0, w, h);
-    const count = getStarCount(w);
-    for (let i = 0; i < count; i++) {
-      const x = Math.random() * w;
-      const y = Math.random() * h;
-      const r = Math.random() * 1 + 0.5;
-      const color = STAR_COLORS[Math.floor(Math.random() * STAR_COLORS.length)];
-      offctx.beginPath();
-      offctx.arc(x, y, r, 0, 2 * Math.PI);
-      offctx.fillStyle = color;
-      offctx.globalAlpha = 0.85 + Math.random() * 0.15;
-      offctx.shadowColor = color;
-      offctx.shadowBlur = 4;
-      offctx.fill();
+  
+  // =====================
+  // 3. STAR CANVAS MODULE
+  // =====================
+  function setupStarCanvas() {
+    const canvas = document.getElementById('star-canvas');
+    const hero = document.getElementById('hero');
+    if (!canvas || !hero) return;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+  
+    hero.style.position = 'relative';
+    canvas.style.position = 'absolute';
+    canvas.style.left = '0';
+    canvas.style.top = '0';
+    canvas.style.right = '0';
+    canvas.style.bottom = '0';
+    canvas.style.width = '100%';
+    canvas.style.height = '100%';
+    canvas.style.display = 'block';
+    canvas.style.pointerEvents = 'none';
+    canvas.style.zIndex = '0';
+  
+    const STAR_COLORS = [
+      '#fff8e7', '#ffe9c4', '#ffd1a9', '#cce0ff', '#aabfff',
+      '#b5ffd9', '#f7baff', '#ffffff', '#ffd6a5', '#b5ffd9'
+    ];
+    const METEOR_HEAD_COLORS = [
+      '#ffecd2', '#fcb69f', '#ff9966', '#ff5e62', '#ff512f',
+      '#dd2476', '#d53369', '#cb2d3e', '#ef473a', '#e94057'
+    ];
+  
+    let meteors = [], width = 0, height = 0, staticStarsLayer = null;
+    let lastFrameTime = performance.now();
+    let lastMeteorTime = 0;
+    let MAX_METEORS = window.innerWidth < 600 ? 1 : 2;
+    const METEOR_INTERVAL = 3200;
+  
+    function getStarCount(width) {
+      if (width < 600) return 40;
+      if (width < 900) return 80;
+      return 120;
     }
-    offctx.globalAlpha = 1;
-    return off;
-  }
-
-  class Meteor {
-    constructor(w, h) {
-      const fromLeft = Math.random() < 0.5;
-      const angle = (fromLeft ? 67 : 112) * Math.PI / 180;
-      this.x0 = fromLeft ? Math.random() * w * 0.25 : Math.random() * w * 0.25 + w * 0.75;
-      this.y0 = Math.random() * h * 0.15;
-      const speed = Math.random() * 0.5 + 1.5;
-      this.vx = Math.cos(angle) * speed;
-      this.vy = Math.sin(angle) * speed;
-      this.length = Math.random() * 70 + 90;
-      this.maxLife = Math.random() * 1.2 + 2.2;
-      this.life = 0;
-      this.alpha = 1;
-      this.headColor = METEOR_HEAD_COLORS[Math.floor(Math.random() * METEOR_HEAD_COLORS.length)];
-      this.x = this.x0;
-      this.y = this.y0;
+  
+    function renderStaticStarsLayer(w, h) {
+      const off = document.createElement('canvas');
+      off.width = w;
+      off.height = h;
+      const offctx = off.getContext('2d');
+      offctx.clearRect(0, 0, w, h);
+      const count = getStarCount(w);
+      for (let i = 0; i < count; i++) {
+        const x = Math.random() * w;
+        const y = Math.random() * h;
+        const r = Math.random() * 1 + 0.5;
+        const color = STAR_COLORS[Math.floor(Math.random() * STAR_COLORS.length)];
+        offctx.save();
+        offctx.beginPath();
+        offctx.arc(x, y, r, 0, 2 * Math.PI);
+        offctx.fillStyle = color;
+        offctx.globalAlpha = 0.85 + Math.random() * 0.15;
+        offctx.shadowColor = color;
+        offctx.shadowBlur = 4;
+        offctx.fill();
+        offctx.restore();
+      }
+      offctx.globalAlpha = 1;
+      return off;
     }
-
-    update(dt) {
-      this.life += dt;
-      this.x += this.vx * dt * 60;
-      this.y += this.vy * dt * 60;
-      this.alpha = 1 - (this.life / this.maxLife);
+  
+    class Meteor {
+      constructor(w, h) {
+        const fromLeft = Math.random() < 0.5;
+        const angle = (fromLeft ? 67 : 112) * Math.PI / 180;
+        this.x0 = fromLeft ? Math.random() * w * 0.25 : Math.random() * w * 0.25 + w * 0.75;
+        this.y0 = Math.random() * h * 0.15;
+        const speed = Math.random() * 0.5 + 1.5;
+        this.vx = Math.cos(angle) * speed;
+        this.vy = Math.sin(angle) * speed;
+        this.length = Math.random() * 70 + 90;
+        this.maxLife = Math.random() * 1.2 + 2.2;
+        this.life = 0;
+        this.alpha = 1;
+        this.headColor = METEOR_HEAD_COLORS[Math.floor(Math.random() * METEOR_HEAD_COLORS.length)];
+        this.x = this.x0;
+        this.y = this.y0;
+      }
+      update(dt) {
+        this.life += dt;
+        this.x += this.vx * dt * 60;
+        this.y += this.vy * dt * 60;
+        this.alpha = 1 - (this.life / this.maxLife);
+      }
+      draw(ctx) {
+        if (this.alpha <= 0.01) return;
+        ctx.save();
+        ctx.globalAlpha = this.alpha;
+        const glow = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, 14);
+        glow.addColorStop(0, this.headColor);
+        glow.addColorStop(0.5, this.headColor + 'cc');
+        glow.addColorStop(1, 'transparent');
+        ctx.fillStyle = glow;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, 9, 0, 2 * Math.PI);
+        ctx.fill();
+  
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, 2.8, 0, 2 * Math.PI);
+        ctx.fillStyle = this.headColor;
+        ctx.shadowColor = this.headColor;
+        ctx.shadowBlur = 8;
+        ctx.fill();
+  
+        const norm = Math.hypot(this.vx, this.vy);
+        const tx = this.x - this.vx / norm * this.length;
+        const ty = this.y - this.vy / norm * this.length;
+        const grad = ctx.createLinearGradient(this.x, this.y, tx, ty);
+        grad.addColorStop(0, this.headColor + 'cc');
+        grad.addColorStop(1, this.headColor + '00');
+  
+        ctx.globalAlpha *= 0.85;
+        ctx.strokeStyle = grad;
+        ctx.lineWidth = 2.2;
+        ctx.beginPath();
+        ctx.moveTo(this.x, this.y);
+        ctx.lineTo(tx, ty);
+        ctx.stroke();
+        ctx.restore();
+      }
+      isAlive(w, h) {
+        return this.alpha > 0.01 && this.life < this.maxLife && this.x > -200 && this.x < w + 200 && this.y > -200 && this.y < h + 200;
+      }
     }
-
-    draw(ctx) {
-      if (this.alpha <= 0.01) return;
-      ctx.save();
-      ctx.globalAlpha = this.alpha;
-      const glow = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, 14);
-      glow.addColorStop(0, this.headColor);
-      glow.addColorStop(0.5, this.headColor + 'cc');
-      glow.addColorStop(1, 'transparent');
-      ctx.fillStyle = glow;
-      ctx.beginPath();
-      ctx.arc(this.x, this.y, 9, 0, 2 * Math.PI);
-      ctx.fill();
-
-      ctx.beginPath();
-      ctx.arc(this.x, this.y, 2.8, 0, 2 * Math.PI);
-      ctx.fillStyle = this.headColor;
-      ctx.shadowColor = this.headColor;
-      ctx.shadowBlur = 8;
-      ctx.fill();
-
-      const norm = Math.hypot(this.vx, this.vy);
-      const tx = this.x - this.vx / norm * this.length;
-      const ty = this.y - this.vy / norm * this.length;
-      const grad = ctx.createLinearGradient(this.x, this.y, tx, ty);
-      grad.addColorStop(0, this.headColor + 'cc');
-      grad.addColorStop(1, this.headColor + '00');
-
-      ctx.globalAlpha *= 0.85;
-      ctx.strokeStyle = grad;
-      ctx.lineWidth = 2.2;
-      ctx.beginPath();
-      ctx.moveTo(this.x, this.y);
-      ctx.lineTo(tx, ty);
-      ctx.stroke();
-      ctx.restore();
+  
+    function spawnMeteor() {
+      meteors.push(new Meteor(width, height));
+      lastMeteorTime = performance.now();
     }
-
-    isAlive(w, h) {
-      return this.alpha > 0.01 && this.life < this.maxLife && this.x > -200 && this.x < w + 200 && this.y > -200 && this.y < h + 200;
-    }
-  }
-
-  function spawnMeteor() {
-    const heroRect = hero.getBoundingClientRect();
-    if (heroRect.bottom <= 0 || heroRect.top >= window.innerHeight) return;
-    if (meteors.length >= MAX_METEORS) return;
-    meteors.push(new Meteor(width, height));
-    lastMeteorTime = performance.now();
-  }
-
-  function drawFrame(now) {
-    const dt = Math.min((now - lastFrameTime) / 1000, 0.033);
-    lastFrameTime = now;
-    const heroVisible = hero.getBoundingClientRect().bottom > 0 && hero.getBoundingClientRect().top < window.innerHeight;
-
-    if (!heroVisible) {
+  
+    function drawFrame(now) {
+      const dt = Math.min((now - lastFrameTime) / 1000, 0.033);
+      lastFrameTime = now;
+      ctx.clearRect(0, 0, width, height);
+      if (staticStarsLayer) ctx.drawImage(staticStarsLayer, 0, 0);
+      meteors = meteors.filter(m => m.isAlive(width, height));
+      meteors.forEach(m => {
+        m.update(dt);
+        m.draw(ctx);
+      });
+      if (now - lastMeteorTime > METEOR_INTERVAL && meteors.length < MAX_METEORS) spawnMeteor();
       requestAnimationFrame(drawFrame);
-      return;
     }
-
-    ctx.clearRect(0, 0, width, height);
-    if (staticStarsLayer) ctx.drawImage(staticStarsLayer, 0, 0);
-
-    meteors = meteors.filter(m => m.isAlive(width, height));
-    meteors.forEach(m => { m.update(dt); m.draw(ctx); });
-
-    if (now - lastMeteorTime > METEOR_INTERVAL && meteors.length < MAX_METEORS) {
+  
+    function resizeCanvas() {
+      let w = hero.clientWidth;
+      let h = hero.clientHeight;
+      if (!w || !h) {
+        let rect = hero.getBoundingClientRect();
+        w = Math.round(rect.width) || window.innerWidth;
+        h = Math.round(rect.height) || window.innerHeight;
+      }
+      width = Math.max(1, w);
+      height = Math.max(1, h);
+      canvas.width = width;
+      canvas.height = height;
+      staticStarsLayer = renderStaticStarsLayer(width, height);
+      meteors = [];
       spawnMeteor();
     }
-
-    requestAnimationFrame(drawFrame);
+  
+    function ensureCanvasReady() {
+      resizeCanvas();
+      requestAnimationFrame(drawFrame);
+    }
+  
+    ensureCanvasReady();
+    window.addEventListener('resize', () => {
+      MAX_METEORS = window.innerWidth < 600 ? 1 : 2;
+      resizeCanvas();
+    });
+    window.addEventListener('load', ensureCanvasReady);
   }
-
-  function resizeCanvas() {
-    width = hero.offsetWidth;
-    height = hero.offsetHeight;
-    canvas.width = width;
-    canvas.height = height;
-    canvas.style.width = width + 'px';
-    canvas.style.height = height + 'px';
-    staticStarsLayer = renderStaticStarsLayer(width, height);
-    meteors = [];
-    spawnMeteor();
+  
+  // =====================
+  // 4. CTA SMOOTH SCROLL
+  // =====================
+  function setupCtaSmoothScroll() {
+    const ctaBtn = document.querySelector('.cta[href^="#"]');
+    if (ctaBtn) {
+      ctaBtn.addEventListener('click', function(e) {
+        const targetId = this.getAttribute('href').slice(1);
+        const target = document.getElementById(targetId);
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    }
   }
-
-  resizeCanvas();
-  window.addEventListener('resize', resizeCanvas);
-  requestAnimationFrame(drawFrame);
+  
+  // =====================
+  // 5. THEME-BASED SHADOWS/ANIMATIONS UPDATE
+  // =====================
+  function setupThemeDynamicCss() {
+    function updateThemedClasses() {
+      // CSS variables update automatically with theme class
+      // This is a no-op, but can be used to force repaint if needed
+      document.querySelectorAll('.themed-shadow, .themed-border, .themed-btn, .themed-heading').forEach(el => {
+        el.style.boxShadow = '';
+        el.style.borderColor = '';
+        el.style.color = '';
+      });
+    }
+    document.documentElement.addEventListener('themechange', updateThemedClasses);
+    document.addEventListener('DOMContentLoaded', updateThemedClasses);
+  }
+  
+  // =====================
+  // 6. INITIALIZATION
+  // =====================
+  function initializePortfolio() {
+    setupThemeSwitcher();
+    setupStarCanvas();
+    setupCtaSmoothScroll();
+    setupThemeDynamicCss();
+    setupHamburger();
+  }
+  
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializePortfolio);
+  } else {
+    initializePortfolio();
+  }
 });
 
+    // Initialize GSAP ScrollSmoother
+    gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+    ScrollSmoother.create({
+      wrapper: "#main-content",
+      content: "#main-content",
+      smooth: 1.5,
+      effects: true,
+    });
+    setupThemeSwitcher();
+    setupStarCanvas();
+    setupCtaSmoothScroll();
+    setupThemeDynamicCss();
+  
+  
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializePortfolio);
+  } else {
+    initializePortfolio();
+  }
+
+
+    // Initialize GSAP ScrollSmoother
+    gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+    ScrollSmoother.create({
+      wrapper: "#main-content",
+      content: "#main-content",
+      smooth: 1.5,
+      effects: true,
+    });
+    setupStarCanvas();
+    setupCtaSmoothScroll();
+    setupThemeDynamicCss();
+  
+  
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializePortfolio);
+  } else {
+    initializePortfolio();
+  }
+
+
+    // Initialize GSAP ScrollSmoother
+    gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+    ScrollSmoother.create({
+      wrapper: "#main-content",
+      content: "#main-content",
+      smooth: 1.5,
+      effects: true,
+    });

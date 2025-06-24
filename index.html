@@ -1,473 +1,586 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" class="scroll-smooth theme-cosmic">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>RamTechVersatile - Cosmic Frontend Explorer</title>
+  <title>Boundless Insights</title>
   <meta name="description" content="Cosmic Portfolio of Ramkumar, a self-taught frontend developer with a passion for cosmic-themed web designs, showcasing skills in HTML, CSS, and Javascript." />
   <meta property="og:title" content="Ramkumar's Cosmic Portfolio" />
   <meta property="og:description" content="Explore the cosmic-themed portfolio of Ramkumar, a self-taught frontend developer." />
-    <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="icon" type="image/jpeg" href="favicon.ico" />
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-    .font-orbitron { font-family: 'Orbitron', Arial, sans-serif; }
-    .font-poppins { font-family: 'Poppins', Arial, sans-serif; }
-    body {
-      background: #0b0c10;
-      color: #cccccc;
-      font-family: Arial, sans-serif;
-      min-height: 100vh;
-      margin: 0;
-      overflow-x: hidden;
-    }
-    .navbar-bg {
-      background: rgba(15, 32, 39, 0.85);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-    }
-    .fractal-bg {
-      position: fixed;
-      inset: 0;
-      z-index: -10;
-      pointer-events: none;
-      background-image:
-        url('https://www.transparenttextures.com/patterns/stardust.png'),
-        linear-gradient(120deg, #232946 0%, #0b0c10 100%);
-      background-size: 600px 600px, cover;
-      background-repeat: repeat, no-repeat;
-      background-attachment: fixed;
-      opacity: 0.18;
-      will-change: transform;
-    }
-    #hero {
-      min-height: 100vh;
-      height: 100vh;
-      max-height: none;
-      position: relative;
-    }
-    #star-canvas, #noise-canvas {
-      position: absolute !important;
-      top: 0; left: 0; width: 100%; height: 100%;
-      display: block;
-      pointer-events: none;
-    }
-    @keyframes hero-fade-in {
-      from { opacity: 0; transform: translateY(40px);}
-      to { opacity: 1; transform: translateY(0);}
-    }
-    .animate-hero-fade-in {
-      animation: hero-fade-in 1s cubic-bezier(.4,0,.2,1) forwards;
-    }
-    .animate-hero-fade-in.delay-150 {
-      animation-delay: 0.15s;
-    }
-    .cta {
-      position: relative;
-      z-index: 1;
-      overflow: visible;
-    }
-    .cta::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      border-radius: 9999px;
-      box-shadow: 0 0 0 rgba(0,255,247,0.5);
-      animation: pulse 2s infinite ease-in-out;
-      z-index: -1;
-      pointer-events: none;
-      transition: box-shadow 0.2s;
-    }
-    @keyframes pulse {
-      0%,100% { box-shadow: 0 0 0 rgba(0,255,247,0); }
-      50%    { box-shadow: 0 0 20px rgba(0,255,247,0.5); }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      .cta-glow::before { animation: none !important; }
-      #star-canvas, #noise-canvas { filter: none !important; }
-    }
-  </style>
+<link rel="stylesheet" href="styles.css" />
+  <script src="https://kit.fontawesome.com/yourkitid.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.11.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.11.5/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.11.5/dist/ScrollSmoother.min.js"></script>
+
 </head>
-<body class="bg-[#0b0c10] text-[#cccccc] font-poppins antialiased">
-  <div class="fractal-bg"></div>
-  <a href="#main-content" class="sr-only focus:not-sr-only">Skip to content</a>
-  <header class="fixed top-0 inset-x-0 z-50">
-    <nav aria-label="Primary navigation"
-      class="navbar-bg max-w-6xl mx-auto flex items-center justify-between px-6 py-4 shadow-2xl rounded-b-3xl border border-[#00FFF7]/30 relative transition-all duration-500 backdrop-blur-xl">
-      <div class="site-logo flex items-center gap-2" aria-label="To home">
-        <span class="inline-block w-8 h-8 rounded-full bg-gradient-to-br from-[#00FFF7] to-[#2a2e4a] shadow-lg flex items-center justify-center">
-          <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" stroke-width="2"
-            viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="10" />
-            <path d="M12 6v6l4 2" />
+<body>
+  <!-- Navbar -->
+  <nav class="navbar-bg fixed top-0 inset-x-0 z-50 bg-opacity-80 backdrop-blur-md !shadow-none border-none rounded-[5px]">
+    <!-- Desktop & Tablet Navbar (>=768px) -->
+    <div class="navbar-inner w-[90%] max-w-full flex items-center justify-between px-4 py-2 rounded-[5px] mt-4 bg-[var(--color-navbar)] transition-shadow duration-300 hover:shadow-2xl hover:shadow-[var(--color-primary-glow)] gap-8
+      sm:w-full sm:mt-0 sm:rounded-[5px] hidden md:flex">
+      <!-- Logo (left) -->
+      <div class="site-logo flex items-center gap-4 min-w-0">
+        <a href="#" class="flex items-center gap-2 select-none">
+          <span class="logo-ring flex items-center justify-center rounded-full transition-all duration-300"
+                style="width:4.5rem;height:4.5rem;border:0.3px solid var(--color-primary);box-shadow:0 0 0 0.5px var(--color-primary-glow);">
+            <img src="Cosmic-Logo.svg" alt="Cosmic Logo" class="h-16 w-16 object-contain rounded-full shadow themed-shadow" />
+          </span>
+          <span class="sr-only">Home</span>
+        </a>
+      </div>
+      <!-- Search Bar (show on md and up) -->
+      <form class="relative flex-1 mx-4 hidden md:flex" style="max-width:460px; min-width:260px; width:100%;" autocomplete="off" role="search" action="https://www.google.com/search" method="GET" target="_blank">
+        <span class="absolute left-3 top-1/2 -translate-y-1/2 text-xl text-current pointer-events-none">
+          <svg class="w-5 h-5 themed-heading" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/>
+            <line x1="16.5" y1="16.5" x2="21" y2="21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
           </svg>
         </span>
-        <a href="#hero" class="text-white text-2xl md:text-3xl font-bold font-orbitron tracking-widest drop-shadow-[0_2px_8px_#00FFF7cc] hover:text-[#00FFF7] transition-all duration-300">Cosmic Portfolio</a>
+        <input
+          type="search"
+          name="q"
+          placeholder="Search..."
+          class="w-full pl-10 pr-3 py-2 rounded-full border themed-border bg-[var(--color-bg-alt)] themed-search-input placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] transition"
+          style="background: var(--color-bg-alt);"
+        />
+      </form>
+      <!-- Theme Switcher Button -->
+      <div class="flex items-center justify-center mx-4 theme-switcher-order">
+        <button id="theme-switcher" class="theme-switcher-btn min-w-[116px] select-none">Cosmic</button>
       </div>
-      <ul class="nav-links hidden md:flex space-x-6 text-[#CCCCCC] text-center font-poppins text-lg">
-        <li>
-          <a href="#hero" class="relative group px-3 py-1 hover:text-[#00FFF7] transition">
-            Home
-            <span class="absolute left-1/2 -bottom-1 w-0 group-hover:w-full h-0.5 bg-[#00FFF7] rounded-full transition-all duration-300 group-hover:left-0"></span>
-          </a>
-        </li>
-        <li>
-          <a href="#about" class="relative group px-3 py-1 hover:text-[#00FFF7] transition">
-            About
-            <span class="absolute left-1/2 -bottom-1 w-0 group-hover:w-full h-0.5 bg-[#00FFF7] rounded-full transition-all duration-300 group-hover:left-0"></span>
-          </a>
-        </li>
-        <li>
-          <a href="#skills" class="relative group px-3 py-1 hover:text-[#00FFF7] transition">
-            Skills
-            <span class="absolute left-1/2 -bottom-1 w-0 group-hover:w-full h-0.5 bg-[#00FFF7] rounded-full transition-all duration-300 group-hover:left-0"></span>
-          </a>
-        </li>
-        <li>
-          <a href="#projects" class="relative group px-3 py-1 hover:text-[#00FFF7] transition">
-            Projects
-            <span class="absolute left-1/2 -bottom-1 w-0 group-hover:w-full h-0.5 bg-[#00FFF7] rounded-full transition-all duration-300 group-hover:left-0"></span>
-          </a>
-        </li>
-        <li>
-          <a href="#blog" class="relative group px-3 py-1 hover:text-[#00FFF7] transition">
-            Blog
-            <span class="absolute left-1/2 -bottom-1 w-0 group-hover:w-full h-0.5 bg-[#00FFF7] rounded-full transition-all duration-300 group-hover:left-0"></span>
-          </a>
-        </li>
-        <li>
-          <a href="#contact" class="relative group px-3 py-1 hover:text-[#00FFF7] transition">
-            Contact
-            <span class="absolute left-1/2 -bottom-1 w-0 group-hover:w-full h-0.5 bg-[#00FFF7] rounded-full transition-all duration-300 group-hover:left-0"></span>
-          </a>
-        </li>
-      </ul>
-      <button 
-        id="mobile-menu-button"
-        type="button"
-        class="md:hidden focus:outline-none rounded-full p-2 bg-[#232946]/60 border border-[#00FFF7]/30 shadow-lg hover:bg-[#00FFF7]/20 transition"
-        aria-label="Toggle navigation menu">
-        <svg class="w-7 h-7 text-[#00FFF7]" fill="none" stroke="currentColor" stroke-width="2"
-          viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M4 6h16M4 12h16M4 18h16" />
+      <!-- Hamburger (show on md and up, hide on xl) -->
+      <button id="menu-btn" class="block md:block xl:hidden focus:outline-none z-50 select-none">
+        <svg class="w-7 h-7 text-gray-100" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
         </svg>
       </button>
-      <div id="mobile-menu" class="hidden absolute top-full left-0 w-full bg-[#181a22] z-50 md:hidden rounded-b-xl shadow-2xl border-t border-[#00FFF7]/20 animate-fade-in-down">
-        <ul class="flex flex-col px-4 py-6 space-y-4 text-lg">
-          <li><a href="#hero"    class="block text-white hover:text-[#00FFF7] transition">Home</a></li>
-          <li><a href="#about"   class="block text-white hover:text-[#00FFF7]">About</a></li>
-          <li><a href="#skills"  class="block text-white hover:text-[#00FFF7]">Skills</a></li>
-          <li><a href="#projects"class="block text-white hover:text-[#00FFF7]">Projects</a></li>
-          <li><a href="#blog"    class="block text-white hover:text-[#00FFF7]">Blog</a></li>
-          <li><a href="#contact" class="block text-white hover:text-[#00FFF7]">Contact</a></li>
-        </ul>
-      </div>
-    </nav>
-    <div class="h-20"></div>
-  </header>
-
-  <section id="hero" class="relative min-h-screen h-[100dvh] max-h-none overflow-hidden flex items-center justify-center">
-    <canvas id="star-canvas" class="absolute inset-0 w-full h-full"></canvas>
-    <div class="relative z-20 flex flex-col items-center justify-center h-full text-center px-4">
-      <h1 class="font-orbitron font-bold text-white drop-shadow-lg text-[2rem] md:text-[6vw] leading-tight tracking-widest transition-all duration-700 opacity-0 animate-hero-fade-in">
-        RamTechVersatile
-      </h1>
-      <p class="mt-4 text-[#cccccc] text-[1.125rem] md:text-[1.25rem] font-poppins max-w-2xl transition-all duration-700 opacity-0 animate-hero-fade-in delay-150">
-        Cosmic-Inspired
-      </p>
-      <a href="#projects"
-        class="cta mt-8 inline-block rounded-full px-10 py-4 bg-white/15 border-2 border-[#00fff7] text-[#00fff7] font-bold text-lg font-orbitron tracking-wide backdrop-blur-md transition-all duration-300 hover:bg-white/30 focus:outline-none"
-      >
-        View My Work
-      </a>
-    </div>
-  </section>
-  <main id="main-content">
-   <!-- About Section -->
-<section id="about" aria-labelledby="about-title" class="py-16 sm:py-20 px-4 md:px-0 bg-[#12131a]/90 rounded-2xl shadow-2xl max-w-5xl mx-auto mt-10 md:mt-16 mb-8 md:mb-12 border border-[#00FFF7]/10 backdrop-blur-md">
-  <header>
-    <h2 id="about-title" class="font-orbitron text-3xl sm:text-4xl md:text-5xl text-[#00fff7] font-bold mb-6 tracking-widest drop-shadow-[0_2px_8px_#00FFF7cc]">About Me</h2>
-  </header>
-  <div class="flex flex-col md:flex-row items-start gap-6 md:gap-10"> 
-    <!-- Profile Image -->
-    <div class="shrink-0 flex justify-center w-full md:w-auto">
-      <img src="ProfileImage.jpeg" alt="Profile photo"
-        class="rounded-full border-4 border-[#00fff7] shadow object-cover w-28 h-28 sm:w-36 sm:h-36 md:w-44 md:h-44 lg:w-56 lg:h-56 transition-all duration-300"
-        loading="lazy" />
-    </div>
-    <!-- About Text -->
-    <div class="text-base sm:text-lg md:text-xl font-poppins text-[#cccccc] leading-relaxed flex-1">
-      <p class="mb-4">
-        Hi, I'm <span class="text-[#00fff7] font-bold">Ramkumar</span>, a self-taught frontend developer passionate about crafting immersive, cosmic-inspired web experiences. I love blending creativity with code to build interfaces that feel magical, performant, and accessible.
-      </p>
-      <ul class="list-disc pl-5 space-y-1">
-        <li>B.Com Final Year Student</li>
-        <li>Self-taught Web Developer</li>
-        <li>HTML • CSS • JavaScript • React</li>
-        <li>Cosmic Enthusiast & UI Explorer</li>
+      <!-- Navbar Links (right, only show on xl and up) -->
+      <ul class="navbar-links flex items-center gap-8 ml-2 hidden xl:flex">
+        <li><a href="#about" class="themed-link select-none">About</a></li>
+        <li><a href="#skills" class="themed-link select-none">Skills</a></li>
+        <li><a href="#projects" class="themed-link select-none">Projects</a></li>
+        <li><a href="#blog" class="themed-link select-none">Blog</a></li>
+        <li><a href="#testimonials" class="themed-link select-none">Testimonials</a></li>
+        <li><a href="#contact" class="themed-link select-none">Contact</a></li>
+        <li><a href="resume.html" class="themed-link select-none">Resume</a></li>
       </ul>
     </div>
-  </div>
-</section>
+    <!-- Mobile Navbar (<768px) -->
+    <div class="mobile-navbar flex items-center justify-between px-3 py-2 w-full bg-[var(--color-navbar)] rounded-[0px] mt-0 relative z-50 md:hidden">
+      <!-- Logo (left) -->
+      <a href="#" class="flex items-center gap-2 select-none">
+        <span class="logo-ring flex items-center justify-center rounded-full transition-all duration-300"
+              style="width:3.2rem;height:3.2rem;border:2.5px solid var(--color-primary);box-shadow:0 0 0 3px var(--color-primary-glow);">
+          <img src="Cosmic-Logo.svg" alt="Cosmic Logo" class="h-12 w-12 object-contain rounded-full shadow themed-shadow" />
+        </span>
+        <span class="sr-only">Home</span>
+      </a>
+      <!-- Theme Switcher Button (center) -->
+      <div class="flex-1 flex justify-center">
+        <button id="theme-switcher-mobile" class="theme-switcher-btn select-none">Cosmic</button>
+      </div>
+      <!-- Hamburger (right) -->
+      <button id="menu-btn-mobile" class="block focus:outline-none z-50 select-none">
+        <svg class="w-7 h-7 text-gray-100" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+    </div>
+  </nav>
 
-<!-- Skills Section -->
-<section id="skills" aria-labelledby="skills-title" class="py-20 px-4 md:px-0 bg-[#181a22]/90 rounded-2xl shadow-2xl max-w-5xl mx-auto mb-12 border border-[#00FFF7]/10 backdrop-blur-md">
-  <header>
-    <h2 id="skills-title" class="font-orbitron text-3xl sm:text-4xl md:text-5xl text-[#00fff7] font-bold mb-6 tracking-widest drop-shadow-[0_2px_8px_#00FFF7cc]">Skills</h2>
-  </header>
-  <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 sm:gap-8 mt-6 sm:mt-8">
-    <!-- Skill Cards -->
-    <div class="bg-[#232946]/80 rounded-xl p-6 flex flex-col items-center shadow-lg border border-[#00FFF7]/10 hover:scale-105 transition-transform">
-      <span class="material-symbols-outlined text-4xl text-[#ffb347] mb-2">code</span>
-      <span class="font-bold text-[#cccccc] text-center text-sm sm:text-base">HTML5</span>
-    </div>
-    <div class="bg-[#232946]/80 rounded-xl p-6 flex flex-col items-center shadow-lg border border-[#00FFF7]/10 hover:scale-105 transition-transform">
-      <span class="material-symbols-outlined text-4xl text-[#3ddbd9] mb-2">palette</span>
-      <span class="font-bold text-[#cccccc] text-center text-sm sm:text-base">CSS3</span>
-    </div>
-    <div class="bg-[#232946]/80 rounded-xl p-6 flex flex-col items-center shadow-lg border border-[#00FFF7]/10 hover:scale-105 transition-transform">
-      <span class="material-symbols-outlined text-4xl text-[#ffe9c4] mb-2">javascript</span>
-      <span class="font-bold text-[#cccccc] text-center text-sm sm:text-base">JavaScript</span>
-    </div>
-    <div class="bg-[#232946]/80 rounded-xl p-6 flex flex-col items-center shadow-lg border border-[#00FFF7]/10 hover:scale-105 transition-transform">
-      <span class="material-symbols-outlined text-4xl text-[#aabfff] mb-2">integration instructions</span>
-      <span class="font-bold text-[#cccccc] text-center text-sm sm:text-base">React.js</span>
-    </div>
-  </div>
-  <div class="mt-8 text-center text-[#cccccc]/80">
-    <span class="inline-block px-4 py-2 rounded-full bg-[#00fff7]/10 border border-[#00fff7]/30 font-orbitron text-[#00fff7] text-sm sm:text-base tracking-widest shadow">Always learning & exploring new tech!</span>
-  </div>
-</section>
-
-
-    <!-- Projects Section -->
-    <section id="projects" aria-labelledby="project-title" class="py-20 px-4 md:px-0 bg-[#14151d]/90 rounded-2xl shadow-2xl max-w-5xl mx-auto mb-12 border border-[#00FFF7]/10 backdrop-blur-md">
-      <header>
-        <h2 id="project-title" class="font-orbitron text-4xl md:text-5xl text-[#00fff7] font-bold mb-6 tracking-widest drop-shadow-[0_2px_8px_#00FFF7cc]">Projects</h2>
-      </header>
-      <div class="project-grid grid gap-10 md:grid-cols-3">
-        <!-- Project Card 1 -->
-        <article class="project-card bg-[#232946]/80 rounded-xl shadow-lg border border-[#00FFF7]/10 flex flex-col p-6 hover:scale-105 transition-transform">
-          <h3 class="font-orbitron text-2xl text-[#00fff7] font-bold mb-2">Stellar Weather App</h3>
-          <p class="project-meta text-xs text-[#cccccc]/70 mb-2">
-            <time datetime="2024-12-10">Dec 10, 2024</time> &bull; React, OpenWeatherMap API
-          </p>
-          <div class="project-problem-solution text-[#cccccc] text-sm mb-4">
-            <p class="problem mb-1"><strong>Problem:</strong> Most weather apps are visually dull and lack interactivity.</p>
-            <p class="solution"><strong>Solution:</strong> Built a cosmic-themed weather dashboard with animated backgrounds, real-time data, and accessibility-first design. Used React, OpenWeatherMap API, and GSAP for smooth transitions.</p>
-          </div>
-          <a href="https://github.com/webcreaterRam" target="_blank" rel="noopener" class="mt-auto inline-block px-4 py-2 rounded-full bg-[#00fff7]/10 border border-[#00fff7] text-[#00fff7] font-bold font-orbitron tracking-wide hover:bg-[#00fff7]/20 transition">Live Demo</a>
-        </article>
-        <!-- Project Card 2 -->
-        <article class="project-card bg-[#232946]/80 rounded-xl shadow-lg border border-[#00FFF7]/10 flex flex-col p-6 hover:scale-105 transition-transform">
-          <h3 class="font-orbitron text-2xl text-[#00fff7] font-bold mb-2">Galactic Portfolio Template</h3>
-          <p class="project-meta text-xs text-[#cccccc]/70 mb-2">
-            <time datetime="2024-10-01">Oct 1, 2024</time> &bull; Next.js, Tailwind CSS
-          </p>
-          <div class="project-problem-solution text-[#cccccc] text-sm mb-4">
-            <p class="problem mb-1"><strong>Problem:</strong> Developers need a modern, customizable portfolio that stands out.</p>
-            <p class="solution"><strong>Solution:</strong> Designed and coded a fully responsive, accessible portfolio template with dark/light mode, animated hero, and CMS integration. Used by 50+ devs worldwide.</p>
-          </div>
-          <a href="https://github.com/webcreaterRam" target="_blank" rel="noopener" class="mt-auto inline-block px-4 py-2 rounded-full bg-[#00fff7]/10 border border-[#00fff7] text-[#00fff7] font-bold font-orbitron tracking-wide hover:bg-[#00fff7]/20 transition">View on GitHub</a>
-        </article>
-        <!-- Project Card 3 -->
-        <article class="project-card bg-[#232946]/80 rounded-xl shadow-lg border border-[#00FFF7]/10 flex flex-col p-6 hover:scale-105 transition-transform">
-          <h3 class="font-orbitron text-2xl text-[#00fff7] font-bold mb-2">Cosmic Chat App</h3>
-          <p class="project-meta text-xs text-[#cccccc]/70 mb-2">
-            <time datetime="2025-01-15">Jan 15, 2025</time> &bull; React, Firebase, Framer Motion
-          </p>
-          <div class="project-problem-solution text-[#cccccc] text-sm mb-4">
-            <p class="problem mb-1"><strong>Problem:</strong> Real-time chat apps often lack personality and accessibility.</p>
-            <p class="solution"><strong>Solution:</strong> Built a chat app with animated cosmic backgrounds, emoji reactions, and full keyboard navigation. Used Firebase Auth/Firestore and Framer Motion for smooth UX.</p>
-          </div>
-          <a href="https://github.com/webcreaterRam" target="_blank" rel="noopener" class="mt-auto inline-block px-4 py-2 rounded-full bg-[#00fff7]/10 border border-[#00fff7] text-[#00fff7] font-bold font-orbitron tracking-wide hover:bg-[#00fff7]/20 transition">Live Demo</a>
-        </article>
+  <main id="main-content" class="pt-24">
+    <!-- HERO SECTION -->
+    <section id="hero" class="relative min-h-screen h-[100dvh] max-h-none overflow-hidden flex items-center justify-center themed-shadow">
+      <canvas id="star-canvas" class="absolute inset-0 w-full h-full"></canvas>
+      <div class="relative z-20 flex flex-col items-center justify-center h-full text-center px-4">
+        <h1 class="font-orbitron text-5xl md:text-6xl font-bold themed-heading mb-4 select-none">Welcome to Boundless Insights</h1>
+        <a href="#projects"
+          class="cta mt-8 inline-block rounded-full px-10 py-4 themed-btn font-bold text-lg font-orbitron tracking-wide backdrop-blur-md transition-all duration-300 focus:outline-none">
+          Scroll To View More
+        </a>
       </div>
     </section>
-
-    <!-- Blog Section -->
-    <section id="blog" aria-labelledby="Blogs-title" class="py-20 px-4 md:px-0 bg-[#181a22]/90 rounded-2xl shadow-2xl max-w-5xl mx-auto mb-12 border border-[#00FFF7]/10 backdrop-blur-md">
+    <!-- ABOUT -->
+    <section id="about" aria-labelledby="about-title" class="py-16 sm:py-20 px-4 md:px-0 bg-[#12131a]/90 rounded-2xl themed-shadow max-w-5xl mx-auto mt-10 md:mt-16 mb-8 md:mb-12 border themed-border backdrop-blur-md">
       <header>
-        <h2 id="Blogs-title" class="font-orbitron text-4xl md:text-5xl text-[#00fff7] font-bold mb-6 tracking-widest drop-shadow-[0_2px_8px_#00FFF7cc]">Blog</h2>
+        <h2 id="about-title" class="font-orbitron p-4 text-4xl md:text-5xl themed-heading font-bold mb-6 tracking-widest text-center">About</h2>
       </header>
-      <div class="blog-grid grid gap-10 md:grid-cols-3">
-        <!-- Blog Card 1 -->
-        <article class="blog-card bg-[#232946]/80 rounded-xl shadow-lg border border-[#00FFF7]/10 flex flex-col p-6 hover:scale-105 transition-transform">
-          <h3 class="font-orbitron text-xl text-[#00fff7] font-bold mb-2">How I Designed a Portfolio That Gets Interviews</h3>
-          <p class="post-meta text-xs text-[#cccccc]/70 mb-2">
-            <time datetime="2024-11-20">Nov 20, 2024</time> &bull; Portfolio, UX, Career
+      <div class="flex flex-col md:flex-row items-center md:items-start gap-8 md:gap-12 px-2 md:px-8">
+        <!-- Profile Image -->
+        <div class="flex-shrink-0 flex justify-center md:justify-start w-full md:w-auto">
+          <img src="ProfileImage.jpeg" alt="Ramkumar Pal Profile" class="w-40 h-40 md:w-48 md:h-48 rounded-full shadow-lg object-cover border-4 border-[var(--color-primary)] bg-[#181a22] transition-all duration-300" />
+        </div>
+        <!-- About Content -->
+        <div class="flex-1 mt-8 md:mt-0 text-center md:text-left">
+          <h3 class="text-2xl md:text-3xl font-bold themed-heading mb-4">Ramkumar Pal</h3>
+          <p class="text-lg md:text-xl text-gray-300 leading-relaxed mb-4">
+            Frontend Developer &amp; UI Enthusiast
           </p>
-          <p class="mb-4">A deep dive into the design and UX decisions that helped my portfolio stand out to recruiters and land interviews at top tech companies.</p>
-          <a href="https://dev.to/webcreaterram" target="_blank" rel="noopener" class="mt-auto inline-block px-4 py-2 rounded-full bg-[#00fff7]/10 border border-[#00fff7] text-[#00fff7] font-bold font-orbitron tracking-wide hover:bg-[#00fff7]/20 transition">Read More →</a>
-        </article>
-        <!-- Blog Card 2 -->
-        <article class="blog-card bg-[#232946]/80 rounded-xl shadow-lg border border-[#00FFF7]/10 flex flex-col p-6 hover:scale-105 transition-transform">
-          <h3 class="font-orbitron text-xl text-[#00fff7] font-bold mb-2">Modern Frontend Skills for 2025</h3>
-          <p class="post-meta text-xs text-[#cccccc]/70 mb-2">
-            <time datetime="2025-01-05">Jan 5, 2025</time> &bull; Frontend, Trends
+          <p class="text-base md:text-lg text-gray-400 mb-4">
+            Passionate about crafting visually engaging, accessible, and performant web applications. I specialize in <span class="font-semibold text-[var(--color-primary)]">React</span>, <span class="font-semibold text-[var(--color-primary)]">JavaScript</span>, and <span class="font-semibold text-[var(--color-primary)]">Tailwind CSS</span>, blending modern UI/UX with robust code. My approach combines creativity, attention to detail, and a drive for continuous learning.
           </p>
-          <p class="mb-4">What skills, frameworks, and tools are most in-demand for frontend developers in 2025? My research and experience from recent job hunts.</p>
-          <a href="https://dev.to/webcreaterram" target="_blank" rel="noopener" class="mt-auto inline-block px-4 py-2 rounded-full bg-[#00fff7]/10 border border-[#00fff7] text-[#00fff7] font-bold font-orbitron tracking-wide hover:bg-[#00fff7]/20 transition">Read More →</a>
-        </article>
-        <!-- Blog Card 3 -->
-        <article class="blog-card bg-[#232946]/80 rounded-xl shadow-lg border border-[#00FFF7]/10 flex flex-col p-6 hover:scale-105 transition-transform">
-          <h3 class="font-orbitron text-xl text-[#00fff7] font-bold mb-2">Accessible Animations: Delight Without Exclusion</h3>
-          <p class="post-meta text-xs text-[#cccccc]/70 mb-2">
-            <time datetime="2024-12-01">Dec 1, 2024</time> &bull; Accessibility, Animation
-          </p>
-          <p class="mb-4">How to use CSS and JS animations that look stunning but remain accessible for all users, including those with motion sensitivities.</p>
-          <a href="https://dev.to/webcreaterram" target="_blank" rel="noopener" class="mt-auto inline-block px-4 py-2 rounded-full bg-[#00fff7]/10 border border-[#00fff7] text-[#00fff7] font-bold font-orbitron tracking-wide hover:bg-[#00fff7]/20 transition">Read More →</a>
-        </article>
-      </div>
-      <div class="mt-10 text-center">
-        <a href="https://dev.to/webcreaterram" target="_blank" rel="noopener" class="inline-block px-6 py-2 rounded-full bg-[#00fff7]/10 border border-[#00fff7] text-[#00fff7] font-bold font-orbitron tracking-wide hover:bg-[#00fff7]/20 transition">See All Posts on Dev.to</a>
-      </div>
-    </section>
-
-    <!-- Testimonials Section -->
-    <section id="testimonials" aria-labelledby="testimonials-title" class="py-20 px-4 md:px-0 bg-[#12131a]/90 rounded-2xl shadow-2xl max-w-3xl mx-auto mb-12 border border-[#00FFF7]/10 backdrop-blur-md">
-      <header>
-        <h2 id="testimonials-title" class="font-orbitron text-4xl md:text-5xl text-[#00fff7] font-bold mb-6 tracking-widest drop-shadow-[0_2px_8px_#00FFF7cc]">Testimonials</h2>
-      </header>
-      <div class="testimonials-container text-lg text-[#cccccc] space-y-8">
-        <blockquote class="bg-[#232946]/80 rounded-xl p-6 border-l-4 border-[#00fff7] shadow">
-          “Ramkumar brought my vision to life with cosmic animations—user engagement increased by 50%!”
-          <footer class="mt-2 text-[#00fff7] font-bold">— John Doe, CEO of StarTech</footer>
-        </blockquote>
-        <blockquote class="bg-[#232946]/80 rounded-xl p-6 border-l-4 border-[#00fff7] shadow">
-          “His frontend skills and attention to detail are out of this world. Highly recommended!”
-          <footer class="mt-2 text-[#00fff7] font-bold">— Jane Smith, Product Manager</footer>
-        </blockquote>
-        <blockquote class="bg-[#232946]/80 rounded-xl p-6 border-l-4 border-[#00fff7] shadow">
-          “Ramkumar's portfolio is a masterclass in modern frontend. The accessibility and performance are top-notch.”
-          <footer class="mt-2 text-[#00fff7] font-bold">— Alex Lee, Senior Frontend Engineer</footer>
-        </blockquote>
-      </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" aria-labelledby="contact-title" class="py-20 px-4 md:px-0 bg-[#181a22]/90 rounded-2xl shadow-2xl max-w-3xl mx-auto mb-12 border border-[#00FFF7]/10 backdrop-blur-md">
-      <header>
-        <h2 id="contact-title" class="font-orbitron text-4xl md:text-5xl text-[#00fff7] font-bold mb-6 tracking-widest drop-shadow-[0_2px_8px_#00FFF7cc]">Contact</h2>
-      </header>
-      <div class="contact-container">
-        <!-- IMPORTANT: Update the action URL below to your actual Formspree endpoint! -->
-        <form class="contact-form space-y-6" action="https://formspree.io/f/xzzggkyn" method="POST">
-          <div class="form-group">
-            <label for="name" class="block text-[#cccccc] font-bold mb-1">Name</label>
-            <input type="text" id="name" name="name" placeholder="Your name"
-              class="w-full px-4 py-2 rounded-lg bg-[#232946] text-white border border-[#00fff7] focus:outline-none focus:ring-2 focus:ring-[#00fff7]" />
-          </div>
-          <div class="form-group">
-            <label for="email" class="block text-[#cccccc] font-bold mb-1">Email</label>
-            <input type="email" id="email" name="email" placeholder="you@example.com" required
-              class="w-full px-4 py-2 rounded-lg bg-[#232946] text-white border border-[#00fff7] focus:outline-none focus:ring-2 focus:ring-[#00fff7]" />
-          </div>
-          <div class="form-group">
-            <label for="message" class="block text-[#cccccc] font-bold mb-1">Message</label>
-            <textarea id="message" name="message" rows="4" placeholder="Your message..."
-              class="w-full px-4 py-2 rounded-lg bg-[#232946] text-white border border-[#00fff7] focus:outline-none focus:ring-2 focus:ring-[#00fff7]"></textarea>
-          </div>
-          <button type="submit"
-            class="rounded-full px-8 py-3 bg-white/15 border-2 border-[#00fff7] text-[#00fff7] font-bold text-lg font-orbitron tracking-wide backdrop-blur-md transition-all duration-300 hover:bg-white/30 hover:shadow-[0_0_20px_0_rgba(0,255,247,0.5)] focus:outline-none">
-            Send Message
-          </button>
-        </form>
-        <div class="mt-8 text-center text-[#cccccc]/80">
-          <span class="inline-block px-4 py-2 rounded-full bg-[#00fff7]/10 border border-[#00fff7]/30 font-orbitron text-[#00fff7] text-base tracking-widest shadow">Let's build something cosmic together!</span>
-          <div class="mt-4">
-            <span class="block text-[#cccccc] text-sm">Or email me directly: 
-              <a href="mailto:ramkumar.remote24@gmail.com" class="text-[#00fff7] hover:underline">ramkumar.remote24@gmail.com</a>
-            </span>
+          <ul class="text-gray-400 text-base md:text-lg space-y-2 mb-4">
+            <li><span class="font-semibold text-[var(--color-primary)]">•</span> Building responsive, mobile-first interfaces</li>
+            <li><span class="font-semibold text-[var(--color-primary)]">•</span> Collaborating with cross-functional teams</li>
+            <li><span class="font-semibold text-[var(--color-primary)]">•</span> Delivering real-world solutions that delight users</li>
+            <li><span class="font-semibold text-[var(--color-primary)]">•</span> Exploring animation, accessibility, and SEO best practices</li>
+          </ul>
+          <div class="flex flex-wrap gap-4 justify-center md:justify-start mt-6">
+            <a href="mailto:ramkumar.remote24@gmail.com" class="themed-btn px-6 py-2 font-bold rounded-full select-none">Contact Me</a>
+            <a href="resume.html" class="themed-btn px-6 py-2 font-bold rounded-full select-none">View Resume</a>
           </div>
         </div>
       </div>
     </section>
+    <!-- SKILLS -->
+    <section id="skills" aria-labelledby="skills-title" class="py-16 sm:py-20 px-4 md:px-0 bg-[#181a22]/90 rounded-2xl themed-shadow max-w-5xl mx-auto mb-8 md:mb-12 border themed-border backdrop-blur-md">
+      <header>
+        <h2 id="skills-title" class="font-orbitron text-4xl md:text-5xl themed-heading font-bold mb-6 tracking-widest text-center">Skills</h2>
+        <p class="text-gray-400 text-lg md:text-xl text-center max-w-2xl mx-auto mb-8">
+          My technical toolkit blends modern frameworks, UI/UX best practices, and a passion for clean, maintainable code.
+        </p>
+      </header>
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 md:gap-8 p-4">
+        <!-- Skill Card -->
+        <div class="flex flex-col items-center bg-[#232946]/80 rounded-xl p-5 shadow themed-border border mb-2 hover:scale-105 transition-transform transform-gpu [will-change:transform] backface-hidden antialiased">
+          <span class="text-3xl md:text-4xl mb-2 themed-heading"><i class="fab fa-react"></i></span>
+          <span class="font-semibold text-[var(--color-primary)]">React.js</span>
+          <span class="text-xs text-gray-400 mt-1">SPA, Hooks, Components</span>
+        </div>
+        <div class="flex flex-col items-center bg-[#232946]/80 rounded-xl p-5 shadow themed-border border mb-2 hover:scale-105 transition-transform transform-gpu [will-change:transform] backface-hidden antialiased">
+          <span class="text-3xl md:text-4xl mb-2 themed-heading"><i class="fab fa-js-square"></i></span>
+          <span class="font-semibold text-[var(--color-primary)]">JavaScript (ES6+)</span>
+          <span class="text-xs text-gray-400 mt-1">Modern Syntax, DOM, APIs</span>
+        </div>
+        <div class="flex flex-col items-center bg-[#232946]/80 rounded-xl p-5 shadow themed-border border mb-2 hover:scale-105 transition-transform transform-gpu [will-change:transform] backface-hidden antialiased">
+          <span class="text-3xl md:text-4xl mb-2 themed-heading"><i class="fab fa-css3-alt"></i></span>
+          <span class="font-semibold text-[var(--color-primary)]">Tailwind CSS</span>
+          <span class="text-xs text-gray-400 mt-1">Utility-first, Responsive</span>
+        </div>
+        <div class="flex flex-col items-center bg-[#232946]/80 rounded-xl p-5 shadow themed-border border mb-2 hover:scale-105 transition-transform transform-gpu [will-change:transform] backface-hidden antialiased">
+          <span class="text-3xl md:text-4xl mb-2 themed-heading"><i class="fas fa-bolt"></i></span>
+          <span class="font-semibold text-[var(--color-primary)]">GSAP Animation</span>
+          <span class="text-xs text-gray-400 mt-1">Motion, Scroll Effects</span>
+        </div>
+        <div class="flex flex-col items-center bg-[#232946]/80 rounded-xl p-5 shadow themed-border border mb-2 hover:scale-105 transition-transform transform-gpu [will-change:transform] backface-hidden antialiased">
+          <span class="text-3xl md:text-4xl mb-2 themed-heading"><i class="fab fa-html5"></i></span>
+          <span class="font-semibold text-[var(--color-primary)]">HTML5 &amp; CSS3</span>
+          <span class="text-xs text-gray-400 mt-1">Semantics, Flexbox, Grid</span>
+        </div>
+        <div class="flex flex-col items-center bg-[#232946]/80 rounded-xl p-5 shadow themed-border border mb-2 hover:scale-105 transition-transform transform-gpu [will-change:transform] backface-hidden antialiased">
+          <span class="text-3xl md:text-4xl mb-2 themed-heading"><i class="fab fa-git-alt"></i></span>
+          <span class="font-semibold text-[var(--color-primary)]">Git &amp; GitHub</span>
+          <span class="text-xs text-gray-400 mt-1">Version Control, Collaboration</span>
+        </div>
+        <div class="flex flex-col items-center bg-[#232946]/80 rounded-xl p-5 shadow themed-border border mb-2 hover:scale-105 transition-transform transform-gpu [will-change:transform] backface-hidden antialiased">
+          <span class="text-3xl md:text-4xl mb-2 themed-heading"><i class="fas fa-cogs"></i></span>
+          <span class="font-semibold text-[var(--color-primary)]">Webpack &amp; Vite</span>
+          <span class="text-xs text-gray-400 mt-1">Build Tools, Optimization</span>
+        </div>
+        <div class="flex flex-col items-center bg-[#232946]/80 rounded-xl p-5 shadow themed-border border mb-2 hover:scale-105 transition-transform transform-gpu [will-change:transform] backface-hidden antialiased">
+          <span class="text-3xl md:text-4xl mb-2 themed-heading"><i class="fas fa-universal-access"></i></span>
+          <span class="font-semibold text-[var(--color-primary)]">SEO &amp; Accessibility</span>
+          <span class="text-xs text-gray-400 mt-1">Best Practices, Audits</span>
+        </div>
+        <div class="flex flex-col items-center bg-[#232946]/80 rounded-xl p-5 shadow themed-border border mb-2 hover:scale-105 transition-transform transform-gpu [will-change:transform] backface-hidden antialiased">
+          <span class="text-3xl md:text-4xl mb-2 themed-heading"><i class="fas fa-database"></i></span>
+          <span class="font-semibold text-[var(--color-primary)]">Bitrix24 CRM</span>
+          <span class="text-xs text-gray-400 mt-1">CRM, Analytics</span>
+        </div>
+        <div class="flex flex-col items-center bg-[#232946]/80 rounded-xl p-5 shadow themed-border border mb-2 hover:scale-105 transition-transform transform-gpu [will-change:transform] backface-hidden antialiased">
+          <span class="text-3xl md:text-4xl mb-2 themed-heading"><i class="fas fa-pen-nib"></i></span>
+          <span class="font-semibold text-[var(--color-primary)]">Content Writing</span>
+          <span class="text-xs text-gray-400 mt-1">Docs, Blogs, UX Copy</span>
+        </div>
+        <div class="flex flex-col items-center bg-[#232946]/80 rounded-xl p-5 shadow themed-border border mb-2 hover:scale-105 transition-transform transform-gpu [will-change:transform] backface-hidden antialiased">
+          <span class="text-3xl md:text-4xl mb-2 themed-heading"><i class="fas fa-film"></i></span>
+          <span class="font-semibold text-[var(--color-primary)]">Clideo</span>
+          <span class="text-xs text-gray-400 mt-1">Video Editing Tools</span>
+        </div>
+      </div>
+    </section>
 
-    <!-- Resume Download & Call to Action -->
-    <section class="max-w-3xl mx-auto mb-16 text-center">
-      <a href="resume.html" class="inline-block px-8 py-3 rounded-full bg-[#00fff7]/10 border border-[#00fff7] text-[#00fff7] font-bold font-orbitron tracking-wide hover:bg-[#00fff7]/20 transition mb-4">View or Download Resume</a>
-      <div class="mt-4 text-[#cccccc]/80">
-        <span class="inline-block px-4 py-2 rounded-full bg-[#00fff7]/10 border border-[#00fff7]/30 font-orbitron text-[#00fff7] text-base tracking-widest shadow">Open to frontend roles, freelance, and collaborations!</span>
+    <!-- USEFUL TOOLS & TECHNOLOGIES (NEW SECTION) -->
+    <section id="tools" aria-labelledby="tools-title" class="py-16 sm:py-20 px-4 md:p-5 bg-[#232946]/90 rounded-2xl themed-shadow max-w-5xl mx-auto mb-8 md:mb-12 border themed-border backdrop-blur-md">
+      <header>
+        <h2 id="tools-title" class="font-orbitron text-4xl md:text-5xl themed-heading font-bold mb-6 tracking-widest text-center">Useful Tools & Technologies</h2>
+        <p class="text-gray-400 text-lg md:text-xl text-center max-w-2xl mx-auto mb-8">
+          A curated set of free and essential tools, frameworks, and resources for developers, designers, and creators. All are responsive and handpicked for productivity, learning, and building modern web projects.
+        </p>
+      </header>
+      <div class="tools-card-grid">
+        <!-- Example Tool Card -->
+        <div class="tool-card transform-gpu [will-change:transform] backface-hidden antialiased">
+          <span class="tool-icon"><i class="fab fa-react"></i></span>
+          <h3>React</h3>
+          <p>A powerful JavaScript library for building user interfaces. <br><span class="text-xs text-gray-400">react.dev</span></p>
+          <a href="https://react.dev/" target="_blank" rel="noopener" class="tool-btn select-none transform-gpu [will-change:transform] backface-hidden antialiased">Visit</a>
+        </div>
+        <div class="tool-card transform-gpu [will-change:transform] backface-hidden antialiased">
+          <span class="tool-icon"><i class="fab fa-js-square"></i></span>
+          <h3>JavaScript Info</h3>
+          <p>Comprehensive JavaScript tutorials and guides for all levels.<br><span class="text-xs text-gray-400">javascript.info</span></p>
+          <a href="https://javascript.info/" target="_blank" rel="noopener" class="tool-btn select-none transform-gpu [will-change:transform] backface-hidden antialiased">Visit</a>
+        </div>
+        <div class="tool-card transform-gpu [will-change:transform] backface-hidden antialiased">
+          <span class="tool-icon"><i class="fab fa-css3-alt"></i></span>
+          <h3>Tailwind CSS</h3>
+          <p>Utility-first CSS framework for rapid UI development.<br><span class="text-xs text-gray-400">tailwindcss.com</span></p>
+          <a href="https://tailwindcss.com/" target="_blank" rel="noopener" class="tool-btn select-none transform-gpu [will-change:transform] backface-hidden antialiased">Visit</a>
+        </div>
+        <div class="tool-card transform-gpu [will-change:transform] backface-hidden antialiased">
+          <span class="tool-icon"><i class="fab fa-github"></i></span>
+          <h3>GitHub</h3>
+          <p>Host, review, and collaborate on code with millions of developers.<br><span class="text-xs text-gray-400">github.com</span></p>
+          <a href="https://github.com/" target="_blank" rel="noopener" class="tool-btn select-none transform-gpu [will-change:transform] backface-hidden antialiased">Visit</a>
+        </div>
+        <div class="tool-card transform-gpu [will-change:transform] backface-hidden antialiased">
+          <span class="tool-icon"><i class="fas fa-bolt"></i></span>
+          <h3>GSAP</h3>
+          <p>Professional-grade JavaScript animation library for the web.<br><span class="text-xs text-gray-400">gsap.com</span></p>
+          <a href="https://gsap.com/" target="_blank" rel="noopener" class="tool-btn select-none transform-gpu [will-change:transform] backface-hidden antialiased">Visit</a>
+        </div>
+        <div class="tool-card transform-gpu [will-change:transform] backface-hidden antialiased">
+          <span class="tool-icon"><i class="fas fa-terminal"></i></span>
+          <h3>CodeSandbox</h3>
+          <p>Online code editor and prototyping tool for rapid web development.<br><span class="text-xs text-gray-400">codesandbox.io</span></p>
+          <a href="https://codesandbox.io/" target="_blank" rel="noopener" class="tool-btn select-none transform-gpu [will-change:transform] backface-hidden antialiased">Visit</a>
+        </div>
+        <div class="tool-card transform-gpu [will-change:transform] backface-hidden antialiased">
+          <span class="tool-icon"><i class="fas fa-database"></i></span>
+          <h3>MongoDB Atlas</h3>
+          <p>Cloud database service for modern applications.<br><span class="text-xs text-gray-400">mongodb.com/atlas</span></p>
+          <a href="https://www.mongodb.com/atlas" target="_blank" rel="noopener" class="tool-btn select-none transform-gpu [will-change:transform] backface-hidden antialiased">Visit</a>
+        </div>
+        <div class="tool-card transform-gpu [will-change:transform] backface-hidden antialiased">
+          <span class="tool-icon"><i class="fab fa-figma"></i></span>
+          <h3>Figma</h3>
+          <p>Collaborative interface design tool for teams and individuals.<br><span class="text-xs text-gray-400">figma.com</span></p>
+          <a href="https://figma.com/" target="_blank" rel="noopener" class="tool-btn select-none transform-gpu [will-change:transform] backface-hidden antialiased">Visit</a>
+        </div>
+        <div class="tool-card transform-gpu [will-change:transform] backface-hidden antialiased">
+          <span class="tool-icon"><i class="fas fa-book"></i></span>
+          <h3>MDN Web Docs</h3>
+          <p>Authoritative resource for HTML, CSS, and JavaScript documentation.<br><span class="text-xs text-gray-400">developer.mozilla.org</span></p>
+          <a href="https://developer.mozilla.org/" target="_blank" rel="noopener" class="tool-btn select-none transform-gpu [will-change:transform] backface-hidden antialiased">Visit</a>
+        </div>
+        <div class="tool-card transform-gpu [will-change:transform] backface-hidden antialiased">
+          <span class="tool-icon"><i class="fas fa-cloud"></i></span>
+          <h3>Netlify</h3>
+          <p>Fast, easy deployment and hosting for static sites and JAMstack apps.<br><span class="text-xs text-gray-400">netlify.com</span></p>
+          <a href="https://netlify.com/" target="_blank" rel="noopener" class="tool-btn select-none transform-gpu [will-change:transform] backface-hidden antialiased">Visit</a>
+        </div>
+        <div class="tool-card transform-gpu [will-change:transform] backface-hidden antialiased">
+          <span class="tool-icon"><i class="fas fa-search"></i></span>
+          <h3>Google Fonts</h3>
+          <p>Free and easy-to-use web fonts for your projects.<br><span class="text-xs text-gray-400">fonts.google.com</span></p>
+          <a href="https://fonts.google.com/" target="_blank" rel="noopener" class="tool-btn select-none transform-gpu [will-change:transform] backface-hidden antialiased">Visit</a>
+        </div>
+        <div class="tool-card transform-gpu [will-change:transform] backface-hidden antialiased">
+          <span class="tool-icon"><i class="fas fa-lightbulb"></i></span>
+          <h3>Frontend Mentor</h3>
+          <p>Practice real-world HTML, CSS, and JavaScript challenges.<br><span class="text-xs text-gray-400">frontendmentor.io</span></p>
+          <a href="https://frontendmentor.io/" target="_blank" rel="noopener" class="tool-btn select-none transform-gpu [will-change:transform] backface-hidden antialiased">Visit</a>
+        </div>
+      </div>
+      <div class="w-full flex justify-center mt-2 mb-2">
+        <a href="https://github.com/webcreaterRam/boundless-insights" target="_blank" rel="noopener"
+          class="font-orbitron font-bold text-lg px-7 py-3 rounded-full transform hover:scale-105 transition-all duration-300 select-none transform-gpu [will-change:transform] backface-hidden antialiased"
+          style="background:var(--color-primary);color:#181a22;box-shadow:0 2px 12px 0 var(--color-primary-glow);display:inline-flex;align-items:center;gap:0.5em;">
+          View More Tools & Resources
+          <span style="font-size:1.2em;display:inline-block;margin: 5px;">&rarr;</span>
+        </a>
+      </div>
+    </section>
+    <!-- PROJECTS -->
+    <section id="projects" aria-labelledby="projects-title" class="py-16 sm:py-20 px-4 md:p-5 bg-[#12131a]/90 rounded-2xl themed-shadow max-w-5xl mx-auto mb-8 md:mb-12 border themed-border backdrop-blur-md">
+      <header>
+        <h2 id="projects-title" class="font-orbitron text-4xl md:text-5xl themed-heading font-bold mb-6 tracking-widest text-center" style="text-shadow:0 2px 7px rgba(0,0,0,0.2);">Projects</h2>
+        <p class="text-gray-400 text-lg md:text-xl text-center max-w-2xl mx-auto mb-8" style="text-shadow:0 1px 3px rgba(0,0,0,0.13);">
+          A selection of my recent work, blending creativity, performance, and modern web technologies.
+        </p>
+      </header>
+      <div class="grid gap-8 md:grid-cols-2">
+        <!-- Project 1 -->
+        <article class="bg-[#232946]/80 rounded-xl themed-shadow border themed-border flex flex-col p-6 hover:scale-[1.03] transition-transform transform-gpu [will-change:transform] backface-hidden antialiased">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="text-2xl themed-heading" style="text-shadow:0 1px 3px rgba(0,0,0,0.13);"><i class="fas fa-globe"></i></span>
+            <h3 class="font-orbitron text-xl themed-heading font-bold" style="text-shadow:0 1px 3px rgba(0,0,0,0.13);">Boundless Insights Portfolio</h3>
+          </div>
+          <p class="text-gray-300 mb-4" style="text-shadow:0 1px 3px rgba(0,0,0,0.13);">
+            My personal cosmic-themed portfolio built with HTML, CSS, JavaScript, and Tailwind CSS. Features animated hero section, theme switcher, responsive design, and a custom starfield background.
+          </p>
+          <ul class="list-disc list-inside text-gray-400 mb-4 text-sm space-y-1" style="text-shadow:0 1px 3px rgba(0,0,0,0.13);">
+            <li>Custom GSAP-powered hero animation and star canvas</li>
+            <li>Theme switching (Cosmic, Nebula, Eclipse)</li>
+            <li>Mobile-first, accessible, and SEO-optimized</li>
+          </ul>
+          <div class="flex gap-3 mt-auto flex-wrap">
+            <a href="index.html" class="themed-btn px-5 py-2 font-bold rounded-full select-none" target="_blank" style="box-shadow:0 2px 11px 0 var(--color-primary-glow);">Live Demo</a>
+            <a href="https://github.com/webcreaterRam/Boundless-Insights-Portfolio" class="themed-btn px-5 py-2 font-bold rounded-full select-none" target="_blank" style="box-shadow:0 2px 11px 0 var(--color-primary-glow);">GitHub</a>
+          </div>
+        </article>
+        <!-- Project 2 -->
+        <article class="bg-[#232946]/80 rounded-xl themed-shadow border themed-border flex flex-col p-6 hover:scale-[1.03] transition-transform transform-gpu [will-change:transform] backface-hidden antialiased">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="text-2xl themed-heading" style="text-shadow:0 1px 3px rgba(0,0,0,0.13);"><i class="fas fa-blog"></i></span>
+            <h3 class="font-orbitron text-xl themed-heading font-bold" style="text-shadow:0 1px 3px rgba(0,0,0,0.13);">Tech Blog Platform</h3>
+          </div>
+          <p class="text-gray-300 mb-4" style="text-shadow:0 1px 3px rgba(0,0,0,0.13);">
+            A modern blog platform template with a focus on readability, SEO, and performance. Built using React, Tailwind CSS, and Markdown for content management.
+          </p>
+          <ul class="list-disc list-inside text-gray-400 mb-4 text-sm space-y-1" style="text-shadow:0 1px 3px rgba(0,0,0,0.13);">
+            <li>Dynamic blog post rendering from Markdown</li>
+            <li>Responsive grid, dark/light themes, and code highlighting</li>
+            <li>Optimized for fast loading and accessibility</li>
+          </ul>
+          <div class="flex gap-3 mt-auto flex-wrap">
+            <a href="https://webcreaterram-blog-demo.netlify.app/" class="themed-btn px-5 py-2 font-bold rounded-full select-none" target="_blank" style="box-shadow:0 2px 11px 0 var(--color-primary-glow);">Live Demo</a>
+            <a href="https://github.com/webcreaterRam/tech-blog-template" class="themed-btn px-5 py-2 font-bold rounded-full select-none" target="_blank" style="box-shadow:0 2px 11px 0 var(--color-primary-glow);">GitHub</a>
+          </div>
+        </article>
+        <!-- Project 3 -->
+        <article class="bg-[#232946]/80 rounded-xl themed-shadow border themed-border flex flex-col p-6 hover:scale-[1.03] transition-transform transform-gpu [will-change:transform] backface-hidden antialiased">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="text-2xl themed-heading" style="text-shadow:0 1px 3px rgba(0,0,0,0.13);"><i class="fas fa-tasks"></i></span>
+            <h3 class="font-orbitron text-xl themed-heading font-bold" style="text-shadow:0 1px 3px rgba(0,0,0,0.13);">Productivity Dashboard</h3>
+          </div>
+          <p class="text-gray-300 mb-4" style="text-shadow:0 1px 3px rgba(0,0,0,0.13);">
+            A productivity dashboard for tracking tasks, notes, and goals. Features a clean UI, drag-and-drop task management, and persistent storage using localStorage.
+          </p>
+          <ul class="list-disc list-inside text-gray-400 mb-4 text-sm space-y-1" style="text-shadow:0 1px 3px rgba(0,0,0,0.13);">
+            <li>Task lists, notes, and daily goals widgets</li>
+            <li>Drag-and-drop reordering and status updates</li>
+            <li>Fully responsive and works offline</li>
+          </ul>
+          <div class="flex gap-3 mt-auto flex-wrap">
+            <a href="https://webcreaterram-tasks.netlify.app/" class="themed-btn px-5 py-2 font-bold rounded-full select-none" target="_blank" style="box-shadow:0 2px 11px 0 var(--color-primary-glow);">Live Demo</a>
+            <a href="https://github.com/webcreaterRam/productivity-dashboard" class="themed-btn px-5 py-2 font-bold rounded-full select-none" target="_blank" style="box-shadow:0 2px 11px 0 var(--color-primary-glow);">GitHub</a>
+          </div>
+        </article>
+      </div>
+    </section>
+    <!-- BLOG -->
+    <section id="blog" aria-labelledby="blog-title" class="py-20 px-4 md:p-5 bg-[#181a22]/90 rounded-2xl themed-shadow max-w-5xl mx-auto mb-12 border themed-border backdrop-blur-md">
+      <header>
+        <h2 id="blog-title" class="font-orbitron text-4xl md:text-5xl themed-heading font-bold mb-6 tracking-widest text-center" style="text-shadow:0 2px 7px rgba(0,0,0,0.2);">Blog</h2>
+        <p class="text-gray-400 text-lg md:text-xl text-center max-w-2xl mx-auto mb-8" style="text-shadow:0 1px 3px rgba(0,0,0,0.13);">
+          Insights, tutorials, and stories from my journey in frontend development and UI/UX.
+        </p>
+      </header>
+      <div class="grid gap-8 md:grid-cols-3 sm:grid-cols-2">
+        <!-- Blog Post 1 -->
+        <article class="blog-card bg-[#232946]/80 rounded-xl themed-shadow border themed-border flex flex-col p-6 hover:scale-[1.03] transition-transform transform-gpu [will-change:transform] backface-hidden antialiased">
+          <div class="flex items-center gap-2 mb-3">
+            <span class="text-xl themed-heading" style="text-shadow:0 1px 3px rgba(0,0,0,0.13);"><i class="fas fa-rocket"></i></span>
+            <h3 class="font-orbitron text-lg themed-heading font-bold" style="text-shadow:0 1px 3px rgba(0,0,0,0.13);">How I Designed a Portfolio That Gets Interviews</h3>
+          </div>
+          <p class="text-gray-300 mb-4 text-sm" style="text-shadow:0 1px 3px rgba(0,0,0,0.13);">
+            My process for building a standout portfolio that attracts recruiters and showcases both technical and creative skills.
+          </p>
+          <a href="https://dev.to/webcreaterram/how-i-designed-a-portfolio-that-gets-interviews-1a2b" target="_blank" rel="noopener" class="mt-auto inline-block px-4 py-2 rounded-full themed-btn font-bold font-orbitron tracking-wide transition select-none" style="box-shadow:0 2px 11px 0 var(--color-primary-glow);">Read More →</a>
+        </article>
+        <!-- Blog Post 2 -->
+        <article class="blog-card bg-[#232946]/80 rounded-xl themed-shadow border themed-border flex flex-col p-6 hover:scale-[1.03] transition-transform transform-gpu [will-change:transform] backface-hidden antialiased">
+          <div class="flex items-center gap-2 mb-3">
+            <span class="text-xl themed-heading" style="text-shadow:0 1px 3px rgba(0,0,0,0.13);"><i class="fas fa-code"></i></span>
+            <h3 class="font-orbitron text-lg themed-heading font-bold" style="text-shadow:0 1px 3px rgba(0,0,0,0.13);">Modern CSS Tricks for Responsive UI</h3>
+          </div>
+          <p class="text-gray-300 mb-4 text-sm" style="text-shadow:0 1px 3px rgba(0,0,0,0.13);">
+            Explore practical CSS techniques and Tailwind utilities for building beautiful, responsive layouts that work on every device.
+          </p>
+          <a href="https://dev.to/webcreaterram/modern-css-tricks-for-responsive-ui-3b4c" target="_blank" rel="noopener" class="mt-auto inline-block px-4 py-2 rounded-full themed-btn font-bold font-orbitron tracking-wide transition select-none" style="box-shadow:0 2px 11px 0 var(--color-primary-glow);">Read More →</a>
+        </article>
+        <!-- Blog Post 3 -->
+        <article class="blog-card bg-[#232946]/80 rounded-xl themed-shadow border themed-border flex flex-col p-6 hover:scale-[1.03] transition-transform transform-gpu [will-change:transform] backface-hidden antialiased">
+          <div class="flex items-center gap-2 mb-3">
+            <span class="text-xl themed-heading" style="text-shadow:0 1px 3px rgba(0,0,0,0.13);"><i class="fas fa-lightbulb"></i></span>
+            <h3 class="font-orbitron text-lg themed-heading font-bold" style="text-shadow:0 1px 3px rgba(0,0,0,0.13);">Animating with GSAP: Tips & Best Practices</h3>
+          </div>
+          <p class="text-gray-300 mb-4 text-sm" style="text-shadow:0 1px 3px rgba(0,0,0,0.13);">
+            A guide to using GSAP for smooth, performant animations in your web projects, with code samples and real-world advice.
+          </p>
+          <a href="https://dev.to/webcreaterram/animating-with-gsap-tips-and-best-practices-2d1f" target="_blank" rel="noopener" class="mt-auto inline-block px-4 py-2 rounded-full themed-btn font-bold font-orbitron tracking-wide transition select-none" style="box-shadow:0 2px 11px 0 var(--color-primary-glow);">Read More →</a>
+        </article>
+      </div>
+    </section>
+    <!-- TESTIMONIALS -->
+    <section id="testimonials" aria-labelledby="testimonials-title" class="py-20 px-4 md:p-5 bg-[#12131a]/90 rounded-2xl themed-shadow max-w-3xl mx-auto mb-12 border themed-border backdrop-blur-md">
+      <header>
+        <h2 id="testimonials-title" class="font-orbitron text-4xl md:text-5xl themed-heading font-bold mb-6 tracking-widest text-center">Testimonials</h2>
+        <p class="text-gray-400 text-lg md:text-xl text-center max-w-2xl mx-auto mb-8">
+          What clients, colleagues, and mentors say about working with me.
+        </p>
+      </header>
+      <div class="grid gap-8 md:grid-cols-2">
+        <!-- Testimonial 1 -->
+        <blockquote class="bg-[#232946]/80 rounded-xl themed-shadow border themed-border p-6 flex flex-col h-full hover:scale-[1.02] transition-transform transform-gpu [will-change:transform] backface-hidden antialiased">
+          <div class="flex items-center gap-3 mb-4">
+            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Client" class="w-12 h-12 rounded-full border-2 border-[var(--color-primary)] object-cover" />
+            <div>
+              <span class="font-bold text-[var(--color-primary)]">Robert</span>
+              <div class="text-xs text-gray-400">Project Manager, ECHT Ventures</div>
+            </div>
+          </div>
+          <p class="text-gray-300 mb-2 flex-1">
+            “Ramkumar is a rare blend of creative vision and technical expertise. His frontend work consistently exceeded our expectations, and he always delivered on time. Highly recommended for any modern web project.”
+          </p>
+          <span class="text-xs text-gray-500 mt-2">★★★★★</span>
+        </blockquote>
+        <!-- Testimonial 2 -->
+        <blockquote class="bg-[#232946]/80 rounded-xl themed-shadow border themed-border p-6 flex flex-col h-full hover:scale-[1.02] transition-transform transform-gpu [will-change:transform] backface-hidden antialiased">
+          <div class="flex items-center gap-3 mb-4">
+            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Colleague" class="w-12 h-12 rounded-full border-2 border-[var(--color-primary)] object-cover" />
+            <div>
+              <span class="font-bold text-[var(--color-primary)]">Alice</span>
+              <div class="text-xs text-gray-400">UI/UX Designer</div>
+            </div>
+          </div>
+          <p class="text-gray-300 mb-2 flex-1">
+            “Working with Ramkumar was a pleasure. He has a keen eye for detail and a deep understanding of user experience. Our collaboration resulted in beautiful, functional interfaces loved by users.”
+          </p>
+          <span class="text-xs text-gray-500 mt-2">★★★★★</span>
+        </blockquote>
+        <!-- Testimonial 3 -->
+        <blockquote class="bg-[#232946]/80 rounded-xl themed-shadow border themed-border p-6 flex flex-col h-full hover:scale-[1.02] transition-transform transform-gpu [will-change:transform] backface-hidden antialiased">
+          <div class="flex items-center gap-3 mb-4">
+            <img src="https://randomuser.me/api/portraits/men/65.jpg" alt="Mentor" class="w-12 h-12 rounded-full border-2 border-[var(--color-primary)] object-cover" />
+            <div>
+              <span class="font-bold text-[var(--color-primary)]">Sandeep Singh</span>
+              <div class="text-xs text-gray-400">Senior Developer & Mentor</div>
+            </div>
+          </div>
+          <p class="text-gray-300 mb-2 flex-1">
+            “Ramkumar's growth mindset and willingness to learn are impressive. He quickly picks up new technologies and applies them effectively. His code is clean, maintainable, and well-documented.”
+          </p>
+          <span class="text-xs text-gray-500 mt-2">★★★★★</span>
+        </blockquote>
+        
+      </div>
+    </section>
+    <!-- CONTACT -->
+    <section id="contact" aria-labelledby="contact-title" class="py-20 px-4 md:p-5 bg-[#181a22]/90 rounded-2xl themed-shadow max-w-3xl mx-auto mb-12 border themed-border backdrop-blur-md">
+      <header>
+        <h2 id="contact-title" class="font-orbitron text-4xl md:text-5xl themed-heading font-bold mb-6 tracking-widest">Contact</h2>
+      </header>
+      <div class="contact-container">
+        <form class="contact-form space-y-6" action="https://formspree.io/f/xzzggkyn" method="POST">
+          <input type="text" name="name" placeholder="Your Name" required class="w-full px-4 py-3 rounded-lg bg-[#232946]/80 border themed-border focus:outline-none focus:ring-2 focus:ring-primary" />
+          <input type="email" name="email" placeholder="Your Email" required class="w-full px-4 py-3 rounded-lg bg-[#232946]/80 border themed-border focus:outline-none focus:ring-2 focus:ring-primary" />
+          <textarea name="message" placeholder="Your Message" required class="w-full px-4 py-3 rounded-lg bg-[#232946]/80 border themed-border focus:outline-none focus:ring-2 focus:ring-primary"></textarea>
+          <button type="submit"
+            class="rounded-full px-8 py-3 themed-btn font-bold text-lg font-orbitron tracking-wide backdrop-blur-md transition-all duration-300 focus:outline-none select-none">
+            Send Message
+          </button>
+        </form>
       </div>
     </section>
   </main>
-
-      <!-- Contact -->
-  <footer class="text-center">
-<section
-  id="footer-contact"
-  class="mx-auto max-w-sm   <!-- ⬅️  hugging width -->
-         mt-8 bg-gray-800/70 p-4 rounded-lg shadow
-         hover:scale-[1.02] transition"
->
-  <h2 class="sr-only">Contact</h2>         <!-- visually hidden -->
-  <ul class="flex justify-between gap-4">
-
-    <!-- E-mail -->
-    <li>
-      <a href="mailto:ramkumar.remote24@gmail.com"
-         aria-label="Email Ramkumar"
-         class="text-blue-300 hover:text-blue-400 transition-transform
-                hover:scale-110">
-        <span class="sr-only">Email</span>
-        <!-- mail-reception-svgrepo-com.svg -->
-        <svg class="w-7 h-7" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M2.25 6.75A2.25 2.25 0 0 1 4.5 4.5h15a2.25 2.25 0 0 1 2.25 2.25v10.5A2.25 2.25 0 0 1 19.5 19.5h-15A2.25 2.25 0 0 1 2.25 17.25V6.75zm1.5 0v.511l8.25 6.188 8.25-6.188V6.75a.75.75 0 0 0-.75-.75h-15a.75.75 0 0 0-.75.75zm16.5 1.822-7.77 5.834a.75.75 0 0 1-.91 0L3.75 8.572v8.678c0 .414.336.75.75.75h15a.75.75 0 0 0 .75-.75V8.572z"/>
-        </svg>
-      </a>
-    </li>
-
-    <!-- LinkedIn -->
-    <li>
-      <a href="https://www.linkedin.com/in/ramkumar-pal-575949262/"
-         target="_blank" rel="noopener"
-         aria-label="Ramkumar on LinkedIn"
-         class="text-blue-300 hover:text-blue-400 transition-transform
-                hover:scale-110">
-        <span class="sr-only">LinkedIn</span>
-        <!-- linkedin-svgrepo-com.svg -->
-        <svg class="w-7 h-7" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.761 0 5-2.239 5-5v-14c0-2.761-2.239-5-5-5zm-11 19h-3v-9h3v9zm-1.5-10.268c-.966 0-1.75-.784-1.75-1.75s.784-1.75 1.75-1.75 1.75.784 1.75 1.75-.784 1.75-1.75 1.75zm15.5 10.268h-3v-4.604c0-1.099-.021-2.513-1.532-2.513-1.533 0-1.768 1.197-1.768 2.435v4.682h-3v-9h2.881v1.229h.041c.401-.761 1.379-1.563 2.838-1.563 3.036 0 3.6 2.001 3.6 4.599v4.735z"/>
-        </svg>
-      </a>
-    </li>
-
-    <!-- GitHub -->
-    <li>
-      <a href="https://github.com/webcreaterRam"
-         target="_blank" rel="noopener"
-         aria-label="Ramkumar on GitHub"
-         class="text-blue-300 hover:text-blue-400 transition-transform
-                hover:scale-110">
-        <span class="sr-only">GitHub</span>
-        <!-- github-icon-svgrepo-com.svg -->
-        <svg class="w-7 h-7" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M12 2C6.477 2 2 6.484 2 12.021c0 4.428 2.865 8.184 6.839 9.504.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.342-3.369-1.342-.454-1.154-1.11-1.461-1.11-1.461-.908-.62.069-.608.069-.608 1.004.07 1.532 1.032 1.532 1.032.892 1.53 2.341 1.089 2.91.833.091-.647.35-1.089.636-1.34-2.221-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.254-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.025A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.338 1.909-1.295 2.748-1.025 2.748-1.025.546 1.378.202 2.396.1 2.65.64.7 1.028 1.595 1.028 2.688 0 3.847-2.337 4.695-4.566 4.944.359.309.678.919.678 1.852 0 1.336-.012 2.417-.012 2.747 0 .267.18.577.688.48C19.138 20.203 22 16.447 22 12.021 22 6.484 17.523 2 12 2z"/>
-        </svg>
-      </a>
-    </li>
-
-    <!-- Phone -->
-    <li>
-      <a href="tel:+918957165310"
-         aria-label="Call Ramkumar"
-         class="text-blue-300 hover:text-blue-400 transition-transform
-                hover:scale-110">
-        <span class="sr-only">Phone</span>
-        <!-- contact-phone-talking-svgrepo-com.svg -->
-        <svg class="w-7 h-7" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M17.707 13.293a1 1 0 0 0-1.414 0l-2.086 2.086a11.042 11.042 0 0 1-4.586-4.586l2.086-2.086a1 1 0 0 0 0-1.414l-2.121-2.121a1 1 0 0 0-1.414 0l-1.293 1.293c-.781.781-.977 1.953-.488 2.93 2.02 4.07 5.13 7.18 9.2 9.2.977.489 2.149.293 2.93-.488l1.293-1.293a1 1 0 0 0 0-1.414l-2.121-2.121z"/>
-        </svg>
-      </a>
-    </li>
-
-  </ul>
-
-</section>
-      <div class="max-w-3xl mx-auto px-4 py-8">
-      <p class="text-[#cccccc] text-sm mb-4">© 2025 Ramkumar Pal. All rights reserved.</p>
-      <p class="text-[#cccccc]/70 text-xs">Built with &#128151; using HTML, CSS, and JavaScript.</p>
+  <footer class="text-center mt-16 bg-[#181a22] border-t border-[var(--color-primary)] pt-10 pb-6">
+    <section id="footer-contact" class="mx-auto max-w-sm mt-8 bg-gray-800/70 p-4 rounded-lg themed-shadow hover:scale-[1.02] transition transform-gpu [will-change:transform] backface-hidden antialiased flex flex-col items-center gap-4">
+      <h3 class="font-orbitron text-xl font-bold text-[var(--color-primary)] mb-2">Let's Connect</h3>
+      <!-- Social Media Links -->
+      <div class="flex justify-center gap-6 mb-2">
+        <a href="mailto:ramkumar.remote24@gmail.com" class="text-gray-300 hover:text-[var(--color-primary)] transition" title="Email">
+          <!-- Use SVG for envelope icon -->
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 fill-current" viewBox="0 0 24 24"><path d="M2 4a2 2 0 012-2h16a2 2 0 012 2v16a2 2 0 01-2 2H4a2 2 0 01-2-2V4zm2 0v.01L12 13l8-8.99V4H4zm16 2.41l-7.29 7.29a1 1 0 01-1.42 0L4 6.41V20h16V6.41z"/></svg>
+        </a>
+        <a href="https://www.linkedin.com/in/ramkumar-pal" target="_blank" class="text-gray-300 hover:text-[var(--color-primary)] transition" title="LinkedIn">
+          <!-- LinkedIn SVG -->
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 fill-current" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.268c-.966 0-1.75-.784-1.75-1.75s.784-1.75 1.75-1.75 1.75.784 1.75 1.75-.784 1.75-1.75 1.75zm13.5 11.268h-3v-5.604c0-1.337-.025-3.063-1.868-3.063-1.868 0-2.154 1.459-2.154 2.967v5.7h-3v-10h2.881v1.367h.041c.401-.761 1.379-1.563 2.841-1.563 3.039 0 3.6 2.001 3.6 4.601v5.595z"/></svg>
+        </a>
+        <a href="https://github.com/webcreaterRam" target="_blank" class="text-gray-300 hover:text-[var(--color-primary)] transition" title="GitHub">
+          <!-- GitHub SVG -->
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 fill-current" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.387.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.415-4.042-1.415-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.084-.729.084-.729 1.205.084 1.84 1.236 1.84 1.236 1.07 1.834 2.809 1.304 3.495.997.108-.775.418-1.305.762-1.605-2.665-.305-5.466-1.334-5.466-5.931 0-1.31.469-2.381 1.236-3.221-.124-.303-.535-1.527.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.553 3.297-1.23 3.297-1.23.653 1.649.242 2.873.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.803 5.624-5.475 5.921.43.371.823 1.102.823 2.222 0 1.606-.014 2.898-.014 3.293 0 .322.216.694.825.576C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+        </a>
+        <a href="https://twitter.com/" target="_blank" class="text-gray-300 hover:text-[var(--color-primary)] transition pointer-events-none" title="Twitter">
+          <!-- Twitter SVG -->
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 fill-current" viewBox="0 0 24 24"><path d="M24 4.557a9.93 9.93 0 0 1-2.828.775 4.932 4.932 0 0 0 2.165-2.724c-.951.564-2.005.974-3.127 1.195a4.92 4.92 0 0 0-8.384 4.482c-4.086-.205-7.713-2.164-10.141-5.144a4.822 4.822 0 0 0-.664 2.475c0 1.708.87 3.216 2.188 4.099a4.904 4.904 0 0 1-2.229-.616c-.054 2.281 1.581 4.415 3.949 4.89a4.936 4.936 0 0 1-2.224.084c.627 1.956 2.444 3.377 4.6 3.417A9.867 9.867 0 0 1 0 21.543a13.94 13.94 0 0 0 7.548 2.209c9.057 0 14.009-7.496 14.009-13.986 0-.213-.005-.425-.014-.636A9.936 9.936 0 0 0 24 4.557z"/></svg>
+        </a>
+        <a href="tel:+918957165310" class="text-gray-300 hover:text-[var(--color-primary)] transition" title="Call">
+          <!-- Phone SVG -->
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 fill-current" viewBox="0 0 24 24"><path d="M6.62 10.79a15.053 15.053 0 0 0 6.59 6.59l2.2-2.2a1.003 1.003 0 0 1 1.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 0 1 1 1v3.5a1 1 0 0 1-1 1C10.07 22 2 13.93 2 4.5a1 1 0 0 1 1-1H6.5a1 1 0 0 1 1 1c0 1.25.2 2.46.57 3.58a1 1 0 0 1-.24 1.01l-2.2 2.2z"/></svg>
+        </a>
+      </div>
+      <!-- Contact Info -->
+      <div class="flex flex-wrap justify-center gap-2 text-xs text-gray-400 transform-gpu [will-change: transform] backface-hidden antialiased">
+        <span class="inline-flex items-center gap-1"><i class="fas fa-map-marker-alt"></i> India</span>
+        <span class="inline-flex items-center gap-1"><i class="fas fa-clock"></i> IST (UTC+5:30)</span>
+        <span class="inline-flex items-center gap-1"><i class="fas fa-envelope"></i> ramkumar.remote24@gmail.com</span>
+        <span class="inline-flex items-center gap-1"><i class="fas fa-phone"></i> +91 89571 65310</span>
+      </div>
+      <div class="mt-2">
+        <a href="resume.html" class="inline-block px-5 py-2 rounded-full bg-[var(--color-primary)] text-[#181a22] font-bold font-orbitron shadow hover:scale-105 transition-all duration-200 transform-gpu [will-change:transform] backface-hidden antialiased select-none">Download Resume</a>
+      </div>
+    </section>
+    <!-- Enhanced Footer Content -->
+    <div class="max-w-6xl mx-auto px-4 py-8 flex flex-col md:flex-row md:justify-between items-center gap-8">
+      <!-- Quick Navigation -->
+      <nav class="flex flex-col items-center md:items-start gap-2 mb-4 md:mb-0">
+        <h4 class="font-orbitron text-lg font-bold text-[var(--color-primary)] mb-1">Quick Links</h4>
+        <ul class="flex flex-wrap gap-3 text-sm text-gray-300">
+          <li><a href="#" class="hover:text-[var(--color-primary)] transition">Home</a></li>
+          <li><a href="#about" class="hover:text-[var(--color-primary)] transition">About</a></li>
+          <li><a href="#projects" class="hover:text-[var(--color-primary)] transition">Portfolio</a></li>
+          <li><a href="#blog" class="hover:text-[var(--color-primary)] transition">Blog</a></li>
+          <li><a href="#contact" class="hover:text-[var(--color-primary)] transition">Contact</a></li>
+        </ul>
+      </nav>
+      <!-- Newsletter Signup -->
+      <div class="w-full max-w-xs">
+        <h4 class="font-orbitron text-lg font-bold text-[var(--color-primary)] mb-2">Newsletter</h4>
+        <form class="flex flex-col sm:flex-row gap-2" action="https://formspree.io/f/xzzggkyn" method="POST">
+          <input type="email" name="newsletter-email" required placeholder="Your email" class="flex-1 px-3 py-2 rounded-full bg-[#232946]/80 border themed-border text-sm focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]" />
+          <button type="submit" class="px-4 py-2 rounded-full bg-[var(--color-primary)] text-[#181a22] font-bold font-orbitron hover:scale-105 transition-all duration-200 transform-gpu [will-change:transform] backface-hidden antialiased select-none">Subscribe</button>
+        </form>
+        <p class="text-xs text-gray-400 mt-1 text-left">Get updates on new projects & articles. No spam.</p>
+      </div>
+      <!-- Recent Blog Posts Preview -->
+      <div class="w-full max-w-xs">
+        <h4 class="font-orbitron text-lg font-bold text-[var(--color-primary)] mb-2">Recent Blog Posts</h4>
+        <ul class="text-sm text-gray-300 space-y-1 text-left">
+          <li>
+            <a href="https://dev.to/webcreaterram/how-i-designed-a-portfolio-that-gets-interviews-1a2b" target="_blank" class="hover:text-[var(--color-primary)] transition">
+              How I Designed a Portfolio That Gets Interviews
+            </a>
+          </li>
+          <li>
+            <a href="https://dev.to/webcreaterram/modern-css-tricks-for-responsive-ui-3b4c" target="_blank" class="hover:text-[var(--color-primary)] transition">
+              Modern CSS Tricks for Responsive UI
+            </a>
+          </li>
+          <li>
+            <a href="https://dev.to/webcreaterram/animating-with-gsap-tips-and-best-practices-2d1f" target="_blank" class="hover:text-[var(--color-primary)] transition">
+              Animating with GSAP: Tips & Best Practices
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="max-w-3xl mx-auto px-4 py-8 flex flex-col items-center gap-4">
+      <p class="text-[#cccccc] text-sm mb-2">
+        © 2025 Ramkumar Pal. All rights reserved.
+      </p>
+      <p class="text-[#cccccc]/70 text-xs mb-2">
+        Built with <span class="text-[var(--color-primary)]">&#10024; &#128151;</span> using HTML, CSS, JavaScript & Tailwind CSS.
+      </p>
+      <div class="flex flex-wrap justify-center gap-3 text-xs text-gray-400">
+        <span>Portfolio v2.0</span>
+        <span>|</span>
+        <a href="https://github.com/webcreaterRam/boundless-insights" target="_blank" class="hover:text-[var(--color-primary)] transition">Source Code</a>
+        <span>|</span>
+        <a href="#blog" class="hover:text-[var(--color-primary)] transition">Read My Blog</a>
+        <span>|</span>
+        <a href="#contact" class="hover:text-[var(--color-primary)] transition">Contact</a>
+      </div>
+      <div class="mt-4 text-xs text-gray-500">
+        <span>“Striving for creativity, accessibility, and performance in every pixel.”</span>
+      </div>
     </div>
   </footer>
   <script src="script.js"></script>
