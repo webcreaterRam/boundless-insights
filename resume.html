@@ -6,7 +6,7 @@
   <title>Ramkumar Pal | Frontend Developer Resume</title>
   <meta name="description" content="Resume of Ramkumar Pal, Frontend Developer specializing in React, JavaScript, and modern web technologies." />
   <link rel="icon" type="image/x-icon" href="favicon.ico" />
-  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.tailwindcss.com" defer></script>
   <script src="script.js" defer></script>
   <!-- WEB FONT (Inter renders beautifully both screen & print) -->
   <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -144,8 +144,10 @@
 <body class="text-gray-100 font-inter">
   <!-- Navbar -->
   <nav class="fixed top-0 inset-x-0 bg-gray-900 bg-opacity-90 backdrop-blur-md z-50 shadow rounded-b-lg" id="resume-navbar">
-    <div class="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between">
-      <div><a href="#" class="text-white font-bold text-lg tracking-wide">Ramkumar Pal</a></div>
+    <div class="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between overflow-visible">
+      <div>
+        <span class="text-white font-bold text-lg tracking-wide relative z-10 flex-shrink-0">Ramkumar Pal</span>
+      </div>
       <div class="md:hidden">
         <button id="menu-BTN" class="focus:outline-none">
           <svg class="w-6 h-6 text-gray-100" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -153,14 +155,14 @@
           </svg>
         </button>
       </div>
-      <div id="menu" class="hidden md:flex space-x-6">
+      <div id="menu" class="hidden md:flex space-x-6 z-0 flex-1 justify-end min-w-0">
         <a href="#summary" class="hover:text-blue-400 transition">Summary</a>
         <a href="#skills" class="hover:text-blue-400 transition">Skills</a>
         <a href="#projects" class="hover:text-blue-400 transition">Projects</a>
         <a href="#experience" class="hover:text-blue-400 transition">Experience</a>
         <a href="#education" class="hover:text-blue-400 transition">Education</a>
         <a href="#contact" class="hover:text-blue-400 transition">Contact</a>
-        <a href="Frontend_Developer_Resume.pdf" download class="ml-4 bg-blue-400 text-gray-900 px-3 py-1 rounded-lg font-semibold hover:bg-blue-500 transition">Download PDF</a>
+        <a href="Frontend_Developer_Resume.pdf" download class="bg-blue-400 text-gray-900 px-3 py-1 rounded-lg font-semibold hover:bg-blue-500 transition self-center h-auto">Download PDF</a>
       </div>
     </div>
     <div id="mobile-menu" class="md:hidden hidden bg-gray-800 bg-opacity-95">
@@ -170,7 +172,7 @@
       <a href="#experience" class="block px-4 py-2 hover:bg-gray-700">Experience</a>
       <a href="#education" class="block px-4 py-2 hover:bg-gray-700">Education</a>
       <a href="#contact" class="block px-4 py-2 hover:bg-gray-700">Contact</a>
-      <button onclick="window.print()" class="w-full text-left px-4 py-2 bg-blue-400 text-gray-900 hover:bg-blue-500">Download PDF</button>
+      <a href="Frontend_Developer_Resume.pdf" download class="inline-block bg-blue-400 px-4 py-2 hover:bg-blue-700">Download PDF</a>
     </div>
   </nav>
 
@@ -194,7 +196,7 @@
         </span>
         <a href="https://www.linkedin.com/in/ramkumar-pal-575949262/" target="_blank" class="flex items-center hover:text-blue-200 transition">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 fill-current mr-1" viewBox="0 0 24 24">
-            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.268c-.966 0-1.75-.784-1.75-1.75s.784-1.75 1.75-1.75 1.75.784 1.75 1.75-.784 1.75-1.75 1.75zm13.5 11.268h-3v-5.604c0-1.337-.025-3.063-1.868-3.063-1.868 0-2.154 1.459-2.154 2.967v5.7h-3v-10h2.881v1.367h.041c.401-.761 1.379-1.563 2.841-1.563 3.039 0 3.6 2.001 3.6 4.601v5.595z"/>
+            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.761 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.268c-.966 0-1.75-.784-1.75-1.75s.784-1.75 1.75-1.75 1.75.784 1.75 1.75-.784 1.75-1.75 1.75zm13.5 11.268h-3v-5.604c0-1.337-.025-3.063-1.868-3.063-1.868 0-2.154 1.459-2.154 2.967v5.7h-3v-10h2.881v1.367h.041c.401-.761 1.379-1.563 2.841-1.563 3.039 0 3.6 2.001 3.6 4.601v5.595z"/>
           </svg>
           LinkedIn
         </a>
@@ -246,12 +248,13 @@
       <h2 class="text-2xl font-semibold text-blue-400 mb-4">Project Highlights</h2>
       <div class="space-y-6">
         <div>
-          <h3 class="text-xl font-semibold text-white">RamTechVersatile Portfolio</h3>
+          <h3 class="text-xl font-semibold text-white">Boundless-Insights Portfolio</h3>
           <a href="index.html" target="_blank" class="text-blue-300 hover:underline">Live Demo</a>
           <ul class="list-disc list-inside mt-2 text-gray-200">
-            <li>Cosmic-themed layout with animated shooting stars and responsive hero section using Tailwind CSS.</li>
-            <li>Semantic HTML, accessible navigation, project gallery, blog preview, and contact form.</li>
-            <li>SEO-optimized, fast loading, and mobile-friendly.</li>
+            <li><strong>Responsive Design:</strong> Ensures a seamless experience across desktops, tablets, and smartphones.</li>
+            <li><strong>Intuitive Navigation & Clean Typography:</strong> Provides a user-friendly layout with a focus on clarity and aesthetics.</li>
+            <li><strong>Modular & Customizable Architecture:</strong> Built for easy maintenance and tailored branding.</li>
+            <li><strong>Theme Switcher:</strong> Intuitive navigation, clean typography, and three visual modes (Cosmic, Nebula, Eclipse) with persistent preferences.</li>
           </ul>
         </div>
         <!-- Add more projects as needed -->
@@ -264,11 +267,11 @@
       <div class="space-y-6">
         <div>
           <h3 class="text-xl font-semibold text-white">CRM & Sales Executive, ECHT Ventures</h3>
-          <p class="italic text-gray-300">June 2024 – October 2024</p>
+          <p class="italic text-gray-300">June 2024 - October 2024</p>
           <ul class="list-disc list-inside mt-2 text-gray-200">
-            <li>Achieved 95% satisfaction handling voice & non-voice support for clients.</li>
-            <li>Managed Bitrix24 CRM and generated analytical reports using Excel.</li>
-            <li>Reduced response times by 30% through streamlined communication workflows.</li>
+            <li>Achieved 84% client satisfaction via effective multichannel support.</li>
+            <li>Managed Bitrix24 CRM: drove social media lead generation, coordinated follow-ups and events, delivered Canva presentations, and maintained daily Excel reports.</li>
+            <li>educed response times by 23% through strategic process automation..</li>
           </ul>
         </div>
         <!-- Add more experience as needed -->
@@ -283,7 +286,7 @@
         <p class="italic text-gray-300">Expected 2025</p>
         <ul class="list-disc list-inside mt-2 text-gray-200">
           <li>Business Analytics, Digital Marketing, Project Management coursework.</li>
-          <li>Self-driven web development projects demonstrating adaptability and passion.</li>
+          <li>Demonstrated initiative through independent web development projects.</li>
         </ul>
       </div>
     </section>
@@ -313,7 +316,7 @@
     </section>
 
     <!-- Contact -->
-    <section id="contact" class="mx-auto max-w-sm mt-8 bg-gray-800/70 p-4 rounded-lg shadow hover:scale-[1.02] transition">
+    <section id="contact" class="mx-auto max-w-sm mt-8 bg-gray-800/70 p-4 rounded-lg shadow hover:scale-[1.02] transition antialiased">
       <h2 class="sr-only">Contact</h2>
       <ul class="flex justify-between gap-4">
 

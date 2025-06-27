@@ -138,10 +138,105 @@ const setupHamburger = () => {
       '#fff8e7', '#ffe9c4', '#ffd1a9', '#cce0ff', '#aabfff',
       '#b5ffd9', '#f7baff', '#ffffff', '#ffd6a5', '#b5ffd9'
     ];
-    const METEOR_HEAD_COLORS = [
-      '#ffecd2', '#fcb69f', '#ff9966', '#ff5e62', '#ff512f',
-      '#dd2476', '#d53369', '#cb2d3e', '#ef473a', '#e94057'
-    ];
+    const cosmicEmissionPalettesRgba = [
+  // 1. SODIUM BURST (Na-rich)
+  {
+    id: 'sodium',
+    stops: [
+      { at: 0.00, color: 'rgba(255,255,255,1.00)' },     // #FFFFFFFF
+      { at: 0.12, color: 'rgba(255,221,  0,0.87)' },   // #FFDD00DD
+      { at: 0.30, color: 'rgba(255,187,  0,0.60)' },   // #FFBB0099
+      { at: 0.55, color: 'rgba(255,136,  0,0.40)' },   // #FF880066
+      { at: 1.00, color: 'rgba(255, 68,  0,0.00)' }    // #FF440000
+    ]
+  },
+
+  // 2. IRONFLARE (Fe + Na blend)
+  {
+    id: 'ironflare',
+    stops: [
+      { at: 0.00, color: 'rgba(255,248,225,1.00)' },     // #FFF8E1FF
+      { at: 0.15, color: 'rgba(255,215,  0,0.80)' },   // #FFD700CC
+      { at: 0.35, color: 'rgba(255,170,  0,0.67)' },   // #FFAA00AA
+      { at: 0.65, color: 'rgba(204,136,  0,0.53)' },   // #CC880088
+      { at: 1.00, color: 'rgba(204, 68,  0,0.00)' }    // #CC440000
+    ]
+  },
+
+  // 3. MAGNESHELIX (Mg-rich teal)
+  {
+    id: 'magneshelix',
+    stops: [
+      { at: 0.00, color: 'rgba(204,255,244,1.00)' },     // #CCFFF4FF
+      { at: 0.20, color: 'rgba(153,255,238,0.80)' },   // #99FFEECC
+      { at: 0.40, color: 'rgba( 51,204,170,0.60)' },   // #33CCAA99
+      { at: 0.70, color: 'rgba(  0,153,119,0.40)' },   // #00997766
+      { at: 1.00, color: 'rgba(  0,153,119,0.00)' }    // #00997700
+    ]
+  },
+
+  // 4. CALCIUM VIOLET (Ca spectral)
+  {
+    id: 'calcium',
+    stops: [
+      { at: 0.00, color: 'rgba(245,230,255,1.00)' },     // #F5E6FFFF
+      { at: 0.10, color: 'rgba(216,176,255,0.80)' },   // #D8B0FFCC
+      { at: 0.30, color: 'rgba(178,102,255,0.67)' },   // #B266FFAA
+      { at: 0.60, color: 'rgba(138, 51,255,0.53)' },   // #8A33FF88
+      { at: 1.00, color: 'rgba(138, 51,255,0.00)' }    // #8A33FF00
+    ]
+  },
+
+  // 5. NICKEL GLOW (Ni green)
+  {
+    id: 'nickel',
+    stops: [
+      { at: 0.00, color: 'rgba(230,255,237,1.00)' },     // #E6FFEDFF
+      { at: 0.25, color: 'rgba(170,255,204,0.73)' },   // #AAFFCCBB
+      { at: 0.50, color: 'rgba(102,255,153,0.53)' },   // #66FF9988
+      { at: 0.75, color: 'rgba( 51,255,102,0.33)' },   // #33FF6655
+      { at: 1.00, color: 'rgba( 51,255,102,0.00)' }    // #33FF6600
+    ]
+  },
+
+  // 6. ATMOSPHERIC SWIRL (O₂/N₂ red→blue)
+  {
+    id: 'atmosphere',
+    stops: [
+      { at: 0.00, color: 'rgba(255, 68, 51,1.00)' },     // #FF4433FF
+      { at: 0.20, color: 'rgba(255,136, 85,0.87)' },   // #FF8855DD
+      { at: 0.45, color: 'rgba(255,221,170,0.80)' },   // #FFDDAACC
+      { at: 0.70, color: 'rgba(153,238,255,0.67)' },   // #99EEFFAA
+      { at: 1.00, color: 'rgba(153,238,255,0.00)' }    // #99EEFF00
+    ]
+  },
+
+  // 7. PLASMA RAINBOW (multi-metal cascade)
+  {
+    id: 'plasma_rainbow',
+    stops: [
+      { at: 0.00, color: 'rgba(255,255,255,1.00)' },     // #FFFFFFFF
+      { at: 0.12, color: 'rgba(255,215,  0,0.80)' },   // #FFD700CC
+      { at: 0.25, color: 'rgba(255, 85,  0,0.73)' },   // #FF5500BB
+      { at: 0.45, color: 'rgba(204,  0,204,0.67)' },   // #CC00CCAA
+      { at: 0.70, color: 'rgba(  0,255,102,0.67)' },   // #00FF66AA
+      { at: 1.00, color: 'rgba(  0,255,102,0.00)' }    // #00FF6600
+    ]
+  },
+
+  // 8. ANTIMATTER SWIRL (inverted spectrum)
+  {
+    id: 'antimatter',
+    stops: [
+      { at: 0.00, color: 'rgba(  0, 17, 68,1.00)' },     // #001144FF
+      { at: 0.18, color: 'rgba( 34,  0,170,0.93)' },   // #2200AAEE
+      { at: 0.38, color: 'rgba( 68,  0,255,0.80)' },   // #4400FFCC
+      { at: 0.65, color: 'rgba(102,255, 68,0.60)' },   // #66FF4499
+      { at: 1.00, color: 'rgba(102,255, 68,0.00)' }    // #66FF4400
+    ]
+  }
+];
+
   
     let meteors = [], width = 0, height = 0, staticStarsLayer = null;
     let lastFrameTime = performance.now();
@@ -168,7 +263,7 @@ const setupHamburger = () => {
         const r = Math.random() * 1 + 0.5;
         const color = STAR_COLORS[Math.floor(Math.random() * STAR_COLORS.length)];
         offctx.save();
-        offctx.beginPath();
+        offctx.beginPath(); 
         offctx.arc(x, y, r, 0, 2 * Math.PI);
         offctx.fillStyle = color;
         offctx.globalAlpha = 0.85 + Math.random() * 0.15;
@@ -194,7 +289,8 @@ const setupHamburger = () => {
         this.maxLife = Math.random() * 1.2 + 2.2;
         this.life = 0;
         this.alpha = 1;
-        this.headColor = METEOR_HEAD_COLORS[Math.floor(Math.random() * METEOR_HEAD_COLORS.length)];
+        // Pick a a random palette for this meteor 
+        this.palette = cosmicEmissionPalettesRgba[Math.floor(Math.random() * cosmicEmissionPalettesRgba.length)];
         this.x = this.x0;
         this.y = this.y0;
       }
@@ -208,29 +304,34 @@ const setupHamburger = () => {
         if (this.alpha <= 0.01) return;
         ctx.save();
         ctx.globalAlpha = this.alpha;
+
+        // Meteor head glow (use first palette stop)
+        const headColor = this.palette.stops[0].color;
         const glow = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, 14);
-        glow.addColorStop(0, this.headColor);
-        glow.addColorStop(0.5, this.headColor + 'cc');
+        glow.addColorStop(0, headColor);
+        glow.addColorStop(0.5, headColor);
         glow.addColorStop(1, 'transparent');
         ctx.fillStyle = glow;
         ctx.beginPath();
         ctx.arc(this.x, this.y, 9, 0, 2 * Math.PI);
         ctx.fill();
-  
+
+        // Meteor head core
         ctx.beginPath();
         ctx.arc(this.x, this.y, 2.8, 0, 2 * Math.PI);
-        ctx.fillStyle = this.headColor;
-        ctx.shadowColor = this.headColor;
+        ctx.fillStyle = headColor;
+        ctx.shadowColor = headColor;
         ctx.shadowBlur = 8;
         ctx.fill();
-  
+
+        // Meteor tail with palette gradient
         const norm = Math.hypot(this.vx, this.vy);
         const tx = this.x - this.vx / norm * this.length;
         const ty = this.y - this.vy / norm * this.length;
         const grad = ctx.createLinearGradient(this.x, this.y, tx, ty);
-        grad.addColorStop(0, this.headColor + 'cc');
-        grad.addColorStop(1, this.headColor + '00');
-  
+        this.palette.stops.forEach((stop => {
+          grad.addColorStop(stop.at, stop.color);
+        }));
         ctx.globalAlpha *= 0.85;
         ctx.strokeStyle = grad;
         ctx.lineWidth = 2.2;
@@ -244,26 +345,7 @@ const setupHamburger = () => {
         return this.alpha > 0.01 && this.life < this.maxLife && this.x > -200 && this.x < w + 200 && this.y > -200 && this.y < h + 200;
       }
     }
-  
-    function spawnMeteor() {
-      meteors.push(new Meteor(width, height));
-      lastMeteorTime = performance.now();
-    }
-  
-    function drawFrame(now) {
-      const dt = Math.min((now - lastFrameTime) / 1000, 0.033);
-      lastFrameTime = now;
-      ctx.clearRect(0, 0, width, height);
-      if (staticStarsLayer) ctx.drawImage(staticStarsLayer, 0, 0);
-      meteors = meteors.filter(m => m.isAlive(width, height));
-      meteors.forEach(m => {
-        m.update(dt);
-        m.draw(ctx);
-      });
-      if (now - lastMeteorTime > METEOR_INTERVAL && meteors.length < MAX_METEORS) spawnMeteor();
-      requestAnimationFrame(drawFrame);
-    }
-  
+
     function resizeCanvas() {
       let w = hero.clientWidth;
       let h = hero.clientHeight;
@@ -280,12 +362,42 @@ const setupHamburger = () => {
       meteors = [];
       spawnMeteor();
     }
-  
-    function ensureCanvasReady() {
-      resizeCanvas();
+
+    function spawnMeteor() {
+      if (meteors.length < MAX_METEORS) {
+        meteors.push(new Meteor(width, height));
+      }
+    }
+
+    function drawFrame(now) {
+      const dt = Math.min((now - lastFrameTime) / 1000, 0.07);
+      lastFrameTime = now;
+
+      // Draw static stars
+      ctx.clearRect(0, 0, width, height);
+      if (staticStarsLayer) ctx.drawImage(staticStarsLayer, 0, 0);
+
+      // Update and draw meteors
+      meteors.forEach(m => m.update(dt));
+      meteors = meteors.filter(m => m.isAlive(width, height));
+      meteors.forEach(m => m.draw(ctx));
+
+      // Spawn new meteor if needed
+      if (now - lastMeteorTime > METEOR_INTERVAL) {
+        spawnMeteor();
+        lastMeteorTime = now;
+      }
+
       requestAnimationFrame(drawFrame);
     }
-  
+
+    function ensureCanvasReady() {
+      resizeCanvas();
+      lastFrameTime = performance.now();
+      lastMeteorTime = performance.now();
+      requestAnimationFrame(drawFrame);
+    }
+
     ensureCanvasReady();
     window.addEventListener('resize', () => {
       MAX_METEORS = window.innerWidth < 600 ? 1 : 2;
@@ -297,7 +409,7 @@ const setupHamburger = () => {
   // =====================
   // 4. CTA SMOOTH SCROLL
   // =====================
-  function setupCtaSmoothScroll() {
+   function setupCtaSmoothScroll() {
     const ctaBtn = document.querySelector('.cta[href^="#"]');
     if (ctaBtn) {
       ctaBtn.addEventListener('click', function(e) {
@@ -337,8 +449,19 @@ const setupHamburger = () => {
     setupCtaSmoothScroll();
     setupThemeDynamicCss();
     setupHamburger();
+
+    // Initialize GSAP ScrollSmoother (only once, after DOM is ready)
+    if (window.gsap && window.ScrollTrigger && window.ScrollSmoother) {
+      gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+      ScrollSmoother.create({
+        wrapper: "#main-wrapper",
+        content: "#main-content",
+        smooth: 1.5,
+        effects: true,
+      });
+    }
   }
-  
+
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initializePortfolio);
   } else {
@@ -346,52 +469,13 @@ const setupHamburger = () => {
   }
 });
 
-    // Initialize GSAP ScrollSmoother
-    gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
-    ScrollSmoother.create({
-      wrapper: "#main-content",
-      content: "#main-content",
-      smooth: 1.5,
-      effects: true,
-    });
-    setupThemeSwitcher();
-    setupStarCanvas();
-    setupCtaSmoothScroll();
-    setupThemeDynamicCss();
-  
-  
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initializePortfolio);
-  } else {
-    initializePortfolio();
-  }
-
-
-    // Initialize GSAP ScrollSmoother
-    gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
-    ScrollSmoother.create({
-      wrapper: "#main-content",
-      content: "#main-content",
-      smooth: 1.5,
-      effects: true,
-    });
-    setupStarCanvas();
-    setupCtaSmoothScroll();
-    setupThemeDynamicCss();
-  
-  
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initializePortfolio);
-  } else {
-    initializePortfolio();
-  }
-
-
-    // Initialize GSAP ScrollSmoother
-    gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
-    ScrollSmoother.create({
-      wrapper: "#main-content",
-      content: "#main-content",
-      smooth: 1.5,
-      effects: true,
-    });
+// Helper to convert hex to rgba
+function hexToRgba(hex, alpha) {
+  hex = hex.replace('#', '');
+  if (hex.length === 3) hex = hex.split('').map(x => x + x).join('');
+  const num = parseInt(hex, 16);
+  const r = (num >> 16) & 255;
+  const g = (num >> 8) & 255;
+  const b = num & 255;
+  return `rgba(${r},${g},${b},${alpha})`;
+}
