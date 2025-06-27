@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCpchgfgYPE html>
 <html lang="en" class="scroll-smooth theme-cosmic">
 <head>
   <meta charset="UTF-8" />
@@ -7,28 +7,28 @@
   <meta name="description" content="Cosmic Portfolio of Ramkumar, a self-taught frontend developer with a passion for cosmic-themed web designs, showcasing skills in HTML, CSS, and Javascript." />
   <meta property="og:title" content="Ramkumar's Cosmic Portfolio" />
   <meta property="og:description" content="Explore the cosmic-themed portfolio of Ramkumar, a self-taught frontend developer." />
-  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.tailwindcss.com" defer></script>
   <link rel="icon" type="image/jpeg" href="favicon.ico" />
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css" />
-  <script src="https://kit.fontawesome.com/yourkitid.js" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.11.5/dist/gsap.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.11.5/dist/ScrollTrigger.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.11.5/dist/ScrollSmoother.min.js"></script>
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="styles.css" />
+  <!-- Only load GSAP if you use it for critical UX, otherwise remove these lines -->
+  <!-- <script src="https://cdn.jsdelivr.net/npm/gsap@3.11.5/dist/gsap.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.11.5/dist/ScrollTrigger.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.11.5/dist/ScrollSmoother.min.js" defer></script> -->
 </head>
 <body>
   <!-- Navbar -->
-  <nav class="navbar-bg fixed top-0 inset-x-0 z-50 bg-opacity-80 backdrop-blur-md !shadow-none border-none rounded-[5px]">
+  <nav class="navbar-bg fixed top-0 inset-x-0 z-50 bg-opacity-80 backdrop-blur-md border-none rounded-[5px]">
     <!-- Desktop & Tablet Navbar (>=768px) -->
-    <div class="navbar-inner w-[90%] max-w-full flex items-center justify-between px-4 py-2 rounded-[5px] mt-4 bg-[var(--color-navbar)] transition-shadow duration-300 hover:shadow-2xl hover:shadow-[var(--color-primary-glow)] gap-8
+    <div class="navbar-inner w-[90%] max-w-full flex items-center justify-between px-4 py-2 rounded-[5px] mt-4 transition-shadow duration-300 hover:shadow-xl hover:shadow-[var(--color-primary-glow)] gap-8
       sm:w-full sm:mt-0 sm:rounded-[5px] hidden md:flex">
       <!-- Logo (left) -->
-      <div class="site-logo flex items-center gap-4 min-w-0">
-        <a href="#" class="flex items-center gap-2 select-none">
+      <div class="site-logo flex items-center gap-4 min-w-0 flex-shrink-0">
+        <a href="#" class="flex items-center gap-2">
           <span class="logo-ring flex items-center justify-center rounded-full transition-all duration-300"
                 style="width:4.5rem;height:4.5rem;border:0.3px solid var(--color-primary);box-shadow:0 0 0 0.5px var(--color-primary-glow);">
-            <img src="Cosmic-Logo.svg" alt="Cosmic Logo" class="h-16 w-16 object-contain rounded-full shadow themed-shadow" />
+            <img src="Cosmic-Logo.svg" alt="Cosmic Logo" class="h-16 w-16 object-contain rounded-full shadow themed-shadow" width="64" height="64" />
           </span>
           <span class="sr-only">Home</span>
         </a>
@@ -51,41 +51,41 @@
       </form>
       <!-- Theme Switcher Button -->
       <div class="flex items-center justify-center mx-4 theme-switcher-order">
-        <button id="theme-switcher" class="theme-switcher-btn min-w-[116px] select-none">Cosmic</button>
+        <button id="theme-switcher" class="theme-switcher-btn min-w-[116px] self-center ml-[0.5rem] mr-[0.5rem] border-radius-[9999px] font-bold cursor-pointer select-none">Cosmic</button>
       </div>
       <!-- Hamburger (show on md and up, hide on xl) -->
-      <button id="menu-btn" class="block md:block xl:hidden focus:outline-none z-50 select-none">
+      <button id="menu-btn" class="block md:block xl:hidden focus:outline-none z-50">
         <svg class="w-7 h-7 text-gray-100" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
         </svg>
       </button>
       <!-- Navbar Links (right, only show on xl and up) -->
       <ul class="navbar-links flex items-center gap-8 ml-2 hidden xl:flex">
-        <li><a href="#about" class="themed-link select-none">About</a></li>
-        <li><a href="#skills" class="themed-link select-none">Skills</a></li>
-        <li><a href="#projects" class="themed-link select-none">Projects</a></li>
-        <li><a href="#blog" class="themed-link select-none">Blog</a></li>
-        <li><a href="#testimonials" class="themed-link select-none">Testimonials</a></li>
-        <li><a href="#contact" class="themed-link select-none">Contact</a></li>
-        <li><a href="resume.html" class="themed-link select-none">Resume</a></li>
+        <li><a href="#about" class="themed-link">About</a></li>
+        <li><a href="#skills" class="themed-link">Skills</a></li>
+        <li><a href="#projects" class="themed-link">Projects</a></li>
+        <li><a href="#blog" class="themed-link">Blog</a></li>
+        <li><a href="#testimonials" class="themed-link">Testimonials</a></li>
+        <li><a href="#contact" class="themed-link">Contact</a></li>
+        <li><a href="resume.html" class="themed-link">Resume</a></li>
       </ul>
     </div>
     <!-- Mobile Navbar (<768px) -->
     <div class="mobile-navbar flex items-center justify-between px-3 py-2 w-full bg-[var(--color-navbar)] rounded-[0px] mt-0 relative z-50 md:hidden">
       <!-- Logo (left) -->
-      <a href="#" class="flex items-center gap-2 select-none">
+      <a href="#" class="flex items-center gap-2">
         <span class="logo-ring flex items-center justify-center rounded-full transition-all duration-300"
               style="width:3.2rem;height:3.2rem;border:2.5px solid var(--color-primary);box-shadow:0 0 0 3px var(--color-primary-glow);">
-          <img src="Cosmic-Logo.svg" alt="Cosmic Logo" class="h-12 w-12 object-contain rounded-full shadow themed-shadow" />
+          <img src="Cosmic-Logo.svg" alt="Cosmic Logo" class="h-12 w-12 object-contain rounded-full shadow themed-shadow" width="48" height="48" />
         </span>
         <span class="sr-only">Home</span>
       </a>
       <!-- Theme Switcher Button (center) -->
       <div class="flex-1 flex justify-center">
-        <button id="theme-switcher-mobile" class="theme-switcher-btn select-none">Cosmic</button>
+        <button id="theme-switcher-mobile" class="theme-switcher-btn">Cosmic</button>
       </div>
       <!-- Hamburger (right) -->
-      <button id="menu-btn-mobile" class="block focus:outline-none z-50 select-none">
+      <button id="menu-btn-mobile" class="block focus:outline-none z-50">
         <svg class="w-7 h-7 text-gray-100" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
         </svg>
@@ -95,12 +95,12 @@
 
   <main id="main-content" class="pt-24">
     <!-- HERO SECTION -->
-    <section id="hero" class="relative min-h-screen h-[100dvh] max-h-none overflow-hidden flex items-center justify-center themed-shadow">
+    <section id="hero" class="relative min-h-screen h-[100dvh] max-h-none overflow-hidden flex items-center justify-center">
       <canvas id="star-canvas" class="absolute inset-0 w-full h-full"></canvas>
       <div class="relative z-20 flex flex-col items-center justify-center h-full text-center px-4">
         <h1 class="font-orbitron text-5xl md:text-6xl font-bold themed-heading mb-4 select-none">Welcome to Boundless Insights</h1>
         <a href="#projects"
-          class="cta mt-8 inline-block rounded-full px-10 py-4 themed-btn font-bold text-lg font-orbitron tracking-wide backdrop-blur-md transition-all duration-300 focus:outline-none">
+          class="cta mt-8 inline-block px-10 py-4 themed-btn  text-lg tracking-wide backdrop-blur-md transition-all duration-300">
           Scroll To View More
         </a>
       </div>
@@ -113,7 +113,7 @@
       <div class="flex flex-col md:flex-row items-center md:items-start gap-8 md:gap-12 px-2 md:px-8">
         <!-- Profile Image -->
         <div class="flex-shrink-0 flex justify-center md:justify-start w-full md:w-auto">
-          <img src="ProfileImage.jpeg" alt="Ramkumar Pal Profile" class="w-40 h-40 md:w-48 md:h-48 rounded-full shadow-lg object-cover border-4 border-[var(--color-primary)] bg-[#181a22] transition-all duration-300" />
+          <img src="ProfileImage.jpeg" alt="Ramkumar Pal Profile" class="w-40 h-40 md:w-48 md:h-48 rounded-full shadow-lg object-cover border-4 border-[var(--color-primary)] bg-[#181a22] transition-all duration-300" width="192" height="192" loading="lazy" />
         </div>
         <!-- About Content -->
         <div class="flex-1 mt-8 md:mt-0 text-center md:text-left">
@@ -131,8 +131,8 @@
             <li><span class="font-semibold text-[var(--color-primary)]">•</span> Exploring animation, accessibility, and SEO best practices</li>
           </ul>
           <div class="flex flex-wrap gap-4 justify-center md:justify-start mt-6">
-            <a href="mailto:ramkumar.remote24@gmail.com" class="themed-btn px-6 py-2 font-bold rounded-full select-none">Contact Me</a>
-            <a href="resume.html" class="themed-btn px-6 py-2 font-bold rounded-full select-none">View Resume</a>
+            <a href="mailto:ramkumar.remote24@gmail.com" class="themed-btn px-6 py-2">Contact Me</a>
+            <a href="resume.html" class="themed-btn px-6 py-2">View Resume</a>
           </div>
         </div>
       </div>
@@ -147,57 +147,57 @@
       </header>
       <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 md:gap-8 p-4">
         <!-- Skill Card -->
-        <div class="flex flex-col items-center bg-[#232946]/80 rounded-xl p-5 shadow themed-border border mb-2 hover:scale-105 transition-transform transform-gpu [will-change:transform] backface-hidden antialiased">
+        <div class="skill-card flex flex-col items-center bg-[#232946]/80 rounded-xl p-5 mb-2 hover:scale-105 backface-hidden">
           <span class="text-3xl md:text-4xl mb-2 themed-heading"><i class="fab fa-react"></i></span>
           <span class="font-semibold text-[var(--color-primary)]">React.js</span>
           <span class="text-xs text-gray-400 mt-1">SPA, Hooks, Components</span>
         </div>
-        <div class="flex flex-col items-center bg-[#232946]/80 rounded-xl p-5 shadow themed-border border mb-2 hover:scale-105 transition-transform transform-gpu [will-change:transform] backface-hidden antialiased">
+        <div class="skill-card flex flex-col items-center bg-[#232946]/80 rounded-xl p-5 mb-2 hover:scale-105 backface-hidden">
           <span class="text-3xl md:text-4xl mb-2 themed-heading"><i class="fab fa-js-square"></i></span>
           <span class="font-semibold text-[var(--color-primary)]">JavaScript (ES6+)</span>
           <span class="text-xs text-gray-400 mt-1">Modern Syntax, DOM, APIs</span>
         </div>
-        <div class="flex flex-col items-center bg-[#232946]/80 rounded-xl p-5 shadow themed-border border mb-2 hover:scale-105 transition-transform transform-gpu [will-change:transform] backface-hidden antialiased">
+        <div class="skill-card flex flex-col items-center bg-[#232946]/80 rounded-xl p-5 mb-2 hover:scale-105 backface-hidden">
           <span class="text-3xl md:text-4xl mb-2 themed-heading"><i class="fab fa-css3-alt"></i></span>
           <span class="font-semibold text-[var(--color-primary)]">Tailwind CSS</span>
           <span class="text-xs text-gray-400 mt-1">Utility-first, Responsive</span>
         </div>
-        <div class="flex flex-col items-center bg-[#232946]/80 rounded-xl p-5 shadow themed-border border mb-2 hover:scale-105 transition-transform transform-gpu [will-change:transform] backface-hidden antialiased">
+        <div class="skill-card flex flex-col items-center bg-[#232946]/80 rounded-xl p-5 mb-2 hover:scale-105 backface-hidden">
           <span class="text-3xl md:text-4xl mb-2 themed-heading"><i class="fas fa-bolt"></i></span>
           <span class="font-semibold text-[var(--color-primary)]">GSAP Animation</span>
           <span class="text-xs text-gray-400 mt-1">Motion, Scroll Effects</span>
         </div>
-        <div class="flex flex-col items-center bg-[#232946]/80 rounded-xl p-5 shadow themed-border border mb-2 hover:scale-105 transition-transform transform-gpu [will-change:transform] backface-hidden antialiased">
+        <div class="skill-card flex flex-col items-center bg-[#232946]/80 rounded-xl p-5 mb-2 hover:scale-105 backface-hidden">
           <span class="text-3xl md:text-4xl mb-2 themed-heading"><i class="fab fa-html5"></i></span>
           <span class="font-semibold text-[var(--color-primary)]">HTML5 &amp; CSS3</span>
           <span class="text-xs text-gray-400 mt-1">Semantics, Flexbox, Grid</span>
         </div>
-        <div class="flex flex-col items-center bg-[#232946]/80 rounded-xl p-5 shadow themed-border border mb-2 hover:scale-105 transition-transform transform-gpu [will-change:transform] backface-hidden antialiased">
+        <div class="skill-card flex flex-col items-center bg-[#232946]/80 rounded-xl p-5 mb-2 hover:scale-105 backface-hidden">
           <span class="text-3xl md:text-4xl mb-2 themed-heading"><i class="fab fa-git-alt"></i></span>
           <span class="font-semibold text-[var(--color-primary)]">Git &amp; GitHub</span>
           <span class="text-xs text-gray-400 mt-1">Version Control, Collaboration</span>
         </div>
-        <div class="flex flex-col items-center bg-[#232946]/80 rounded-xl p-5 shadow themed-border border mb-2 hover:scale-105 transition-transform transform-gpu [will-change:transform] backface-hidden antialiased">
+        <div class="skill-card flex flex-col items-center bg-[#232946]/80 rounded-xl p-5 mb-2 hover:scale-105 transition-transform">
           <span class="text-3xl md:text-4xl mb-2 themed-heading"><i class="fas fa-cogs"></i></span>
           <span class="font-semibold text-[var(--color-primary)]">Webpack &amp; Vite</span>
           <span class="text-xs text-gray-400 mt-1">Build Tools, Optimization</span>
         </div>
-        <div class="flex flex-col items-center bg-[#232946]/80 rounded-xl p-5 shadow themed-border border mb-2 hover:scale-105 transition-transform transform-gpu [will-change:transform] backface-hidden antialiased">
+        <div class="skill-card flex flex-col items-center bg-[#232946]/80 rounded-xl p-5 mb-2 hover:scale-105 backface-hidden">
           <span class="text-3xl md:text-4xl mb-2 themed-heading"><i class="fas fa-universal-access"></i></span>
           <span class="font-semibold text-[var(--color-primary)]">SEO &amp; Accessibility</span>
           <span class="text-xs text-gray-400 mt-1">Best Practices, Audits</span>
         </div>
-        <div class="flex flex-col items-center bg-[#232946]/80 rounded-xl p-5 shadow themed-border border mb-2 hover:scale-105 transition-transform transform-gpu [will-change:transform] backface-hidden antialiased">
+        <div class="skill-card flex flex-col items-center bg-[#232946]/80 rounded-xl p-5 mb-2 hover:scale-105 transition-transform antialiased">
           <span class="text-3xl md:text-4xl mb-2 themed-heading"><i class="fas fa-database"></i></span>
           <span class="font-semibold text-[var(--color-primary)]">Bitrix24 CRM</span>
           <span class="text-xs text-gray-400 mt-1">CRM, Analytics</span>
         </div>
-        <div class="flex flex-col items-center bg-[#232946]/80 rounded-xl p-5 shadow themed-border border mb-2 hover:scale-105 transition-transform transform-gpu [will-change:transform] backface-hidden antialiased">
+        <div class="skill-card flex flex-col items-center bg-[#232946]/80 rounded-xl p-5 mb-2 hover:scale-105 transition-transform antialiased">
           <span class="text-3xl md:text-4xl mb-2 themed-heading"><i class="fas fa-pen-nib"></i></span>
           <span class="font-semibold text-[var(--color-primary)]">Content Writing</span>
           <span class="text-xs text-gray-400 mt-1">Docs, Blogs, UX Copy</span>
         </div>
-        <div class="flex flex-col items-center bg-[#232946]/80 rounded-xl p-5 shadow themed-border border mb-2 hover:scale-105 transition-transform transform-gpu [will-change:transform] backface-hidden antialiased">
+        <div class="skill-card flex flex-col items-center bg-[#232946]/80 rounded-xl p-5 mb-2 hover:scale-105 transition-transform antialiased">
           <span class="text-3xl md:text-4xl mb-2 themed-heading"><i class="fas fa-film"></i></span>
           <span class="font-semibold text-[var(--color-primary)]">Clideo</span>
           <span class="text-xs text-gray-400 mt-1">Video Editing Tools</span>
@@ -215,83 +215,107 @@
       </header>
       <div class="tools-card-grid">
         <!-- Example Tool Card -->
-        <div class="tool-card transform-gpu [will-change:transform] backface-hidden antialiased">
-          <span class="tool-icon"><i class="fab fa-react"></i></span>
+        <div class="tool-card">
+            <span class="tool-icon" style="color:var(--color-primary);font-size:2.1rem;line-height:1;">
+            <i class="fab fa-react" style="color:inherit !important;fill:inherit !important;width:2.1rem;height:2.1rem;display:inline-block;"></i>
+          </span>
           <h3>React</h3>
-          <p>A powerful JavaScript library for building user interfaces. <br><span class="text-xs text-gray-400">react.dev</span></p>
-          <a href="https://react.dev/" target="_blank" rel="noopener" class="tool-btn select-none transform-gpu [will-change:transform] backface-hidden antialiased">Visit</a>
+          <p>Build interactive UIs with this leading JavaScript library for component-based development.<br><span class="text-xs text-gray-400">react.dev</span></p>
+          <a href="https://react.dev/" target="_blank" rel="noopener" class="tool-btn">Visit</a>
         </div>
-        <div class="tool-card transform-gpu [will-change:transform] backface-hidden antialiased">
-          <span class="tool-icon"><i class="fab fa-js-square"></i></span>
+        <div class="tool-card">
+          <span class="tool-icon" style="color:var(--color-primary);font-size:2.1rem;line-height:1;">
+            <i class="fab fa-js-square" style="color:inherit !important;fill:inherit !important;width:2.1rem;height:2.1rem;display:inline-block;"></i>
+          </span>
           <h3>JavaScript Info</h3>
-          <p>Comprehensive JavaScript tutorials and guides for all levels.<br><span class="text-xs text-gray-400">javascript.info</span></p>
-          <a href="https://javascript.info/" target="_blank" rel="noopener" class="tool-btn select-none transform-gpu [will-change:transform] backface-hidden antialiased">Visit</a>
+          <p>Comprehensive resource for mastering modern JavaScript, from basics to advanced topics.<br><span class="text-xs text-gray-400">javascript.info</span></p>
+          <a href="https://javascript.info/" target="_blank" rel="noopener" class="tool-btn">Visit</a>
         </div>
-        <div class="tool-card transform-gpu [will-change:transform] backface-hidden antialiased">
-          <span class="tool-icon"><i class="fab fa-css3-alt"></i></span>
+        <div class="tool-card">
+          <span class="tool-icon" style="color:var(--color-primary);font-size:2.1rem;line-height:1;">
+            <i class="fab fa-css3-alt" style="color:inherit !important;fill:inherit !important;width:2.1rem;height:2.1rem;display:inline-block;"></i>
+          </span>
           <h3>Tailwind CSS</h3>
-          <p>Utility-first CSS framework for rapid UI development.<br><span class="text-xs text-gray-400">tailwindcss.com</span></p>
-          <a href="https://tailwindcss.com/" target="_blank" rel="noopener" class="tool-btn select-none transform-gpu [will-change:transform] backface-hidden antialiased">Visit</a>
+          <p>Utility-first CSS framework for rapidly building custom, responsive designs.<br><span class="text-xs text-gray-400">tailwindcss.com</span></p>
+          <a href="https://tailwindcss.com/" target="_blank" rel="noopener" class="tool-btn">Visit</a>
         </div>
-        <div class="tool-card transform-gpu [will-change:transform] backface-hidden antialiased">
-          <span class="tool-icon"><i class="fab fa-github"></i></span>
+        <div class="tool-card">
+          <span class="tool-icon" style="color:var(--color-primary);font-size:2.1rem;line-height:1;">
+            <i class="fab fa-github" style="color:inherit !important;fill:inherit !important;width:2.1rem;height:2.1rem;display:inline-block;"></i>
+          </span>
           <h3>GitHub</h3>
-          <p>Host, review, and collaborate on code with millions of developers.<br><span class="text-xs text-gray-400">github.com</span></p>
-          <a href="https://github.com/" target="_blank" rel="noopener" class="tool-btn select-none transform-gpu [will-change:transform] backface-hidden antialiased">Visit</a>
+          <p>Collaborate, host, and manage code with the world's largest developer platform.<br><span class="text-xs text-gray-400">github.com</span></p>
+          <a href="https://github.com/" target="_blank" rel="noopener" class="tool-btn">Visit</a>
         </div>
-        <div class="tool-card transform-gpu [will-change:transform] backface-hidden antialiased">
-          <span class="tool-icon"><i class="fas fa-bolt"></i></span>
+        <div class="tool-card">
+          <span class="tool-icon" style="color:var(--color-primary);font-size:2.1rem;line-height:1;">
+            <i class="fas fa-bolt" style="color:inherit !important;fill:inherit !important;width:2.1rem;height:2.1rem;display:inline-block;"></i>
+          </span>
           <h3>GSAP</h3>
-          <p>Professional-grade JavaScript animation library for the web.<br><span class="text-xs text-gray-400">gsap.com</span></p>
-          <a href="https://gsap.com/" target="_blank" rel="noopener" class="tool-btn select-none transform-gpu [will-change:transform] backface-hidden antialiased">Visit</a>
+          <p>Professional-grade JavaScript animation library for high-performance web animations.<br><span class="text-xs text-gray-400">gsap.com</span></p>
+          <a href="https://gsap.com/" target="_blank" rel="noopener" class="tool-btn">Visit</a>
         </div>
-        <div class="tool-card transform-gpu [will-change:transform] backface-hidden antialiased">
-          <span class="tool-icon"><i class="fas fa-terminal"></i></span>
+        <div class="tool-card">
+          <span class="tool-icon" style="color:var(--color-primary);font-size:2.1rem;line-height:1;">
+            <i class="fas fa-terminal" style="color:inherit !important;fill:inherit !important;width:2.1rem;height:2.1rem;display:inline-block;"></i>
+          </span>
           <h3>CodeSandbox</h3>
-          <p>Online code editor and prototyping tool for rapid web development.<br><span class="text-xs text-gray-400">codesandbox.io</span></p>
-          <a href="https://codesandbox.io/" target="_blank" rel="noopener" class="tool-btn select-none transform-gpu [will-change:transform] backface-hidden antialiased">Visit</a>
+          <p>Online code editor for prototyping and sharing web apps instantly.<br><span class="text-xs text-gray-400">codesandbox.io</span></p>
+          <a href="https://codesandbox.io/" target="_blank" rel="noopener" class="tool-btn ">Visit</a>
         </div>
-        <div class="tool-card transform-gpu [will-change:transform] backface-hidden antialiased">
-          <span class="tool-icon"><i class="fas fa-database"></i></span>
+        <div class="tool-card">
+          <span class="tool-icon" style="color:var(--color-primary);font-size:2.1rem;line-height:1;">
+            <i class="fas fa-database" style="color:inherit !important;fill:inherit !important;width:2.1rem;height:2.1rem;display:inline-block;"></i>
+          </span>
           <h3>MongoDB Atlas</h3>
-          <p>Cloud database service for modern applications.<br><span class="text-xs text-gray-400">mongodb.com/atlas</span></p>
-          <a href="https://www.mongodb.com/atlas" target="_blank" rel="noopener" class="tool-btn select-none transform-gpu [will-change:transform] backface-hidden antialiased">Visit</a>
+          <p>Cloud-hosted NoSQL database service for scalable, modern applications.<br><span class="text-xs text-gray-400">mongodb.com/atlas</span></p>
+          <a href="https://www.mongodb.com/atlas" target="_blank" rel="noopener" class="tool-btn">Visit</a>
         </div>
-        <div class="tool-card transform-gpu [will-change:transform] backface-hidden antialiased">
-          <span class="tool-icon"><i class="fab fa-figma"></i></span>
+        <div class="tool-card">
+          <span class="tool-icon" style="color:var(--color-primary);font-size:2.1rem;line-height:1;">
+            <i class="fab fa-figma" style="color:inherit !important;fill:inherit !important;width:2.1rem;height:2.1rem;display:inline-block;"></i>
+          </span>
           <h3>Figma</h3>
-          <p>Collaborative interface design tool for teams and individuals.<br><span class="text-xs text-gray-400">figma.com</span></p>
-          <a href="https://figma.com/" target="_blank" rel="noopener" class="tool-btn select-none transform-gpu [will-change:transform] backface-hidden antialiased">Visit</a>
+          <p>Collaborative interface design tool for teams to create, prototype, and share UI/UX.<br><span class="text-xs text-gray-400">figma.com</span></p>
+          <a href="https://figma.com/" target="_blank" rel="noopener" class="tool-btn">Visit</a>
         </div>
-        <div class="tool-card transform-gpu [will-change:transform] backface-hidden antialiased">
-          <span class="tool-icon"><i class="fas fa-book"></i></span>
+        <div class="tool-card">
+          <span class="tool-icon" style="color:var(--color-primary);font-size:2.1rem;line-height:1;">
+            <i class="fas fa-book" style="color:inherit !important;fill:inherit !important;width:2.1rem;height:2.1rem;display:inline-block;"></i>
+          </span>
           <h3>MDN Web Docs</h3>
-          <p>Authoritative resource for HTML, CSS, and JavaScript documentation.<br><span class="text-xs text-gray-400">developer.mozilla.org</span></p>
-          <a href="https://developer.mozilla.org/" target="_blank" rel="noopener" class="tool-btn select-none transform-gpu [will-change:transform] backface-hidden antialiased">Visit</a>
+          <p>Authoritative documentation and guides for HTML, CSS, and JavaScript.<br><span class="text-xs text-gray-400">developer.mozilla.org</span></p>
+          <a href="https://developer.mozilla.org/" target="_blank" rel="noopener" class="tool-btn">Visit</a>
         </div>
-        <div class="tool-card transform-gpu [will-change:transform] backface-hidden antialiased">
-          <span class="tool-icon"><i class="fas fa-cloud"></i></span>
+        <div class="tool-card">
+          <span class="tool-icon" style="color:var(--color-primary);font-size:2.1rem;line-height:1;">
+            <i class="fas fa-cloud" style="color:inherit !important;fill:inherit !important;width:2.1rem;height:2.1rem;display:inline-block;"></i>
+          </span>
           <h3>Netlify</h3>
-          <p>Fast, easy deployment and hosting for static sites and JAMstack apps.<br><span class="text-xs text-gray-400">netlify.com</span></p>
-          <a href="https://netlify.com/" target="_blank" rel="noopener" class="tool-btn select-none transform-gpu [will-change:transform] backface-hidden antialiased">Visit</a>
+          <p>Deploy and host static sites and JAMstack apps with continuous integration.<br><span class="text-xs text-gray-400">netlify.com</span></p>
+          <a href="https://netlify.com/" target="_blank" rel="noopener" class="tool-btn">Visit</a>
         </div>
-        <div class="tool-card transform-gpu [will-change:transform] backface-hidden antialiased">
-          <span class="tool-icon"><i class="fas fa-search"></i></span>
+        <div class="tool-card">
+          <span class="tool-icon" style="color:var(--color-primary);font-size:2.1rem;line-height:1;">
+            <i class="fas fa-search" style="color:inherit !important;fill:inherit !important;width:2.1rem;height:2.1rem;display:inline-block;"></i>
+          </span>
           <h3>Google Fonts</h3>
-          <p>Free and easy-to-use web fonts for your projects.<br><span class="text-xs text-gray-400">fonts.google.com</span></p>
-          <a href="https://fonts.google.com/" target="_blank" rel="noopener" class="tool-btn select-none transform-gpu [will-change:transform] backface-hidden antialiased">Visit</a>
+          <p>Browse and use free, high-quality web fonts for your projects.<br><span class="text-xs text-gray-400">fonts.google.com</span></p>
+          <a href="https://fonts.google.com/" target="_blank" rel="noopener" class="tool-btn">Visit</a>
         </div>
-        <div class="tool-card transform-gpu [will-change:transform] backface-hidden antialiased">
-          <span class="tool-icon"><i class="fas fa-lightbulb"></i></span>
+        <div class="tool-card">
+          <span class="tool-icon" style="color:var(--color-primary);font-size:2.1rem;line-height:1;">
+            <i class="fas fa-lightbulb" style="color:inherit !important;fill:inherit !important;width:2.1rem;height:2.1rem;display:inline-block;"></i>
+          </span>
           <h3>Frontend Mentor</h3>
-          <p>Practice real-world HTML, CSS, and JavaScript challenges.<br><span class="text-xs text-gray-400">frontendmentor.io</span></p>
-          <a href="https://frontendmentor.io/" target="_blank" rel="noopener" class="tool-btn select-none transform-gpu [will-change:transform] backface-hidden antialiased">Visit</a>
+          <p>Practice real-world coding challenges to improve your frontend skills.<br><span class="text-xs text-gray-400">frontendmentor.io</span></p>
+          <a href="https://frontendmentor.io/" target="_blank" rel="noopener" class="tool-btn">Visit</a>
         </div>
       </div>
       <div class="w-full flex justify-center mt-2 mb-2">
         <a href="https://github.com/webcreaterRam/boundless-insights" target="_blank" rel="noopener"
-          class="font-orbitron font-bold text-lg px-7 py-3 rounded-full transform hover:scale-105 transition-all duration-300 select-none transform-gpu [will-change:transform] backface-hidden antialiased"
-          style="background:var(--color-primary);color:#181a22;box-shadow:0 2px 12px 0 var(--color-primary-glow);display:inline-flex;align-items:center;gap:0.5em;">
+          class="font-orbitron font-bold text-lg px-7 py-3 rounded-full transform hover:scale-105 transition-all duration-300 transform-gpu [will-change:transform] backface-hidden antialiased"
+          style="background:var(--color-primary);color:#181a22;box-shadow:0 1px 3px 0 var(--color-primary-glow);display:inline-flex;align-items:center;gap:0.5em;">
           View More Tools & Resources
           <span style="font-size:1.2em;display:inline-block;margin: 5px;">&rarr;</span>
         </a>
@@ -307,7 +331,7 @@
       </header>
       <div class="grid gap-8 md:grid-cols-2">
         <!-- Project 1 -->
-        <article class="bg-[#232946]/80 rounded-xl themed-shadow border themed-border flex flex-col p-6 hover:scale-[1.03] transition-transform transform-gpu [will-change:transform] backface-hidden antialiased">
+        <article class="bg-[#232946]/80 rounded-xl themed-shadow border themed-border flex flex-col p-6 hover:scale-[1.03] backface-hidden antialiased">
           <div class="flex items-center gap-3 mb-4">
             <span class="text-2xl themed-heading" style="text-shadow:0 1px 3px rgba(0,0,0,0.13);"><i class="fas fa-globe"></i></span>
             <h3 class="font-orbitron text-xl themed-heading font-bold" style="text-shadow:0 1px 3px rgba(0,0,0,0.13);">Boundless Insights Portfolio</h3>
@@ -321,12 +345,12 @@
             <li>Mobile-first, accessible, and SEO-optimized</li>
           </ul>
           <div class="flex gap-3 mt-auto flex-wrap">
-            <a href="index.html" class="themed-btn px-5 py-2 font-bold rounded-full select-none" target="_blank" style="box-shadow:0 2px 11px 0 var(--color-primary-glow);">Live Demo</a>
-            <a href="https://github.com/webcreaterRam/Boundless-Insights-Portfolio" class="themed-btn px-5 py-2 font-bold rounded-full select-none" target="_blank" style="box-shadow:0 2px 11px 0 var(--color-primary-glow);">GitHub</a>
+            <a href="index.html" class="themed-btn px-5 py-2" target="_blank" style="box-shadow:0 0 3px 0 var(--color-primary-glow);">Live Demo</a>
+            <a href="https://github.com/webcreaterRam/Boundless-Insights-Portfolio" class="themed-btn px-5 py-2" target="_blank" style="box-shadow:0 0 3px 0 var(--color-primary-glow);">GitHub</a>
           </div>
         </article>
         <!-- Project 2 -->
-        <article class="bg-[#232946]/80 rounded-xl themed-shadow border themed-border flex flex-col p-6 hover:scale-[1.03] transition-transform transform-gpu [will-change:transform] backface-hidden antialiased">
+        <article class="bg-[#232946]/80 rounded-xl themed-shadow border themed-border flex flex-col p-6 hover:scale-[1.03]">
           <div class="flex items-center gap-3 mb-4">
             <span class="text-2xl themed-heading" style="text-shadow:0 1px 3px rgba(0,0,0,0.13);"><i class="fas fa-blog"></i></span>
             <h3 class="font-orbitron text-xl themed-heading font-bold" style="text-shadow:0 1px 3px rgba(0,0,0,0.13);">Tech Blog Platform</h3>
@@ -340,12 +364,12 @@
             <li>Optimized for fast loading and accessibility</li>
           </ul>
           <div class="flex gap-3 mt-auto flex-wrap">
-            <a href="https://webcreaterram-blog-demo.netlify.app/" class="themed-btn px-5 py-2 font-bold rounded-full select-none" target="_blank" style="box-shadow:0 2px 11px 0 var(--color-primary-glow);">Live Demo</a>
-            <a href="https://github.com/webcreaterRam/tech-blog-template" class="themed-btn px-5 py-2 font-bold rounded-full select-none" target="_blank" style="box-shadow:0 2px 11px 0 var(--color-primary-glow);">GitHub</a>
+            <a href="https://webcreaterram-blog-demo.netlify.app/" class="themed-btn px-5 py-2" target="_blank" style="box-shadow:0 0 3px 0 var(--color-primary-glow);">Live Demo</a>
+            <a href="https://github.com/webcreaterRam/" class="themed-btn px-5 py-2" target="_blank" style="box-shadow:0 0 3px 0 var(--color-primary-glow);">GitHub</a>
           </div>
         </article>
         <!-- Project 3 -->
-        <article class="bg-[#232946]/80 rounded-xl themed-shadow border themed-border flex flex-col p-6 hover:scale-[1.03] transition-transform transform-gpu [will-change:transform] backface-hidden antialiased">
+        <article class="bg-[#232946]/80 rounded-xl themed-shadow border themed-border flex flex-col p-6 hover:scale-[1.03] backface-hidden antialiased">
           <div class="flex items-center gap-3 mb-4">
             <span class="text-2xl themed-heading" style="text-shadow:0 1px 3px rgba(0,0,0,0.13);"><i class="fas fa-tasks"></i></span>
             <h3 class="font-orbitron text-xl themed-heading font-bold" style="text-shadow:0 1px 3px rgba(0,0,0,0.13);">Productivity Dashboard</h3>
@@ -359,8 +383,8 @@
             <li>Fully responsive and works offline</li>
           </ul>
           <div class="flex gap-3 mt-auto flex-wrap">
-            <a href="https://webcreaterram-tasks.netlify.app/" class="themed-btn px-5 py-2 font-bold rounded-full select-none" target="_blank" style="box-shadow:0 2px 11px 0 var(--color-primary-glow);">Live Demo</a>
-            <a href="https://github.com/webcreaterRam/productivity-dashboard" class="themed-btn px-5 py-2 font-bold rounded-full select-none" target="_blank" style="box-shadow:0 2px 11px 0 var(--color-primary-glow);">GitHub</a>
+            <a href="https://webcreaterram-tasks.netlify.app/" class="themed-btn px-5 py-2" target="_blank" style="box-shadow:0 0 3px 0 var(--color-primary-glow);">Live Demo</a>
+            <a href="https://github.com/webcreaterRam/" class="themed-btn px-5 py-2" target="_blank" style="box-shadow:0 0 3 0 var(--color-primary-glow);">GitHub</a>
           </div>
         </article>
       </div>
@@ -375,7 +399,7 @@
       </header>
       <div class="grid gap-8 md:grid-cols-3 sm:grid-cols-2">
         <!-- Blog Post 1 -->
-        <article class="blog-card bg-[#232946]/80 rounded-xl themed-shadow border themed-border flex flex-col p-6 hover:scale-[1.03] transition-transform transform-gpu [will-change:transform] backface-hidden antialiased">
+        <article class="blog-card bg-[#232946]/80 rounded-xl themed-shadow border themed-border flex flex-col p-6 hover:scale-[1.03]">
           <div class="flex items-center gap-2 mb-3">
             <span class="text-xl themed-heading" style="text-shadow:0 1px 3px rgba(0,0,0,0.13);"><i class="fas fa-rocket"></i></span>
             <h3 class="font-orbitron text-lg themed-heading font-bold" style="text-shadow:0 1px 3px rgba(0,0,0,0.13);">How I Designed a Portfolio That Gets Interviews</h3>
@@ -383,10 +407,10 @@
           <p class="text-gray-300 mb-4 text-sm" style="text-shadow:0 1px 3px rgba(0,0,0,0.13);">
             My process for building a standout portfolio that attracts recruiters and showcases both technical and creative skills.
           </p>
-          <a href="https://dev.to/webcreaterram/how-i-designed-a-portfolio-that-gets-interviews-1a2b" target="_blank" rel="noopener" class="mt-auto inline-block px-4 py-2 rounded-full themed-btn font-bold font-orbitron tracking-wide transition select-none" style="box-shadow:0 2px 11px 0 var(--color-primary-glow);">Read More →</a>
+          <a href="https://dev.to/webcreaterram/" target="_blank" rel="noopener" class="mt-auto inline-block px-4 py-2 themed-btn tracking-wide transition" style="box-shadow:0 0 3px 0 var(--color-primary-glow);">Read More →</a>
         </article>
         <!-- Blog Post 2 -->
-        <article class="blog-card bg-[#232946]/80 rounded-xl themed-shadow border themed-border flex flex-col p-6 hover:scale-[1.03] transition-transform transform-gpu [will-change:transform] backface-hidden antialiased">
+        <article class="blog-card bg-[#232946]/80 rounded-xl themed-shadow border themed-border flex flex-col p-6 hover:scale-[1.03]">
           <div class="flex items-center gap-2 mb-3">
             <span class="text-xl themed-heading" style="text-shadow:0 1px 3px rgba(0,0,0,0.13);"><i class="fas fa-code"></i></span>
             <h3 class="font-orbitron text-lg themed-heading font-bold" style="text-shadow:0 1px 3px rgba(0,0,0,0.13);">Modern CSS Tricks for Responsive UI</h3>
@@ -394,10 +418,10 @@
           <p class="text-gray-300 mb-4 text-sm" style="text-shadow:0 1px 3px rgba(0,0,0,0.13);">
             Explore practical CSS techniques and Tailwind utilities for building beautiful, responsive layouts that work on every device.
           </p>
-          <a href="https://dev.to/webcreaterram/modern-css-tricks-for-responsive-ui-3b4c" target="_blank" rel="noopener" class="mt-auto inline-block px-4 py-2 rounded-full themed-btn font-bold font-orbitron tracking-wide transition select-none" style="box-shadow:0 2px 11px 0 var(--color-primary-glow);">Read More →</a>
+          <a href="https://dev.to/webcreaterram/" target="_blank" rel="noopener" class="mt-auto inline-block px-4 py-2 themed-btn tracking-wide transition" style="box-shadow:0 0 3px 0 var(--color-primary-glow);">Read More →</a>
         </article>
         <!-- Blog Post 3 -->
-        <article class="blog-card bg-[#232946]/80 rounded-xl themed-shadow border themed-border flex flex-col p-6 hover:scale-[1.03] transition-transform transform-gpu [will-change:transform] backface-hidden antialiased">
+        <article class="blog-card bg-[#232946]/80 rounded-xl themed-shadow border themed-border flex flex-col p-6 hover:scale-[1.03]">
           <div class="flex items-center gap-2 mb-3">
             <span class="text-xl themed-heading" style="text-shadow:0 1px 3px rgba(0,0,0,0.13);"><i class="fas fa-lightbulb"></i></span>
             <h3 class="font-orbitron text-lg themed-heading font-bold" style="text-shadow:0 1px 3px rgba(0,0,0,0.13);">Animating with GSAP: Tips & Best Practices</h3>
@@ -405,7 +429,7 @@
           <p class="text-gray-300 mb-4 text-sm" style="text-shadow:0 1px 3px rgba(0,0,0,0.13);">
             A guide to using GSAP for smooth, performant animations in your web projects, with code samples and real-world advice.
           </p>
-          <a href="https://dev.to/webcreaterram/animating-with-gsap-tips-and-best-practices-2d1f" target="_blank" rel="noopener" class="mt-auto inline-block px-4 py-2 rounded-full themed-btn font-bold font-orbitron tracking-wide transition select-none" style="box-shadow:0 2px 11px 0 var(--color-primary-glow);">Read More →</a>
+          <a href="https://dev.to/webcreaterram/" target="_blank" rel="noopener" class="mt-auto inline-block px-4 py-2 themed-btn tracking-wide transition" style="box-shadow:0 0 3px 0 var(--color-primary-glow);">Read More →</a>
         </article>
       </div>
     </section>
@@ -419,9 +443,9 @@
       </header>
       <div class="grid gap-8 md:grid-cols-2">
         <!-- Testimonial 1 -->
-        <blockquote class="bg-[#232946]/80 rounded-xl themed-shadow border themed-border p-6 flex flex-col h-full hover:scale-[1.02] transition-transform transform-gpu [will-change:transform] backface-hidden antialiased">
+        <blockquote class="bg-[#232946]/80 rounded-xl themed-shadow border themed-border p-6 flex flex-col h-full hover:scale-[1.02] backface-hidden antialiased">
           <div class="flex items-center gap-3 mb-4">
-            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Client" class="w-12 h-12 rounded-full border-2 border-[var(--color-primary)] object-cover" />
+            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Client" class="w-12 h-12 rounded-full border-2 border-[var(--color-primary)] object-cover" width="48" height="48" loading="lazy" />
             <div>
               <span class="font-bold text-[var(--color-primary)]">Robert</span>
               <div class="text-xs text-gray-400">Project Manager, ECHT Ventures</div>
@@ -433,9 +457,9 @@
           <span class="text-xs text-gray-500 mt-2">★★★★★</span>
         </blockquote>
         <!-- Testimonial 2 -->
-        <blockquote class="bg-[#232946]/80 rounded-xl themed-shadow border themed-border p-6 flex flex-col h-full hover:scale-[1.02] transition-transform transform-gpu [will-change:transform] backface-hidden antialiased">
+        <blockquote class="bg-[#232946]/80 rounded-xl themed-shadow border themed-border p-6 flex flex-col h-full hover:scale-[1.02] backface-hidden antialiased">
           <div class="flex items-center gap-3 mb-4">
-            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Colleague" class="w-12 h-12 rounded-full border-2 border-[var(--color-primary)] object-cover" />
+            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Colleague" class="w-12 h-12 rounded-full border-2 border-[var(--color-primary)] object-cover" width="48" height="48" loading="lazy" />
             <div>
               <span class="font-bold text-[var(--color-primary)]">Alice</span>
               <div class="text-xs text-gray-400">UI/UX Designer</div>
@@ -447,9 +471,9 @@
           <span class="text-xs text-gray-500 mt-2">★★★★★</span>
         </blockquote>
         <!-- Testimonial 3 -->
-        <blockquote class="bg-[#232946]/80 rounded-xl themed-shadow border themed-border p-6 flex flex-col h-full hover:scale-[1.02] transition-transform transform-gpu [will-change:transform] backface-hidden antialiased">
+        <blockquote class="bg-[#232946]/80 rounded-xl themed-shadow border themed-border p-6 flex flex-col h-full hover:scale-[1.02] backface-hidden antialiased">
           <div class="flex items-center gap-3 mb-4">
-            <img src="https://randomuser.me/api/portraits/men/65.jpg" alt="Mentor" class="w-12 h-12 rounded-full border-2 border-[var(--color-primary)] object-cover" />
+            <img src="https://randomuser.me/api/portraits/men/65.jpg" alt="Mentor" class="w-12 h-12 rounded-full border-2 border-[var(--color-primary)] object-cover" width="48" height="48" loading="lazy" />
             <div>
               <span class="font-bold text-[var(--color-primary)]">Sandeep Singh</span>
               <div class="text-xs text-gray-400">Senior Developer & Mentor</div>
@@ -470,11 +494,11 @@
       </header>
       <div class="contact-container">
         <form class="contact-form space-y-6" action="https://formspree.io/f/xzzggkyn" method="POST">
-          <input type="text" name="name" placeholder="Your Name" required class="w-full px-4 py-3 rounded-lg bg-[#232946]/80 border themed-border focus:outline-none focus:ring-2 focus:ring-primary" />
-          <input type="email" name="email" placeholder="Your Email" required class="w-full px-4 py-3 rounded-lg bg-[#232946]/80 border themed-border focus:outline-none focus:ring-2 focus:ring-primary" />
-          <textarea name="message" placeholder="Your Message" required class="w-full px-4 py-3 rounded-lg bg-[#232946]/80 border themed-border focus:outline-none focus:ring-2 focus:ring-primary"></textarea>
+          <input type="text" name="name" placeholder="Your Name" required class="w-full px-4 py-3 rounded-lg bg-[#232946]/80" />
+          <input type="email" name="email" placeholder="Your Email" required class="w-full px-4 py-3 rounded-lg bg-[#232946]/80" />
+          <textarea name="message" placeholder="Your Message..." required class="w-full px-4 py-3 rounded-lg bg-[#232946]/80"></textarea>
           <button type="submit"
-            class="rounded-full px-8 py-3 themed-btn font-bold text-lg font-orbitron tracking-wide backdrop-blur-md transition-all duration-300 focus:outline-none select-none">
+            class="px-8 py-3 themed-btn text-lg tracking-wide backdrop-blur-md transition-all duration-300">
             Send Message
           </button>
         </form>
@@ -482,7 +506,7 @@
     </section>
   </main>
   <footer class="text-center mt-16 bg-[#181a22] border-t border-[var(--color-primary)] pt-10 pb-6">
-    <section id="footer-contact" class="mx-auto max-w-sm mt-8 bg-gray-800/70 p-4 rounded-lg themed-shadow hover:scale-[1.02] transition transform-gpu [will-change:transform] backface-hidden antialiased flex flex-col items-center gap-4">
+    <section id="footer-contact" class="mx-auto max-w-sm mt-8 bg-gray-800/70 p-4 rounded-lg themed-shadow hover:scale-[1.02] flex flex-col items-center gap-4">
       <h3 class="font-orbitron text-xl font-bold text-[var(--color-primary)] mb-2">Let's Connect</h3>
       <!-- Social Media Links -->
       <div class="flex justify-center gap-6 mb-2">
@@ -515,8 +539,7 @@
         <span class="inline-flex items-center gap-1"><i class="fas fa-phone"></i> +91 89571 65310</span>
       </div>
       <div class="mt-2">
-        <a href="resume.html" class="inline-block px-5 py-2 rounded-full bg-[var(--color-primary)] text-[#181a22] font-bold font-orbitron shadow hover:scale-105 transition-all duration-200 transform-gpu [will-change:transform] backface-hidden antialiased select-none">Download Resume</a>
-      </div>
+        <a href="resume.html" class="resume-button inline-block px-5 py-2 rounded-full text-[#181a22] font-bold font-orbitron shadow hover:scale-105 transition-all duration-200 transform-gpu [will-change:transform] backface-hidden antialiased">Download Resume</a>      </div>
     </section>
     <!-- Enhanced Footer Content -->
     <div class="max-w-6xl mx-auto px-4 py-8 flex flex-col md:flex-row md:justify-between items-center gap-8">
@@ -536,7 +559,7 @@
         <h4 class="font-orbitron text-lg font-bold text-[var(--color-primary)] mb-2">Newsletter</h4>
         <form class="flex flex-col sm:flex-row gap-2" action="https://formspree.io/f/xzzggkyn" method="POST">
           <input type="email" name="newsletter-email" required placeholder="Your email" class="flex-1 px-3 py-2 rounded-full bg-[#232946]/80 border themed-border text-sm focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]" />
-          <button type="submit" class="px-4 py-2 rounded-full bg-[var(--color-primary)] text-[#181a22] font-bold font-orbitron hover:scale-105 transition-all duration-200 transform-gpu [will-change:transform] backface-hidden antialiased select-none">Subscribe</button>
+          <button type="submit" class="px-4 py-2 rounded-full bg-[var(--color-primary)] text-[#181a22] font-bold font-orbitron hover:scale-105 transition-all duration-200 transform-gpu [will-change:transform] backface-hidden antialiased">Subscribe</button>
         </form>
         <p class="text-xs text-gray-400 mt-1 text-left">Get updates on new projects & articles. No spam.</p>
       </div>
@@ -583,6 +606,6 @@
       </div>
     </div>
   </footer>
-  <script src="script.js"></script>
+  <script src="script.js" defer></script>
 </body>
 </html>
