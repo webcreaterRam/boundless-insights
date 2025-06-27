@@ -116,7 +116,7 @@
     .theme-switcher-btn:hover, .theme-switcher-btn:focus {
       background: var(--color-btn-hover);
       color: var(--color-link-hover);
-      box-shadow: 0 0 12px 0 var(--color-primary-glow);
+      box-shadow: 0 0 8px 0 var(--color-primary-glow);
     }
 
     .navbar-links li {
@@ -212,7 +212,7 @@
     button:hover, button:focus, input:focus, textarea:focus {
       background: var(--color-btn-hover);
       color: var(--color-link-hover);
-      box-shadow: 0 0 4px 0 var(--color-primary-glow);
+      box-shadow: 0 0 2px 0 var(--color-primary-glow);
       outline: none;
       text-decoration: none;
     }
@@ -285,7 +285,7 @@
     .tool-card:hover, .tool-card:focus-within {
       border-color: var(--color-primary);
       background: var(--color-bg-alt);
-      box-shadow: 0 2px 6px 0 var(--color-primary-glow); /* Softer, lighter shadow on hover */
+      box-shadow: 0 2px 4px 0 var(--color-primary-glow); /* Softer, lighter shadow on hover */
     }
     .tool-card .tool-icon {
       font-size: 2.1rem;
