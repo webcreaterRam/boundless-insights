@@ -7,25 +7,115 @@
   <meta name="description" content="Cosmic Portfolio of Ramkumar, a self-taught frontend developer with a passion for cosmic-themed web designs, showcasing skills in HTML, CSS, and Javascript." />
   <meta property="og:title" content="Ramkumar's Cosmic Portfolio" />
   <meta property="og:description" content="Explore the cosmic-themed portfolio of Ramkumar, a self-taught frontend developer." />
-  <script src="https://cdn.tailwindcss.com" defer></script>
-  <link rel="icon" type="image/jpeg" href="favicon.ico" />
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-  <link rel="stylesheet" href="styles.css" />
   <!-- Only load GSAP if you use it for critical UX, otherwise remove these lines -->
   <!-- <script src="https://cdn.jsdelivr.net/npm/gsap@3.11.5/dist/gsap.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.11.5/dist/ScrollTrigger.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.11.5/dist/ScrollSmoother.min.js" defer></script> -->
+  <style>
+    /* Critical preloader styles - INLINED, NO TAILWIND CLASSES */
+    #cosmic-preloader {
+      position: fixed;
+      inset: 0;
+      z-index: 99999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(120deg,#232946 0%,#0b0c10 100%);
+      transition: all 0.5s;
+    }
+    #cosmic-preloader .preloader-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    #cosmic-preloader .spinner-wrap {
+      position: relative;
+      margin-bottom: 1.5rem;
+      width: 5rem;
+      height: 5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #cosmic-preloader .spinner {
+      border-radius: 50%;
+      width: 5rem;
+      height: 5rem;
+      border-top: 4px solid #00fff7;
+      border-bottom: 4px solid #00fff7;
+      border-left: 4px solid transparent;
+      border-right: 4px solid transparent;
+      opacity: 0.6;
+      animation: spin 1s linear infinite;
+      box-sizing: border-box;
+    }
+    #cosmic-preloader .preloader-logo {
+      position: absolute;
+      left: 50%; top: 50%;
+      transform: translate(-50%, -50%);
+      width: 3rem;
+      height: 3rem;
+      border-radius: 50%;
+      box-shadow: 0 0 12px 2px #00fff7cc;
+      background: #181a22;
+      object-fit: contain;
+      display: block;
+    }
+    #cosmic-preloader .preloader-title {
+      font-family: 'Orbitron', Arial, sans-serif;
+      font-size: 2rem;
+      color: #00fff7;
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.15em;
+      text-align: center;
+    }
+    #cosmic-preloader .preloader-desc {
+      color: #d1d5db;
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+      text-align: center;
+    }
+    #cosmic-preloader .preloader-note {
+      color: #7e869e;
+      font-size: 0.85rem;
+      text-align: center;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+  </style>
+    <script src="https://cdn.tailwindcss.com" defer></script>
+  <link rel="icon" type="image/jpeg" href="favicon.ico" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+  <!-- Cosmic Preloader Overlay -->
+  <div id="cosmic-preloader">
+    <div class="preloader-inner">
+      <div class="spinner-wrap">
+        <div class="spinner"></div>
+        <img src="Cosmic-Logo.svg" alt="Cosmic Logo" class="preloader-logo" />
+      </div>
+      <div class="preloader-title">Boundless Insights</div>
+      <div class="preloader-desc">Loading your cosmic experience...</div>
+      <div class="preloader-note">Please wait, or check your connection.</div>
+    </div>
+  </div>
+  <!-- Offline Message -->
+  <div id="offline-message" class="fixed top-0 left-0 w-full z-[99999] bg-[#232946] text-[var(--color-primary)] text-center py-3 font-orbitron text-lg shadow-lg hidden">
+    <span>🚀 You are offline. Some features may not work.</span>
+  </div>
   <!-- Navbar -->
   <nav class="navbar-bg fixed top-0 inset-x-0 z-50 bg-opacity-80 backdrop-blur-md border-none rounded-[5px]">
     <!-- Desktop & Tablet Navbar (>=768px) -->
-    <div class="navbar-inner w-[90%] max-w-full flex items-center justify-between px-4 py-2 rounded-[5px] mt-4 transition-shadow duration-300 hover:shadow-xl hover:shadow-[var(--color-primary-glow)] gap-8
+    <div class="navbar-inner w-[90%] max-w-full flex items-center justify-between px-4 py-2 rounded-[5px] mt-4 transition-shadow duration-300 hover:shadow-lg hover:shadow-[var(--color-primary-glow)] gap-8
       sm:w-full sm:mt-0 sm:rounded-[5px] hidden md:flex">
       <!-- Logo (left) -->
       <div class="site-logo flex items-center gap-4 min-w-0 flex-shrink-0">
-        <a href="#" class="flex items-center gap-2">
+        <a href="#" class="flex items-center gap-2 !shadow-none">
           <span class="logo-ring flex items-center justify-center rounded-full transition-all duration-300"
                 style="width:4.5rem;height:4.5rem;border:0.3px solid var(--color-primary);box-shadow:0 0 0 0.5px var(--color-primary-glow);">
             <img src="Cosmic-Logo.svg" alt="Cosmic Logo" class="h-16 w-16 object-contain rounded-full shadow themed-shadow" width="64" height="64" />
@@ -61,13 +151,13 @@
       </button>
       <!-- Navbar Links (right, only show on xl and up) -->
       <ul class="navbar-links flex items-center gap-8 ml-2 hidden xl:flex">
-        <li><a href="#about" class="themed-link">About</a></li>
-        <li><a href="#skills" class="themed-link">Skills</a></li>
-        <li><a href="#projects" class="themed-link">Projects</a></li>
-        <li><a href="#blog" class="themed-link">Blog</a></li>
-        <li><a href="#testimonials" class="themed-link">Testimonials</a></li>
-        <li><a href="#contact" class="themed-link">Contact</a></li>
-        <li><a href="resume.html" class="themed-link">Resume</a></li>
+        <li><a href="#about" class="themed-link !shadow-none">About</a></li>
+        <li><a href="#skills" class="themed-link !shadow-none">Skills</a></li>
+        <li><a href="#projects" class="themed-link !shadow-none">Projects</a></li>
+        <li><a href="#blog" class="themed-link !shadow-none">Blog</a></li>
+        <li><a href="#testimonials" class="themed-link !shadow-none">Testimonials</a></li>
+        <li><a href="#contact" class="themed-link !shadow-none">Contact</a></li>
+        <li><a href="resume.html" class="themed-link !shadow-none">Resume</a></li>
       </ul>
     </div>
     <!-- Mobile Navbar (<768px) -->
@@ -75,7 +165,7 @@
       <!-- Logo (left) -->
       <a href="#" class="flex items-center gap-2">
         <span class="logo-ring flex items-center justify-center rounded-full transition-all duration-300"
-              style="width:3.2rem;height:3.2rem;border:2.5px solid var(--color-primary);box-shadow:0 0 0 3px var(--color-primary-glow);">
+              style="width:3.2rem;height:3.2rem;border:2.5px solid var(--color-primary);box-shadow:0 0 0 2px var(--color-primary-glow);">
           <img src="Cosmic-Logo.svg" alt="Cosmic Logo" class="h-12 w-12 object-contain rounded-full shadow themed-shadow" width="48" height="48" />
         </span>
         <span class="sr-only">Home</span>
@@ -99,8 +189,7 @@
       <canvas id="star-canvas" class="absolute inset-0 w-full h-full"></canvas>
       <div class="relative z-20 flex flex-col items-center justify-center h-full text-center px-4">
         <h1 class="font-orbitron text-5xl md:text-6xl font-bold themed-heading mb-4 select-none">Welcome to Boundless Insights</h1>
-        <a href="#projects"
-          class="cta mt-8 inline-block px-10 py-4 themed-btn  text-lg tracking-wide backdrop-blur-md transition-all duration-300">
+        <a href="#projects" class="cta mt-8 inline-block px-10 py-4 themed-btn  text-lg tracking-wide backdrop-blur-md transition-all duration-300">
           Scroll To View More
         </a>
       </div>
@@ -324,8 +413,8 @@
     <!-- PROJECTS -->
     <section id="projects" aria-labelledby="projects-title" class="py-16 sm:py-20 px-4 md:p-5 bg-[#12131a]/90 rounded-2xl themed-shadow max-w-5xl mx-auto mb-8 md:mb-12 border themed-border backdrop-blur-md">
       <header>
-        <h2 id="projects-title" class="font-orbitron text-4xl md:text-5xl themed-heading font-bold mb-6 tracking-widest text-center" style="text-shadow:0 2px 7px rgba(0,0,0,0.2);">Projects</h2>
-        <p class="text-gray-400 text-lg md:text-xl text-center max-w-2xl mx-auto mb-8" style="text-shadow:0 1px 3px rgba(0,0,0,0.13);">
+        <h2 id="projects-title" class="font-orbitron text-4xl md:text-5xl themed-heading font-bold mb-6 tracking-widest text-center" style="text-shadow:0 2px 4px rgba(0,0,0,0.2);">Projects</h2>
+        <p class="text-gray-400 text-lg md:text-xl text-center max-w-2xl mx-auto mb-8" style="text-shadow:0 1px 2px rgba(0,0,0,0.13);">
           A selection of my recent work, blending creativity, performance, and modern web technologies.
         </p>
       </header>
@@ -334,57 +423,58 @@
         <article class="bg-[#232946]/80 rounded-xl themed-shadow border themed-border flex flex-col p-6 hover:scale-[1.03] backface-hidden antialiased">
           <div class="flex items-center gap-3 mb-4">
             <span class="text-2xl themed-heading" style="text-shadow:0 1px 3px rgba(0,0,0,0.13);"><i class="fas fa-globe"></i></span>
-            <h3 class="font-orbitron text-xl themed-heading font-bold" style="text-shadow:0 1px 3px rgba(0,0,0,0.13);">Boundless Insights Portfolio</h3>
+            <h3 class="font-orbitron text-xl themed-heading font-bold" style="text-shadow:0 1px 2px rgba(0,0,0,0.13);">Boundless Insights Portfolio</h3>
           </div>
           <p class="text-gray-300 mb-4" style="text-shadow:0 1px 3px rgba(0,0,0,0.13);">
             My personal cosmic-themed portfolio built with HTML, CSS, JavaScript, and Tailwind CSS. Features animated hero section, theme switcher, responsive design, and a custom starfield background.
           </p>
-          <ul class="list-disc list-inside text-gray-400 mb-4 text-sm space-y-1" style="text-shadow:0 1px 3px rgba(0,0,0,0.13);">
+          <ul class="list-disc list-inside text-gray-400 mb-4 text-sm space-y-1" style="text-shadow:0 1px 2px rgba(0,0,0,0.13);">
             <li>Custom GSAP-powered hero animation and star canvas</li>
             <li>Theme switching (Cosmic, Nebula, Eclipse)</li>
             <li>Mobile-first, accessible, and SEO-optimized</li>
           </ul>
           <div class="flex gap-3 mt-auto flex-wrap">
-            <a href="index.html" class="themed-btn px-5 py-2" target="_blank" style="box-shadow:0 0 3px 0 var(--color-primary-glow);">Live Demo</a>
-            <a href="https://github.com/webcreaterRam/Boundless-Insights-Portfolio" class="themed-btn px-5 py-2" target="_blank" style="box-shadow:0 0 3px 0 var(--color-primary-glow);">GitHub</a>
+            <a href="index.html" class="themed-btn px-5 py-2" target="_blank" style="box-shadow:0 0 2px 0 var(--color-primary-glow);">Live Demo</a>
+            <a href="https://github.com/webcreaterRam/Boundless-Insights-Portfolio" class="themed-btn px-5 py-2" target="_blank" style="box-shadow:0 0 2px 0 var(--color-primary-glow);">GitHub</a>
           </div>
         </article>
         <!-- Project 2 -->
         <article class="bg-[#232946]/80 rounded-xl themed-shadow border themed-border flex flex-col p-6 hover:scale-[1.03]">
           <div class="flex items-center gap-3 mb-4">
-            <span class="text-2xl themed-heading" style="text-shadow:0 1px 3px rgba(0,0,0,0.13);"><i class="fas fa-blog"></i></span>
-            <h3 class="font-orbitron text-xl themed-heading font-bold" style="text-shadow:0 1px 3px rgba(0,0,0,0.13);">Tech Blog Platform</h3>
+            <span class="text-2xl themed-heading" style="text-shadow:0 1px 3px rgba(0,0,0,0.13);"><i class="fab fa-figma"></i></span>
+            <h3 class="font-orbitron text-xl themed-heading font-bold" style="text-shadow:0 1px 2px rgba(0,0,0,0.13);">ShopEasy - Login UI Design Figma</h3>
           </div>
           <p class="text-gray-300 mb-4" style="text-shadow:0 1px 3px rgba(0,0,0,0.13);">
-            A modern blog platform template with a focus on readability, SEO, and performance. Built using React, Tailwind CSS, and Markdown for content management.
+              Designed a mobile login screen in Figma with social login, password field, and prototype navigation. Fully export-ready.  
           </p>
-          <ul class="list-disc list-inside text-gray-400 mb-4 text-sm space-y-1" style="text-shadow:0 1px 3px rgba(0,0,0,0.13);">
-            <li>Dynamic blog post rendering from Markdown</li>
-            <li>Responsive grid, dark/light themes, and code highlighting</li>
-            <li>Optimized for fast loading and accessibility</li>
+          <ul class="list-disc list-inside text-gray-400 mb-4 text-sm space-y-1" style="text-shadow:0 1px 2px rgba(0,0,0,0.13);">
+              <li>Login screen UI designed in Figma</li>
+              <li>Included email, password, and social login</li>
+              <li>Interactive prototype with clean layout</li>
           </ul>
           <div class="flex gap-3 mt-auto flex-wrap">
-            <a href="https://webcreaterram-blog-demo.netlify.app/" class="themed-btn px-5 py-2" target="_blank" style="box-shadow:0 0 3px 0 var(--color-primary-glow);">Live Demo</a>
-            <a href="https://github.com/webcreaterRam/" class="themed-btn px-5 py-2" target="_blank" style="box-shadow:0 0 3px 0 var(--color-primary-glow);">GitHub</a>
+            <!-- Live Demo button triggers modal -->
+            <a href="#" class="themed-btn px-5 py-2" target="_blank" style="box-shadow:0 0 2px 0 var(--color-primary-glow);" onclick="openLoginDemoModal(event)">Live Demo</a>
+            <a href="https://www.figma.com/design/uBGBxfVJtLG058K7VJeKuf/ShopEasy-%E2%80%93-Mobile-Login-UI--Figma-?node-id=0-1&t=MpbEi1DTHgoqW5lC-1" class="themed-btn px-5 py-2" target="_blank" style="box-shadow:0 0 3px 0 var(--color-primary-glow);">Figma</a>
           </div>
         </article>
         <!-- Project 3 -->
         <article class="bg-[#232946]/80 rounded-xl themed-shadow border themed-border flex flex-col p-6 hover:scale-[1.03] backface-hidden antialiased">
           <div class="flex items-center gap-3 mb-4">
             <span class="text-2xl themed-heading" style="text-shadow:0 1px 3px rgba(0,0,0,0.13);"><i class="fas fa-tasks"></i></span>
-            <h3 class="font-orbitron text-xl themed-heading font-bold" style="text-shadow:0 1px 3px rgba(0,0,0,0.13);">Productivity Dashboard</h3>
+            <h3 class="font-orbitron text-xl themed-heading font-bold" style="text-shadow:0 1px 2px rgba(0,0,0,0.13);">Productivity Dashboard</h3>
           </div>
           <p class="text-gray-300 mb-4" style="text-shadow:0 1px 3px rgba(0,0,0,0.13);">
             A productivity dashboard for tracking tasks, notes, and goals. Features a clean UI, drag-and-drop task management, and persistent storage using localStorage.
           </p>
-          <ul class="list-disc list-inside text-gray-400 mb-4 text-sm space-y-1" style="text-shadow:0 1px 3px rgba(0,0,0,0.13);">
+          <ul class="list-disc list-inside text-gray-400 mb-4 text-sm space-y-1" style="text-shadow:0 1px 2px rgba(0,0,0,0.13);">
             <li>Task lists, notes, and daily goals widgets</li>
             <li>Drag-and-drop reordering and status updates</li>
             <li>Fully responsive and works offline</li>
           </ul>
           <div class="flex gap-3 mt-auto flex-wrap">
-            <a href="https://webcreaterram-tasks.netlify.app/" class="themed-btn px-5 py-2" target="_blank" style="box-shadow:0 0 3px 0 var(--color-primary-glow);">Live Demo</a>
-            <a href="https://github.com/webcreaterRam/" class="themed-btn px-5 py-2" target="_blank" style="box-shadow:0 0 3px 0 var(--color-primary-glow);">GitHub</a>
+            <a href="https://webcreaterram-tasks.netlify.app/" class="themed-btn px-5 py-2" target="_blank" style="box-shadow:0 0 2px 0 var(--color-primary-glow);">Live Demo</a>
+            <a href="https://github.com/webcreaterRam/" class="themed-btn px-5 py-2" target="_blank" style="box-shadow:0 0 2px 0 var(--color-primary-glow);">GitHub</a>
           </div>
         </article>
       </div>
@@ -393,7 +483,7 @@
     <section id="blog" aria-labelledby="blog-title" class="py-20 px-4 md:p-5 bg-[#181a22]/90 rounded-2xl themed-shadow max-w-5xl mx-auto mb-12 border themed-border backdrop-blur-md">
       <header>
         <h2 id="blog-title" class="font-orbitron text-4xl md:text-5xl themed-heading font-bold mb-6 tracking-widest text-center" style="text-shadow:0 2px 7px rgba(0,0,0,0.2);">Blog</h2>
-        <p class="text-gray-400 text-lg md:text-xl text-center max-w-2xl mx-auto mb-8" style="text-shadow:0 1px 3px rgba(0,0,0,0.13);">
+        <p class="text-gray-400 text-lg md:text-xl text-center max-w-2xl mx-auto mb-8" style="text-shadow:0 1px 2px rgba(0,0,0,0.13);">
           Insights, tutorials, and stories from my journey in frontend development and UI/UX.
         </p>
       </header>
@@ -401,35 +491,35 @@
         <!-- Blog Post 1 -->
         <article class="blog-card bg-[#232946]/80 rounded-xl themed-shadow border themed-border flex flex-col p-6 hover:scale-[1.03]">
           <div class="flex items-center gap-2 mb-3">
-            <span class="text-xl themed-heading" style="text-shadow:0 1px 3px rgba(0,0,0,0.13);"><i class="fas fa-rocket"></i></span>
+            <span class="text-xl themed-heading" style="text-shadow:0 1px 2px rgba(0,0,0,0.13);"><i class="fas fa-rocket"></i></span>
             <h3 class="font-orbitron text-lg themed-heading font-bold" style="text-shadow:0 1px 3px rgba(0,0,0,0.13);">How I Designed a Portfolio That Gets Interviews</h3>
           </div>
-          <p class="text-gray-300 mb-4 text-sm" style="text-shadow:0 1px 3px rgba(0,0,0,0.13);">
+          <p class="text-gray-300 mb-4 text-sm" style="text-shadow:0 1px 2px rgba(0,0,0,0.13);">
             My process for building a standout portfolio that attracts recruiters and showcases both technical and creative skills.
           </p>
-          <a href="https://dev.to/webcreaterram/" target="_blank" rel="noopener" class="mt-auto inline-block px-4 py-2 themed-btn tracking-wide transition" style="box-shadow:0 0 3px 0 var(--color-primary-glow);">Read More →</a>
+          <a href="https://dev.to/webcreaterram/" target="_blank" rel="noopener" class="mt-auto inline-block px-4 py-2 themed-btn tracking-wide transition" style="box-shadow:0 0 2px 0 var(--color-primary-glow);">Read More →</a>
         </article>
         <!-- Blog Post 2 -->
         <article class="blog-card bg-[#232946]/80 rounded-xl themed-shadow border themed-border flex flex-col p-6 hover:scale-[1.03]">
           <div class="flex items-center gap-2 mb-3">
-            <span class="text-xl themed-heading" style="text-shadow:0 1px 3px rgba(0,0,0,0.13);"><i class="fas fa-code"></i></span>
-            <h3 class="font-orbitron text-lg themed-heading font-bold" style="text-shadow:0 1px 3px rgba(0,0,0,0.13);">Modern CSS Tricks for Responsive UI</h3>
+            <span class="text-xl themed-heading" style="text-shadow:0 1px 2px rgba(0,0,0,0.13);"><i class="fas fa-code"></i></span>
+            <h3 class="font-orbitron text-lg themed-heading font-bold" style="text-shadow:0 1px 2px rgba(0,0,0,0.13);">Modern CSS Tricks for Responsive UI</h3>
           </div>
-          <p class="text-gray-300 mb-4 text-sm" style="text-shadow:0 1px 3px rgba(0,0,0,0.13);">
+          <p class="text-gray-300 mb-4 text-sm" style="text-shadow:0 1px 2px rgba(0,0,0,0.13);">
             Explore practical CSS techniques and Tailwind utilities for building beautiful, responsive layouts that work on every device.
           </p>
-          <a href="https://dev.to/webcreaterram/" target="_blank" rel="noopener" class="mt-auto inline-block px-4 py-2 themed-btn tracking-wide transition" style="box-shadow:0 0 3px 0 var(--color-primary-glow);">Read More →</a>
+          <a href="https://dev.to/webcreaterram/" target="_blank" rel="noopener" class="mt-auto inline-block px-4 py-2 themed-btn tracking-wide transition" style="box-shadow:0 0 2px 0 var(--color-primary-glow);">Read More →</a>
         </article>
         <!-- Blog Post 3 -->
         <article class="blog-card bg-[#232946]/80 rounded-xl themed-shadow border themed-border flex flex-col p-6 hover:scale-[1.03]">
           <div class="flex items-center gap-2 mb-3">
-            <span class="text-xl themed-heading" style="text-shadow:0 1px 3px rgba(0,0,0,0.13);"><i class="fas fa-lightbulb"></i></span>
-            <h3 class="font-orbitron text-lg themed-heading font-bold" style="text-shadow:0 1px 3px rgba(0,0,0,0.13);">Animating with GSAP: Tips & Best Practices</h3>
+            <span class="text-xl themed-heading" style="text-shadow:0 1px 2px rgba(0,0,0,0.13);"><i class="fas fa-lightbulb"></i></span>
+            <h3 class="font-orbitron text-lg themed-heading font-bold">Animating with GSAP: Tips & Best Practices</h3>
           </div>
-          <p class="text-gray-300 mb-4 text-sm" style="text-shadow:0 1px 3px rgba(0,0,0,0.13);">
+          <p class="text-gray-300 mb-4 text-sm" style="text-shadow:0 1px 2px rgba(0,0,0,0.13);">
             A guide to using GSAP for smooth, performant animations in your web projects, with code samples and real-world advice.
           </p>
-          <a href="https://dev.to/webcreaterram/" target="_blank" rel="noopener" class="mt-auto inline-block px-4 py-2 themed-btn tracking-wide transition" style="box-shadow:0 0 3px 0 var(--color-primary-glow);">Read More →</a>
+          <a href="https://dev.to/webcreaterram/" target="_blank" rel="noopener" class="mt-auto inline-block px-4 py-2 themed-btn tracking-wide transition" style="box-shadow:0 0 2px 0 var(--color-primary-glow);">Read More →</a>
         </article>
       </div>
     </section>
@@ -510,23 +600,23 @@
       <h3 class="font-orbitron text-xl font-bold text-[var(--color-primary)] mb-2">Let's Connect</h3>
       <!-- Social Media Links -->
       <div class="flex justify-center gap-6 mb-2">
-        <a href="mailto:ramkumar.remote24@gmail.com" class="text-gray-300 hover:text-[var(--color-primary)] transition" title="Email">
+        <a href="mailto:ramkumar.remote24@gmail.com" class="!shadow text-gray-300 hover:text-[var(--color-primary)] transition" title="Email">
           <!-- Use SVG for envelope icon -->
           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 fill-current" viewBox="0 0 24 24"><path d="M2 4a2 2 0 012-2h16a2 2 0 012 2v16a2 2 0 01-2 2H4a2 2 0 01-2-2V4zm2 0v.01L12 13l8-8.99V4H4zm16 2.41l-7.29 7.29a1 1 0 01-1.42 0L4 6.41V20h16V6.41z"/></svg>
         </a>
-        <a href="https://www.linkedin.com/in/ramkumar-pal" target="_blank" class="text-gray-300 hover:text-[var(--color-primary)] transition" title="LinkedIn">
+        <a href="https://www.linkedin.com/in/ramkumar-pal" target="_blank" class="!shadow text-gray-300 hover:text-[var(--color-primary)] transition" title="LinkedIn">
           <!-- LinkedIn SVG -->
           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 fill-current" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.268c-.966 0-1.75-.784-1.75-1.75s.784-1.75 1.75-1.75 1.75.784 1.75 1.75-.784 1.75-1.75 1.75zm13.5 11.268h-3v-5.604c0-1.337-.025-3.063-1.868-3.063-1.868 0-2.154 1.459-2.154 2.967v5.7h-3v-10h2.881v1.367h.041c.401-.761 1.379-1.563 2.841-1.563 3.039 0 3.6 2.001 3.6 4.601v5.595z"/></svg>
         </a>
-        <a href="https://github.com/webcreaterRam" target="_blank" class="text-gray-300 hover:text-[var(--color-primary)] transition" title="GitHub">
+        <a href="https://github.com/webcreaterRam" target="_blank" class="!shadow text-gray-300 hover:text-[var(--color-primary)] transition" title="GitHub">
           <!-- GitHub SVG -->
           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 fill-current" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.387.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.415-4.042-1.415-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.084-.729.084-.729 1.205.084 1.84 1.236 1.84 1.236 1.07 1.834 2.809 1.304 3.495.997.108-.775.418-1.305.762-1.605-2.665-.305-5.466-1.334-5.466-5.931 0-1.31.469-2.381 1.236-3.221-.124-.303-.535-1.527.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.553 3.297-1.23 3.297-1.23.653 1.649.242 2.873.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.803 5.624-5.475 5.921.43.371.823 1.102.823 2.222 0 1.606-.014 2.898-.014 3.293 0 .322.216.694.825.576C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
         </a>
-        <a href="https://twitter.com/" target="_blank" class="text-gray-300 hover:text-[var(--color-primary)] transition pointer-events-none" title="Twitter">
+        <a href="https://twitter.com/" target="_blank" class="!shadow text-gray-300 hover:text-[var(--color-primary)] transition pointer-events-none" title="Twitter">
           <!-- Twitter SVG -->
           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 fill-current" viewBox="0 0 24 24"><path d="M24 4.557a9.93 9.93 0 0 1-2.828.775 4.932 4.932 0 0 0 2.165-2.724c-.951.564-2.005.974-3.127 1.195a4.92 4.92 0 0 0-8.384 4.482c-4.086-.205-7.713-2.164-10.141-5.144a4.822 4.822 0 0 0-.664 2.475c0 1.708.87 3.216 2.188 4.099a4.904 4.904 0 0 1-2.229-.616c-.054 2.281 1.581 4.415 3.949 4.89a4.936 4.936 0 0 1-2.224.084c.627 1.956 2.444 3.377 4.6 3.417A9.867 9.867 0 0 1 0 21.543a13.94 13.94 0 0 0 7.548 2.209c9.057 0 14.009-7.496 14.009-13.986 0-.213-.005-.425-.014-.636A9.936 9.936 0 0 0 24 4.557z"/></svg>
         </a>
-        <a href="tel:+918957165310" class="text-gray-300 hover:text-[var(--color-primary)] transition" title="Call">
+        <a href="tel:+918957165310" class="!shadow text-gray-300 hover:text-[var(--color-primary)] transition" title="Call">
           <!-- Phone SVG -->
           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 fill-current" viewBox="0 0 24 24"><path d="M6.62 10.79a15.053 15.053 0 0 0 6.59 6.59l2.2-2.2a1.003 1.003 0 0 1 1.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 0 1 1 1v3.5a1 1 0 0 1-1 1C10.07 22 2 13.93 2 4.5a1 1 0 0 1 1-1H6.5a1 1 0 0 1 1 1c0 1.25.2 2.46.57 3.58a1 1 0 0 1-.24 1.01l-2.2 2.2z"/></svg>
         </a>
@@ -606,6 +696,69 @@
       </div>
     </div>
   </footer>
+
+  <!-- Modal for Mobile Login Figma Demo -->
+  <div id="login-demo-modal" class="fixed inset-0 z-[9999] flex items-center justify-center bg-black/60 backdrop-blur-sm transition-all duration-300 opacity-0 pointer-events-none" style="display:none;">
+    <div class="bg-[#232946] rounded-2xl shadow-lg max-w-md w-[95vw] p-0 relative border-2 border-[var(--color-primary)] flex flex-col items-center">
+      <button onclick="closeLoginDemoModal()" class="absolute top-3 right-3 px-3 py-1 rounded-full bg-[var(--color-primary)] text-[#181a22] font-bold text-lg shadow" style="box-shadow:0 1px 2px 0 var(--color-primary-glow);">X</button>
+      <img src="Mobile_Login_Figma.png" alt="Mobile Login Figma Demo" class="w-full h-auto rounded-b-2xl" style="max-height:70vh;object-fit:contain;box-shadow:0 1px 2px 0 var(--color-primary-glow);margin-top:2.5rem;">
+      <div class="p-4 w-full text-center">
+        <h4 class="font-orbitron text-xl font-bold text-[var(--color-primary)] mb-2">ShopEasy Mobile Login UI</h4>
+        <p class="text-gray-300 text-sm mb-2">Preview of the Figma-designed mobile login screen.<br>For full prototype, visit Figma link.</p>
+      </div>
+    </div>
+  </div>
+  <script>
+    function openLoginDemoModal(e) {
+      e.preventDefault();
+      const modal = document.getElementById('login-demo-modal');
+      modal.style.display = 'flex';
+      setTimeout(() => {
+        modal.style.opacity = '1';
+        modal.style.pointerEvents = 'auto';
+      }, 10);
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLoginDemoModal() {
+      const modal = document.getElementById('login-demo-modal');
+      modal.style.opacity = '0';
+      modal.style.pointerEvents = 'none';
+      setTimeout(() => {
+        modal.style.display = 'none';
+        document.body.style.overflow = '';
+      }, 300);
+    }
+    // Optional: close modal on background click or ESC
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeLoginDemoModal();
+    });
+    document.addEventListener('click', function(e) {
+      const modal = document.getElementById('login-demo-modal');
+      if (!modal) return;
+      if (modal.style.display === 'flex' && e.target === modal) closeLoginDemoModal();
+    });
+    // Hide preloader when page is loaded
+    window.addEventListener('load', function() {
+      const preloader = document.getElementById('cosmic-preloader');
+      if (preloader) {
+        preloader.style.opacity = '0';
+        preloader.style.pointerEvents = 'none';
+        setTimeout(() => preloader.style.display = 'none', 500);
+      }
+    });
+
+    // Show offline message if offline
+    function showOfflineMessage(show) {
+      const offlineMsg = document.getElementById('offline-message');
+      if (offlineMsg) {
+        offlineMsg.style.display = show ? 'block' : 'none';
+      }
+    }
+    window.addEventListener('offline', () => showOfflineMessage(true));
+    window.addEventListener('online', () => showOfflineMessage(false));
+    // Show offline message if already offline on load
+    if (!navigator.onLine) showOfflineMessage(true);
+  </script>
   <script src="script.js" defer></script>
 </body>
 </html>

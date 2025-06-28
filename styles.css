@@ -12,10 +12,10 @@
       --color-link-hover: #fff;
       --color-btn-bg: rgba(255,255,255,0.10);
       --color-btn-hover: rgba(255,255,255,0.18);
-      --color-shadow: 0 2px 2px 0 var(--color-primary-glow);
+      --color-shadow: 0 0 1.5px 0 var(--color-primary-glow);
       --color-card-bg: #232946cc;
       --color-card-border: #00FFF71A;
-      --color-card-shadow: 0 2px 2px 0 #00FFF733;
+      --color-card-shadow: 0 1.5px 1.5px 0 #00FFF733;
       --color-hero-gradient: linear-gradient(120deg, #232946 0%, #0b0c10 100%);
       --color-focus: #00fff7;
       --color-footer-bg: #181a22;
@@ -39,10 +39,10 @@
       --color-link-hover: #fff;
       --color-btn-bg: rgba(161,143,255,0.10);
       --color-btn-hover: rgba(161,143,255,0.18);
-      --color-shadow: 0 2px 2px #a18fffcc;
+      --color-shadow: 0 1.5px 1.5px #a18fffcc;
       --color-card-bg: #3a2d5ccc;
       --color-card-border: #a18fff1A;
-      --color-card-shadow: 0 2px 2px 0 #a18fff33;
+      --color-card-shadow: 0 1.5px 1.5px 0 #a18fff33;
       --color-hero-gradient: linear-gradient(120deg, #3a2d5c 0%, #1a1832 100%);
       --color-focus: #a18fff;
       --color-footer-bg: #2a225a;
@@ -65,10 +65,10 @@
       --color-link-hover: #fff;
       --color-btn-bg: rgba(255,179,71,0.10);
       --color-btn-hover: rgba(255,179,71,0.18);
-      --color-shadow: 0 2px 2px #ffb347cc;
+      --color-shadow: 0 1.5px 1.5px #ffb347cc;
       --color-card-bg: #232323cc;
       --color-card-border: #ffb3471A;
-      --color-card-shadow: 0 2px 2px 0 #ffb34733;
+      --color-card-shadow: 0 1.5px 1.5px 0 #ffb34733;
       --color-hero-gradient: linear-gradient(120deg, #232323 0%, #181818 100%);
       --color-focus: #ffb347;
       --color-footer-bg: #232323;
@@ -109,14 +109,14 @@
       padding: 0.5rem 1.2rem;
       font-family: 'Orbitron', Arial, sans-serif;
       transition: background var(--transition), color var(--transition), border-color var(--transition), box-shadow var(--transition);
-      box-shadow: var(--glow);
+      box-shadow: 0 0 1px 0 var(--color-primary-glow);
       z-index: 2;
     }
 
     .theme-switcher-btn:hover, .theme-switcher-btn:focus {
       background: var(--color-btn-hover);
       color: var(--color-link-hover);
-      box-shadow: 0 0 8px 0 var(--color-primary-glow);
+      box-shadow: 0 0 6px 0 var(--color-primary-glow);
     }
 
     .navbar-links li {
@@ -203,7 +203,7 @@
       border-radius: 9999px;
       font-family: 'Orbitron', Arial, sans-serif;
       font-weight: bold;
-      box-shadow: var(--glow);
+      box-shadow: 0 0 0.5px 0 var(--color-primary-glow);
       transition: background 0.5s, color 0.5s, border-color 0.5s, box-shadow 0.5s;
       cursor: pointer;
       text-decoration: none;
@@ -212,7 +212,7 @@
     button:hover, button:focus, input:focus, textarea:focus {
       background: var(--color-btn-hover);
       color: var(--color-link-hover);
-      box-shadow: 0 0 2px 0 var(--color-primary-glow);
+      box-shadow: 0 0 1px 0 var(--color-primary-glow);
       outline: none;
       text-decoration: none;
     }
@@ -226,7 +226,7 @@
       background: var(--color-card-bg);
       border: 1.5px solid var(--color-card-border);
       border-radius: 1.1rem;
-      box-shadow: 0 2px 2px 0 var(--color-primary-glow); /* Softer, lighter shadow */
+      box-shadow: 0 1px 1.5px 0 var(--color-primary-glow); /* Softer, lighter shadow */
       transition: box-shadow 0.3s, border-color 0.3s, background 0.2s, transform 0.3s;
     }
 
@@ -285,7 +285,7 @@
     .tool-card:hover, .tool-card:focus-within {
       border-color: var(--color-primary);
       background: var(--color-bg-alt);
-      box-shadow: 0 2px 4px 0 var(--color-primary-glow); /* Softer, lighter shadow on hover */
+      box-shadow: 0 0 2px 0 var(--color-primary-glow); /* Softer, lighter shadow on hover */
     }
     .tool-card .tool-icon {
       font-size: 2.1rem;
@@ -297,8 +297,6 @@
       width: 2.5rem;
       height: 2.5rem;
       border-radius: 0.5rem;
-      background: none;
-      box-shadow: none;
     }
     .tool-card .tool-icon i,
     .tool-card .tool-icon svg {
@@ -342,7 +340,7 @@
       font-weight: 600;
       font-size: 0.93rem;
       letter-spacing: 0.01em;
-      box-shadow: none;
+      box-shadow: 0 1px 2px 0 var(--color-primary-glow);
       transition: background var(--transition), color var(--transition), border-color var(--transition);
       text-align: center;
       margin-top: auto;
@@ -353,7 +351,7 @@
       background: var(--color-btn-hover);
       color: var(--color-link-hover);
       border-color: var(--color-primary);
-
+      box-shadow: 0 1px 2px 0 var(--color-primary-glow);
     }
 
     /* --- FORM INPUTS --- */
@@ -365,7 +363,7 @@
       font-size: 1rem;
       font-family: 'Poppins', Arial, sans-serif;
       transition: border-color 0.2s, box-shadow 0.2s;
-      box-shadow: 0 1px 4px 0 var(--color-primary-glow);
+      box-shadow: 0 1px 2px 0 var(--color-primary-glow);
       outline: none;
     }
     
@@ -374,6 +372,7 @@
       color: var(--color-link);
       text-decoration: none !important;
       transition: color 0.2s;
+      box-shadow: 0 0 0.5px 0 var(--color-primary-glow);
     }
     a:hover, a:focus {
       color: var(--color-link-hover);
@@ -507,3 +506,18 @@
 /* Only apply to elements where GPU acceleration is actually needed, e.g., cards that scale on hover */
 
 /* Remove from other elements if present in your HTML (do not add to all children) */
+
+/* Remove box-shadow on mobile for performance */
+@media (max-width: 600px) {
+  .tool-card,
+  .blog-card,
+  .themed-shadow,
+  .skill-card,
+  .tool-card .tool-btn,
+  .themed-btn,
+  button,
+  a,
+  .theme-switcher-btn {
+    box-shadow: none !important;
+  }
+}
