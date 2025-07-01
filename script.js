@@ -1,108 +1,90 @@
 document.addEventListener('DOMContentLoaded', () => {
   // Boundless Insights Portfolio JavaScript
-  // Clean, robust, and theme-aware
-  
-  // =====================
+
   // 1. MOBILE MENU MODULE
-  // =====================
-const setupHamburger = () => {
-  const menuBtn = document.getElementById('menu-btn');
-  const menuBtnMobile = document.getElementById('menu-btn-mobile');
-
-  // Remove any previous menu if exists
-  let menu = document.getElementById('hamburger-nav-menu');
-  if (menu) menu.remove();
-
-  // Create the menu
-  menu = document.createElement('div');
-  menu.id = 'hamburger-nav-menu';
-  menu.style.position = 'fixed';
-  menu.style.top = '70px';
-  menu.style.right = '0';
-  menu.style.background = 'var(--color-navbar)';
-  menu.style.borderRadius = '0.75rem 0 0 0.75rem';
-  menu.style.boxShadow = '0 4px 24px 0 #0008';
-  menu.style.padding = '1.2rem 1.5rem';
-  menu.style.display = 'none';
-  menu.style.zIndex = '9999';
-  menu.style.minWidth = '220px';
-  menu.innerHTML = `
-    <ul style="display:flex;flex-direction:column;gap:1rem;margin:0;padding:0;list-style:none;align-items:flex-start;">
-      <li><a href="#about" class="themed-link">About</a></li>
-      <li><a href="#skills" class="themed-link">Skills</a></li>
-      <li><a href="#projects" class="themed-link">Projects</a></li>
-      <li><a href="#blog" class="themed-link">Blog</a></li>
-      <li><a href="#testimonials" class="themed-link">Testimonials</a></li>
-      <li><a href="#contact" class="themed-link">Contact</a></li>
-      <li><a href="resume.html" class="themed-link">Resume</a></li>
-    </ul>
-  `;
-  document.body.appendChild(menu);
-
-  function toggleMenu(e) {
-    e.stopPropagation();
-    // Position menu below the correct hamburger button, flush right
-    let btn = e.currentTarget;
-    let rect = btn.getBoundingClientRect();
-    menu.style.top = rect.bottom + 8 + 'px';
+  const setupHamburger = () => {
+    const menuBtn = document.getElementById('menu-btn');
+    const menuBtnMobile = document.getElementById('menu-btn-mobile');
+    let menu = document.getElementById('hamburger-nav-menu');
+    if (menu) menu.remove();
+    menu = document.createElement('div');
+    menu.id = 'hamburger-nav-menu';
+    menu.style.position = 'fixed';
+    menu.style.top = '70px';
     menu.style.right = '0';
-    menu.style.display = menu.style.display === 'none' ? 'block' : 'none';
-  }
-  function hideMenu() {
+    menu.style.background = 'var(--color-navbar)';
+    menu.style.borderRadius = '0.75rem 0 0 0.75rem';
+    menu.style.boxShadow = '0 4px 24px 0 #0008';
+    menu.style.padding = '1.2rem 1.5rem';
     menu.style.display = 'none';
-  }
+    menu.style.zIndex = '9999';
+    menu.style.minWidth = '220px';
+    menu.innerHTML = `
+      <ul style="display:flex;flex-direction:column;gap:1rem;margin:0;padding:0;list-style:none;align-items:flex-start;">
+        <li><a href="#about" class="themed-link">About</a></li>
+        <li><a href="#skills" class="themed-link">Skills</a></li>
+        <li><a href="#projects" class="themed-link">Projects</a></li>
+        <li><a href="#blog" class="themed-link">Blog</a></li>
+        <li><a href="#testimonials" class="themed-link">Testimonials</a></li>
+        <li><a href="#contact" class="themed-link">Contact</a></li>
+        <li><a href="resume.html" class="themed-link">Resume</a></li>
+      </ul>
+    `;
+    document.body.appendChild(menu);
 
-  if (menuBtn) {
-    menuBtn.onclick = toggleMenu;
-  }
-  if (menuBtnMobile) {
-    menuBtnMobile.onclick = toggleMenu;
-  }
-  // Hide menu when clicking outside
-  document.addEventListener('click', function (e) {
-    if (!menu.contains(e.target) && e.target !== menuBtn && e.target !== menuBtnMobile) {
-      hideMenu();
+    function toggleMenu(e) {
+      e.stopPropagation();
+      let btn = e.currentTarget;
+      let rect = btn.getBoundingClientRect();
+      menu.style.top = rect.bottom + 8 + 'px';
+      menu.style.right = '0';
+      menu.style.display = menu.style.display === 'none' ? 'block' : 'none';
     }
-  });
-  // Hide menu on nav link click
-  menu.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', hideMenu);
-  });
-}
-  
-  // =====================
+    function hideMenu() {
+      menu.style.display = 'none';
+    }
+
+    if (menuBtn) menuBtn.onclick = toggleMenu;
+    if (menuBtnMobile) menuBtnMobile.onclick = toggleMenu;
+    document.addEventListener('click', function (e) {
+      if (!menu.contains(e.target) && e.target !== menuBtn && e.target !== menuBtnMobile) {
+        hideMenu();
+      }
+    });
+    menu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', hideMenu);
+    });
+  };
+
   // 2. THEME SWITCHER MODULE
-  // =====================
   function setupThemeSwitcher() {
     const themes = ['theme-cosmic', 'theme-nebula', 'theme-eclipse'];
     let current = 0;
     const html = document.documentElement;
     const themeBtn = document.getElementById('theme-switcher');
     const themeBtnMobile = document.getElementById('theme-switcher-mobile');
-  
+
     function setTheme(idx) {
       themes.forEach(t => html.classList.remove(t));
       html.classList.add(themes[idx]);
       const label = themes[idx].replace('theme-', '').replace(/^[a-z]/, c => c.toUpperCase());
       if (themeBtn) themeBtn.innerText = label;
       if (themeBtnMobile) themeBtnMobile.innerText = label;
-      // Dispatch event for background switching and theme-based CSS
       const evt = new Event('themechange');
       html.dispatchEvent(evt);
       if (typeof window.updateCosmicBg === 'function') window.updateCosmicBg();
     }
-  
+
     function switchTheme(e) {
       if (e && e.preventDefault) e.preventDefault();
       current = (current + 1) % themes.length;
       setTheme(current);
       if (window.localStorage) localStorage.setItem('theme', themes[current]);
     }
-  
+
     if (themeBtn) themeBtn.addEventListener('click', switchTheme);
     if (themeBtnMobile) themeBtnMobile.addEventListener('click', switchTheme);
-  
-    // Restore theme from localStorage
+
     if (window.localStorage) {
       const saved = localStorage.getItem('theme');
       if (saved && themes.includes(saved)) {
@@ -111,17 +93,15 @@ const setupHamburger = () => {
     }
     setTheme(current);
   }
-  
-  // =====================
+
   // 3. STAR CANVAS MODULE
-  // =====================
   function setupStarCanvas() {
     const canvas = document.getElementById('star-canvas');
     const hero = document.getElementById('hero');
     if (!canvas || !hero) return;
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
-  
+
     hero.style.position = 'relative';
     canvas.style.position = 'absolute';
     canvas.style.left = '0';
@@ -133,123 +113,122 @@ const setupHamburger = () => {
     canvas.style.display = 'block';
     canvas.style.pointerEvents = 'none';
     canvas.style.zIndex = '0';
-  
+
     const STAR_COLORS = [
       '#fff8e7', '#ffe9c4', '#ffd1a9', '#cce0ff', '#aabfff',
       '#b5ffd9', '#f7baff', '#ffffff', '#ffd6a5', '#b5ffd9'
     ];
-    const cosmicEmissionPalettesRgba = [
-  // 1. SODIUM BURST (Na-rich)
+   const cosmicEmissionPalettesRgba = [
+  // 1. MERCURY SHINE (silvery‐blue flash)
   {
-    id: 'sodium',
+    id: 'mercury_shine',
     stops: [
-      { at: 0.00, color: 'rgba(255,255,255,1.00)' },     // #FFFFFFFF
-      { at: 0.12, color: 'rgba(255,221,  0,0.87)' },   // #FFDD00DD
-      { at: 0.30, color: 'rgba(255,187,  0,0.60)' },   // #FFBB0099
-      { at: 0.55, color: 'rgba(255,136,  0,0.40)' },   // #FF880066
-      { at: 1.00, color: 'rgba(255, 68,  0,0.00)' }    // #FF440000
+      { at: 0.00, color: 'rgba(255,255,255,1.00)' },   // white‐hot core  
+      { at: 0.20, color: 'rgba(224,241,255,0.80)' },   // pale sky blue  
+      { at: 0.40, color: 'rgba(160,200,255,0.60)' },   // soft baby blue  
+      { at: 0.70, color: 'rgba(100,150,220,0.40)' },   // muted cerulean  
+      { at: 1.00, color: 'rgba(100,150,220,0.00)' }    // fade out  
     ]
   },
 
-  // 2. IRONFLARE (Fe + Na blend)
+  // 2. CARBON FLARE (ember red → charcoal)
   {
-    id: 'ironflare',
+    id: 'carbon_flare',
     stops: [
-      { at: 0.00, color: 'rgba(255,248,225,1.00)' },     // #FFF8E1FF
-      { at: 0.15, color: 'rgba(255,215,  0,0.80)' },   // #FFD700CC
-      { at: 0.35, color: 'rgba(255,170,  0,0.67)' },   // #FFAA00AA
-      { at: 0.65, color: 'rgba(204,136,  0,0.53)' },   // #CC880088
-      { at: 1.00, color: 'rgba(204, 68,  0,0.00)' }    // #CC440000
+      { at: 0.00, color: 'rgba(255,240,235,1.00)' },   // white with red tint  
+      { at: 0.20, color: 'rgba(255,120, 90,0.80)' },   // glowing ember  
+      { at: 0.40, color: 'rgba(200, 60, 40,0.60)' },   // deep fire red  
+      { at: 0.70, color: 'rgba( 60, 20, 20,0.40)' },   // charred maroon  
+      { at: 1.00, color: 'rgba( 60, 20, 20,0.00)' }    // vanish  
     ]
   },
 
-  // 3. MAGNESHELIX (Mg-rich teal)
+  // 3. NEON BLAST (hot pink → magenta)
   {
-    id: 'magneshelix',
+    id: 'neon_blast',
     stops: [
-      { at: 0.00, color: 'rgba(204,255,244,1.00)' },     // #CCFFF4FF
-      { at: 0.20, color: 'rgba(153,255,238,0.80)' },   // #99FFEECC
-      { at: 0.40, color: 'rgba( 51,204,170,0.60)' },   // #33CCAA99
-      { at: 0.70, color: 'rgba(  0,153,119,0.40)' },   // #00997766
-      { at: 1.00, color: 'rgba(  0,153,119,0.00)' }    // #00997700
+      { at: 0.00, color: 'rgba(255,245,255,1.00)' },   // white with pink glow  
+      { at: 0.20, color: 'rgba(255, 80,200,0.80)' },   // electric pink  
+      { at: 0.40, color: 'rgba(220,  0,180,0.60)' },   // vivid magenta  
+      { at: 0.70, color: 'rgba(150,  0,120,0.40)' },   // deep fuchsia  
+      { at: 1.00, color: 'rgba(150,  0,120,0.00)' }    // fade  
     ]
   },
 
-  // 4. CALCIUM VIOLET (Ca spectral)
+  // 4. KRYPTON GLOW (ruby red → rose)
   {
-    id: 'calcium',
+    id: 'krypton_glow',
     stops: [
-      { at: 0.00, color: 'rgba(245,230,255,1.00)' },     // #F5E6FFFF
-      { at: 0.10, color: 'rgba(216,176,255,0.80)' },   // #D8B0FFCC
-      { at: 0.30, color: 'rgba(178,102,255,0.67)' },   // #B266FFAA
-      { at: 0.60, color: 'rgba(138, 51,255,0.53)' },   // #8A33FF88
-      { at: 1.00, color: 'rgba(138, 51,255,0.00)' }    // #8A33FF00
+      { at: 0.00, color: 'rgba(255,240,250,1.00)' },   // almost‐white  
+      { at: 0.20, color: 'rgba(255, 90,120,0.80)' },   // ruby pink  
+      { at: 0.40, color: 'rgba(220,  0, 60,0.60)' },   // deep ruby  
+      { at: 0.70, color: 'rgba(180,  0, 80,0.40)' },   // rose shadow  
+      { at: 1.00, color: 'rgba(180,  0, 80,0.00)' }    // vanish  
     ]
   },
 
-  // 5. NICKEL GLOW (Ni green)
+  // 5. ARGON DREAM (cosmic purple → indigo)
   {
-    id: 'nickel',
+    id: 'argon_dream',
     stops: [
-      { at: 0.00, color: 'rgba(230,255,237,1.00)' },     // #E6FFEDFF
-      { at: 0.25, color: 'rgba(170,255,204,0.73)' },   // #AAFFCCBB
-      { at: 0.50, color: 'rgba(102,255,153,0.53)' },   // #66FF9988
-      { at: 0.75, color: 'rgba( 51,255,102,0.33)' },   // #33FF6655
-      { at: 1.00, color: 'rgba( 51,255,102,0.00)' }    // #33FF6600
+      { at: 0.00, color: 'rgba(250,240,255,1.00)' },   // white‐lavender  
+      { at: 0.20, color: 'rgba(200,140,255,0.80)' },   // soft violet  
+      { at: 0.40, color: 'rgba(140, 80,255,0.60)' },   // vivid purple  
+      { at: 0.70, color: 'rgba( 80, 20,180,0.40)' },   // deep indigo  
+      { at: 1.00, color: 'rgba( 80, 20,180,0.00)' }    // fade  
     ]
   },
 
-  // 6. ATMOSPHERIC SWIRL (O₂/N₂ red→blue)
+  // 6. XENON RIPPLES (cerulean → navy)
   {
-    id: 'atmosphere',
+    id: 'xenon_ripples',
     stops: [
-      { at: 0.00, color: 'rgba(255, 68, 51,1.00)' },     // #FF4433FF
-      { at: 0.20, color: 'rgba(255,136, 85,0.87)' },   // #FF8855DD
-      { at: 0.45, color: 'rgba(255,221,170,0.80)' },   // #FFDDAACC
-      { at: 0.70, color: 'rgba(153,238,255,0.67)' },   // #99EEFFAA
-      { at: 1.00, color: 'rgba(153,238,255,0.00)' }    // #99EEFF00
+      { at: 0.00, color: 'rgba(240,255,255,1.00)' },   // white‐cyan  
+      { at: 0.20, color: 'rgba(120,230,255,0.80)' },   // bright cerulean  
+      { at: 0.40, color: 'rgba( 60,180,255,0.60)' },   // ocean blue  
+      { at: 0.70, color: 'rgba(  0,100,200,0.40)' },   // deep sea blue  
+      { at: 1.00, color: 'rgba(  0,100,200,0.00)' }    // vanish  
     ]
   },
 
-  // 7. PLASMA RAINBOW (multi-metal cascade)
+  // 7. URANIUM GREEN (neon chartreuse → olive)
   {
-    id: 'plasma_rainbow',
+    id: 'uranium_green',
     stops: [
-      { at: 0.00, color: 'rgba(255,255,255,1.00)' },     // #FFFFFFFF
-      { at: 0.12, color: 'rgba(255,215,  0,0.80)' },   // #FFD700CC
-      { at: 0.25, color: 'rgba(255, 85,  0,0.73)' },   // #FF5500BB
-      { at: 0.45, color: 'rgba(204,  0,204,0.67)' },   // #CC00CCAA
-      { at: 0.70, color: 'rgba(  0,255,102,0.67)' },   // #00FF66AA
-      { at: 1.00, color: 'rgba(  0,255,102,0.00)' }    // #00FF6600
+      { at: 0.00, color: 'rgba(245,255,230,1.00)' },   // white‐green  
+      { at: 0.20, color: 'rgba(180,255,  0,0.80)' },   // neon chartreuse  
+      { at: 0.40, color: 'rgba(140,220,  0,0.60)' },   // acid green  
+      { at: 0.70, color: 'rgba(100,160,  0,0.40)' },   // olive shadow  
+      { at: 1.00, color: 'rgba(100,160,  0,0.00)' }    // fade  
     ]
   },
 
-  // 8. ANTIMATTER SWIRL (inverted spectrum)
+  // 8. THORIUM TIDE (neon cyan → electric blue)
   {
-    id: 'antimatter',
+    id: 'thorium_tide',
     stops: [
-      { at: 0.00, color: 'rgba(  0, 17, 68,1.00)' },     // #001144FF
-      { at: 0.18, color: 'rgba( 34,  0,170,0.93)' },   // #2200AAEE
-      { at: 0.38, color: 'rgba( 68,  0,255,0.80)' },   // #4400FFCC
-      { at: 0.65, color: 'rgba(102,255, 68,0.60)' },   // #66FF4499
-      { at: 1.00, color: 'rgba(102,255, 68,0.00)' }    // #66FF4400
+      { at: 0.00, color: 'rgba(230,255,255,1.00)' },   // white‐cyan  
+      { at: 0.20, color: 'rgba( 80,255,240,0.80)' },   // neon cyan  
+      { at: 0.40, color: 'rgba(  0,200,220,0.60)' },   // bright teal  
+      { at: 0.70, color: 'rgba(  0,120,200,0.40)' },   // electric blue  
+      { at: 1.00, color: 'rgba(  0,120,200,0.00)' }    // vanish  
     ]
   }
 ];
 
-  
+
     let meteors = [], width = 0, height = 0, staticStarsLayer = null;
     let lastFrameTime = performance.now();
     let lastMeteorTime = 0;
     let MAX_METEORS = window.innerWidth < 600 ? 1 : 2;
     const METEOR_INTERVAL = 3200;
-  
+
     function getStarCount(width) {
       if (width < 600) return 40;
       if (width < 900) return 80;
       return 120;
     }
-  
+
     function renderStaticStarsLayer(w, h) {
       const off = document.createElement('canvas');
       off.width = w;
@@ -263,7 +242,7 @@ const setupHamburger = () => {
         const r = Math.random() * 1 + 0.5;
         const color = STAR_COLORS[Math.floor(Math.random() * STAR_COLORS.length)];
         offctx.save();
-        offctx.beginPath(); 
+        offctx.beginPath();
         offctx.arc(x, y, r, 0, 2 * Math.PI);
         offctx.fillStyle = color;
         offctx.globalAlpha = 0.85 + Math.random() * 0.15;
@@ -275,7 +254,7 @@ const setupHamburger = () => {
       offctx.globalAlpha = 1;
       return off;
     }
-  
+
     class Meteor {
       constructor(w, h) {
         const fromLeft = Math.random() < 0.5;
@@ -289,7 +268,6 @@ const setupHamburger = () => {
         this.maxLife = Math.random() * 1.2 + 2.2;
         this.life = 0;
         this.alpha = 1;
-        // Pick a a random palette for this meteor 
         this.palette = cosmicEmissionPalettesRgba[Math.floor(Math.random() * cosmicEmissionPalettesRgba.length)];
         this.x = this.x0;
         this.y = this.y0;
@@ -304,8 +282,6 @@ const setupHamburger = () => {
         if (this.alpha <= 0.01) return;
         ctx.save();
         ctx.globalAlpha = this.alpha;
-
-        // Meteor head glow (use first palette stop)
         const headColor = this.palette.stops[0].color;
         const glow = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, 14);
         glow.addColorStop(0, headColor);
@@ -315,16 +291,12 @@ const setupHamburger = () => {
         ctx.beginPath();
         ctx.arc(this.x, this.y, 9, 0, 2 * Math.PI);
         ctx.fill();
-
-        // Meteor head core
         ctx.beginPath();
         ctx.arc(this.x, this.y, 2.8, 0, 2 * Math.PI);
         ctx.fillStyle = headColor;
         ctx.shadowColor = headColor;
         ctx.shadowBlur = 8;
         ctx.fill();
-
-        // Meteor tail with palette gradient
         const norm = Math.hypot(this.vx, this.vy);
         const tx = this.x - this.vx / norm * this.length;
         const ty = this.y - this.vy / norm * this.length;
@@ -370,24 +342,22 @@ const setupHamburger = () => {
     }
 
     function drawFrame(now) {
+      // Animation throttle for performance
+      if (window.__shouldAnimate === false) {
+        requestAnimationFrame(drawFrame);
+        return;
+      }
       const dt = Math.min((now - lastFrameTime) / 1000, 0.07);
       lastFrameTime = now;
-
-      // Draw static stars
       ctx.clearRect(0, 0, width, height);
       if (staticStarsLayer) ctx.drawImage(staticStarsLayer, 0, 0);
-
-      // Update and draw meteors
       meteors.forEach(m => m.update(dt));
       meteors = meteors.filter(m => m.isAlive(width, height));
       meteors.forEach(m => m.draw(ctx));
-
-      // Spawn new meteor if needed
       if (now - lastMeteorTime > METEOR_INTERVAL) {
         spawnMeteor();
         lastMeteorTime = now;
       }
-
       requestAnimationFrame(drawFrame);
     }
 
@@ -405,11 +375,9 @@ const setupHamburger = () => {
     });
     window.addEventListener('load', ensureCanvasReady);
   }
-  
-  // =====================
+
   // 4. CTA SMOOTH SCROLL
-  // =====================
-   function setupCtaSmoothScroll() {
+  function setupCtaSmoothScroll() {
     const ctaBtn = document.querySelector('.cta[href^="#"]');
     if (ctaBtn) {
       ctaBtn.addEventListener('click', function(e) {
@@ -422,9 +390,41 @@ const setupHamburger = () => {
       });
     }
   }
-  
-  // =====================
+
   // 5. THEME-BASED SHADOWS/ANIMATIONS UPDATE
+  function setupThemeDynamicCss() {
+    function updateThemedClasses() {
+      document.querySelectorAll('.themed-shadow, .themed-border, .themed-btn, .themed-heading').forEach(el => {
+        el.style.boxShadow = '';
+        el.style.borderColor = '';
+        el.style.color = '';
+      });
+    }
+    document.documentElement.addEventListener('themechange', updateThemedClasses);
+    document.addEventListener('DOMContentLoaded', updateThemedClasses);
+  }
+
+  // 6. INITIALIZATION
+  function initializePortfolio() {
+    setupThemeSwitcher();
+    setupStarCanvas();
+    setupCtaSmoothScroll();
+    setupThemeDynamicCss();
+    setupHamburger();
+    // GSAP ScrollSmoother is only initialized if loaded (no-op if not present)
+    if (window.gsap && window.ScrollTrigger && window.ScrollSmoother) {
+      gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+      ScrollSmoother.create({
+        wrapper: "#main-wrapper",
+        content: "#main-content",
+        smooth: 1.5,
+        effects: true,
+      });
+    }
+  }
+
+  initializePortfolio();
+});
   // =====================
   function setupThemeDynamicCss() {
     function updateThemedClasses() {
@@ -467,4 +467,4 @@ const setupHamburger = () => {
   } else {
     initializePortfolio();
   }
-});
+

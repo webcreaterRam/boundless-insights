@@ -7,23 +7,33 @@
   <meta name="description" content="Cosmic Portfolio of Ramkumar, a self-taught frontend developer with a passion for cosmic-themed web designs, showcasing skills in HTML, CSS, and Javascript." />
   <meta property="og:title" content="Ramkumar's Cosmic Portfolio" />
   <meta property="og:description" content="Explore the cosmic-themed portfolio of Ramkumar, a self-taught frontend developer." />
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LM7VXTFSG9"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-LM7VXTFSG9');
+</script>
   <!-- Only load GSAP if you use it for critical UX, otherwise remove these lines -->
   <!-- <script src="https://cdn.jsdelivr.net/npm/gsap@3.11.5/dist/gsap.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.11.5/dist/ScrollTrigger.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.11.5/dist/ScrollSmoother.min.js" defer></script> -->
   <style>
-    /* Critical preloader styles - INLINED, NO TAILWIND CLASSES */
-    #cosmic-preloader {
-      position: fixed;
-      inset: 0;
-      z-index: 99999;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      background: linear-gradient(120deg,#232946 0%,#0b0c10 100%);
-      transition: all 0.5s;
-    }
+  /* Critical preloader styles - INLINED, NO TAILWIND CLASSES */
+  #cosmic-preloader {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(120deg, #232946 0%, #0b0c10 100%);
+    transition: all 0.5s;
+  }
+
     #cosmic-preloader .preloader-inner {
       display: flex;
       flex-direction: column;
@@ -90,9 +100,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <link rel="stylesheet" href="styles.css" />
+  
 </head>
 <body>
-  <!-- Cosmic Preloader Overlay -->
+    <!-- Cosmic Preloader Overlay -->
   <div id="cosmic-preloader">
     <div class="preloader-inner">
       <div class="spinner-wrap">
@@ -111,7 +122,7 @@
   <!-- Navbar -->
   <nav class="navbar-bg fixed top-0 inset-x-0 z-50 bg-opacity-80 backdrop-blur-md border-none rounded-[5px]">
     <!-- Desktop & Tablet Navbar (>=768px) -->
-    <div class="navbar-inner w-[90%] max-w-full flex items-center justify-between px-4 py-2 rounded-[5px] mt-4 transition-shadow duration-300 hover:shadow-lg hover:shadow-[var(--color-primary-glow)] gap-8
+    <div class="navbar-inner w-[90%] max-w-full flex items-center justify-between px-4 py-2 rounded-[5px] mt-4 transition-shadow duration-300 hover:shadow-md hover:shadow-[var(--color-primary-glow)] gap-8
       sm:w-full sm:mt-0 sm:rounded-[5px] hidden md:flex">
       <!-- Logo (left) -->
       <div class="site-logo flex items-center gap-4 min-w-0 flex-shrink-0">
@@ -165,7 +176,7 @@
       <!-- Logo (left) -->
       <a href="#" class="flex items-center gap-2">
         <span class="logo-ring flex items-center justify-center rounded-full transition-all duration-300"
-              style="width:3.2rem;height:3.2rem;border:2.5px solid var(--color-primary);box-shadow:0 0 0 2px var(--color-primary-glow);">
+              style="width:3.2rem;height:3.2rem;border:0.5px solid var(--color-primary);box-shadow:0 0 0 0.5px var(--color-primary-glow);">
           <img src="Cosmic-Logo.svg" alt="Cosmic Logo" class="h-12 w-12 object-contain rounded-full shadow themed-shadow" width="48" height="48" />
         </span>
         <span class="sr-only">Home</span>
@@ -183,7 +194,7 @@
     </div>
   </nav>
 
-  <main id="main-content" class="pt-24">
+  <main id="main-content" class="pt-24 preloader-active" style="min-height:100vh;visibility:hidden;">
     <!-- HERO SECTION -->
     <section id="hero" class="relative min-h-screen h-[100dvh] max-h-none overflow-hidden flex items-center justify-center">
       <canvas id="star-canvas" class="absolute inset-0 w-full h-full"></canvas>
@@ -701,7 +712,7 @@
   <div id="login-demo-modal" class="fixed inset-0 z-[9999] flex items-center justify-center bg-black/60 backdrop-blur-sm transition-all duration-300 opacity-0 pointer-events-none" style="display:none;">
     <div class="bg-[#232946] rounded-2xl shadow-lg max-w-md w-[95vw] p-0 relative border-2 border-[var(--color-primary)] flex flex-col items-center">
       <button onclick="closeLoginDemoModal()" class="absolute top-3 right-3 px-3 py-1 rounded-full bg-[var(--color-primary)] text-[#181a22] font-bold text-lg shadow" style="box-shadow:0 1px 2px 0 var(--color-primary-glow);">X</button>
-      <img src="Mobile_Login_Figma.png" alt="Mobile Login Figma Demo" class="w-full h-auto rounded-b-2xl" style="max-height:70vh;object-fit:contain;box-shadow:0 1px 2px 0 var(--color-primary-glow);margin-top:2.5rem;">
+      <img src="Mobile_Login_Figma.png" alt="Mobile Login Figma Demo" class="w-full h-auto rounded-b-2xl" style="max-height:70vh;object-fit:contain;box-shadow:0 1px 2px 0 var(--color-primary-glow);margin-top:2.5rem;" loading="lazy">
       <div class="p-4 w-full text-center">
         <h4 class="font-orbitron text-xl font-bold text-[var(--color-primary)] mb-2">ShopEasy Mobile Login UI</h4>
         <p class="text-gray-300 text-sm mb-2">Preview of the Figma-designed mobile login screen.<br>For full prototype, visit Figma link.</p>
@@ -737,28 +748,61 @@
       if (!modal) return;
       if (modal.style.display === 'flex' && e.target === modal) closeLoginDemoModal();
     });
-    // Hide preloader when page is loaded
-    window.addEventListener('load', function() {
-      const preloader = document.getElementById('cosmic-preloader');
-      if (preloader) {
-        preloader.style.opacity = '0';
-        preloader.style.pointerEvents = 'none';
-        setTimeout(() => preloader.style.display = 'none', 500);
-      }
-    });
 
-    // Show offline message if offline
-    function showOfflineMessage(show) {
-      const offlineMsg = document.getElementById('offline-message');
-      if (offlineMsg) {
-        offlineMsg.style.display = show ? 'block' : 'none';
-      }
+// Preloader fade out on page load
+  window.addEventListener('load', function() {
+    const preloader = document.getElementById('cosmic-preloader');
+    const mainContent = document.getElementById('main-content');
+    if (preloader) {
+      preloader.style.opacity = '0';
+      preloader.style.pointerEvents = 'none';
+      setTimeout(() => {
+        preloader.style.display = 'none';
+        if (mainContent) {
+          mainContent.classList.remove('preloader-active');
+          mainContent.style.visibility = 'visible';
+        }
+      }, 500);
     }
-    window.addEventListener('offline', () => showOfflineMessage(true));
-    window.addEventListener('online', () => showOfflineMessage(false));
-    // Show offline message if already offline on load
-    if (!navigator.onLine) showOfflineMessage(true);
+  });
+
+  // Offline message handling (fixed logic)
+  function showOfflineMessage(show) {
+    const offlineMessage = document.getElementById('offline-message');
+    if (offlineMessage) {
+      offlineMessage.style.display = show ? 'block' : 'none';
+    }
+  }
+
+  window.addEventListener('offline', () => showOfflineMessage(true));
+  window.addEventListener('online', () => showOfflineMessage(false));
+  // Show offline message if already offline
+  if (!navigator.onLine) showOfflineMessage(true);
+
+  // --- Animation Throttle for Performance ---
+  // This flag can be checked in animation loops (e.g., star-canvas in script.js)
+  window.__shouldAnimate = true;
+  document.addEventListener('visibilitychange', function() {
+    window.__shouldAnimate = !document.hidden;
+  });
+  window.addEventListener('blur', function() {
+    window.__shouldAnimate = false;
+  });
+  window.addEventListener('focus', function() {
+    window.__shouldAnimate = true;
+  });
+  // In your animation loop, check: if (!window.__shouldAnimate) return;
   </script>
+  <!-- Only load script.js if it is essential for your site functionality -->
   <script src="script.js" defer></script>
+  <style>
+    #main-content.preloader-active {
+  visibility: hidden;
+}
+#main-content {
+  transition: visibility 0s linear 0.5s;
+  min-height: 100vh;
+}
+  </style>
 </body>
 </html>
