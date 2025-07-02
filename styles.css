@@ -366,7 +366,24 @@
       box-shadow: 0 1px 2px 0 var(--color-primary-glow);
       outline: none;
     }
-    
+
+      /* Glowing CTA Button Animation */
+.cta-glow {
+  position: relative;
+  z-index: 1;
+  transition: box-shadow 0.3s;
+}
+
+.cta-glow:hover,
+.cta-glow:focus {
+  box-shadow: 0 1px 4px 0 var(--color-primary-glow, #00fff766), 0 0 5px 0 var(--color-primary-glow, #00fff733);
+  outline: none;
+}
+
+.cta-glow > * {
+  position: relative;
+  z-index: 1;
+}
     /* --- LINKS --- */
     a, button, .themed-btn {
       color: var(--color-link);
