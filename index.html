@@ -1,4 +1,4 @@
-<!DOCpchgfgYPE html>
+<!DOCTYPE html>
 <html lang="en" class="scroll-smooth theme-cosmic">
 <head>
   <meta charset="UTF-8" />
@@ -94,6 +94,23 @@
     @keyframes spin {
       to { transform: rotate(360deg); }
     }
+  /* LCP h1 optimization */
+  #lcp-h1 {
+    position: absolute;
+    top: 0; left: 0; width: 100vw;
+    z-index: 100000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s;
+    text-align: center;
+    margin-top: 8vh;
+  }
+  body.lcp-ready #lcp-h1 {
+    opacity: 1;
+    pointer-events: auto;
+    position: static;
+    margin-top: 0;
+  }
   </style>
     <script src="https://cdn.tailwindcss.com" defer></script>
   <link rel="icon" type="image/jpeg" href="favicon.ico" />
@@ -103,6 +120,10 @@
   
 </head>
 <body>
+  <!-- LCP h1 placed at top for early paint -->
+  <h1 id="lcp-h1" class="font-orbitron text-5xl md:text-6xl font-bold themed-heading mb-4 select-none">
+    Welcome to Boundless Insights
+  </h1>
     <!-- Cosmic Preloader Overlay -->
   <div id="cosmic-preloader">
     <div class="preloader-inner">
@@ -199,7 +220,8 @@
     <section id="hero" class="relative min-h-screen h-[100dvh] max-h-none overflow-hidden flex items-center justify-center">
       <canvas id="star-canvas" class="absolute inset-0 w-full h-full"></canvas>
       <div class="relative z-20 flex flex-col items-center justify-center h-full text-center px-4">
-        <h1 class="font-orbitron text-5xl md:text-6xl font-bold themed-heading mb-4 select-none">Welcome to Boundless Insights</h1>
+        <!-- Remove the original h1 here, since it's now above preloader -->
+        <!-- <h1 class="font-orbitron text-5xl md:text-6xl font-bold themed-heading mb-4 select-none">Welcome to Boundless Insights</h1> -->
         <a href="#projects" class="cta mt-8 inline-block px-10 py-4 themed-btn  text-lg tracking-wide backdrop-blur-md transition-all duration-300">
           Scroll To View More
         </a>
@@ -276,11 +298,6 @@
           <span class="text-3xl md:text-4xl mb-2 themed-heading"><i class="fab fa-git-alt"></i></span>
           <span class="font-semibold text-[var(--color-primary)]">Git &amp; GitHub</span>
           <span class="text-xs text-gray-400 mt-1">Version Control, Collaboration</span>
-        </div>
-        <div class="skill-card flex flex-col items-center bg-[#232946]/80 rounded-xl p-5 mb-2 hover:scale-105 transition-transform">
-          <span class="text-3xl md:text-4xl mb-2 themed-heading"><i class="fas fa-cogs"></i></span>
-          <span class="font-semibold text-[var(--color-primary)]">Webpack &amp; Vite</span>
-          <span class="text-xs text-gray-400 mt-1">Build Tools, Optimization</span>
         </div>
         <div class="skill-card flex flex-col items-center bg-[#232946]/80 rounded-xl p-5 mb-2 hover:scale-105 backface-hidden">
           <span class="text-3xl md:text-4xl mb-2 themed-heading"><i class="fas fa-universal-access"></i></span>
@@ -754,6 +771,8 @@
   window.addEventListener('load', function() {
     const preloader = document.getElementById('cosmic-preloader');
     const mainContent = document.getElementById('main-content');
+    // LCP h1 reveal
+    document.body.classList.add('lcp-ready');
     if (preloader) {
       preloader.style.opacity = '0';
       preloader.style.pointerEvents = 'none';
