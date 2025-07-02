@@ -102,120 +102,190 @@ document.addEventListener('DOMContentLoaded', () => {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    hero.style.position = 'relative';
-    canvas.style.position = 'absolute';
-    canvas.style.left = '0';
-    canvas.style.top = '0';
-    canvas.style.right = '0';
-    canvas.style.bottom = '0';
-    canvas.style.width = '100%';
-    canvas.style.height = '100%';
-    canvas.style.display = 'block';
-    canvas.style.pointerEvents = 'none';
-    canvas.style.zIndex = '0';
+    // =====================
+    // Config
+    // =====================
 
     const STAR_COLORS = [
       '#fff8e7', '#ffe9c4', '#ffd1a9', '#cce0ff', '#aabfff',
       '#b5ffd9', '#f7baff', '#ffffff', '#ffd6a5', '#b5ffd9'
     ];
-   const cosmicEmissionPalettesRgba = [
-  // 1. MERCURY SHINE (silvery‐blue flash)
-  {
-    id: 'mercury_shine',
-    stops: [
-      { at: 0.00, color: 'rgba(255,255,255,1.00)' },   // white‐hot core  
-      { at: 0.20, color: 'rgba(224,241,255,0.80)' },   // pale sky blue  
-      { at: 0.40, color: 'rgba(160,200,255,0.60)' },   // soft baby blue  
-      { at: 0.70, color: 'rgba(100,150,220,0.40)' },   // muted cerulean  
-      { at: 1.00, color: 'rgba(100,150,220,0.00)' }    // fade out  
-    ]
-  },
 
-  // 2. CARBON FLARE (ember red → charcoal)
-  {
-    id: 'carbon_flare',
-    stops: [
-      { at: 0.00, color: 'rgba(255,240,235,1.00)' },   // white with red tint  
-      { at: 0.20, color: 'rgba(255,120, 90,0.80)' },   // glowing ember  
-      { at: 0.40, color: 'rgba(200, 60, 40,0.60)' },   // deep fire red  
-      { at: 0.70, color: 'rgba( 60, 20, 20,0.40)' },   // charred maroon  
-      { at: 1.00, color: 'rgba( 60, 20, 20,0.00)' }    // vanish  
-    ]
-  },
+    // Meteor palettes with distinct 3-stop radial head + 5-stop linear tail
+    const cosmicPalettes = [
+      // 1. MERCURY SHINE (silvery‐blue flash)
+      {
+        id: 'mercury_shine',
+        head: {
+          stops: [
+            { at: 0.00, color: 'rgba(255,255,255,1)' }, // bright white core
+            { at: 0.30, color: 'rgba(100,200,255,1.00)' }, // vivid sky-blue
+            { at: 1.00, color: 'rgba(100,200,255,0.00)' }  // fade out
+          ],
+          // Add these for backward compatibility:
+          inner: 'rgba(255,255,255,1)',
+          outer: 'rgba(100,200,255,0.00)'
+        },
+        stops: [
+          { at: 0.00, color: 'rgba(255,255,255,1)' },
+          { at: 0.20, color: 'rgba(224,241,255,0.80)' },
+          { at: 0.40, color: 'rgba(160,200,255,0.60)' },
+          { at: 0.70, color: 'rgba(100,150,220,0.40)' },
+          { at: 1.00, color: 'rgba(100,150,220,0.00)' }
+        ]
+      },
 
-  // 3. NEON BLAST (hot pink → magenta)
-  {
-    id: 'neon_blast',
-    stops: [
-      { at: 0.00, color: 'rgba(255,245,255,1.00)' },   // white with pink glow  
-      { at: 0.20, color: 'rgba(255, 80,200,0.80)' },   // electric pink  
-      { at: 0.40, color: 'rgba(220,  0,180,0.60)' },   // vivid magenta  
-      { at: 0.70, color: 'rgba(150,  0,120,0.40)' },   // deep fuchsia  
-      { at: 1.00, color: 'rgba(150,  0,120,0.00)' }    // fade  
-    ]
-  },
+      // 2. CARBON FLARE (ember red → charcoal)
+      {
+        id: 'carbon_flare',
+        head: {
+          stops: [
+            { at: 0.00, color: 'rgba(255,240,235,1)' },
+            { at: 0.30, color: 'rgba(200,60,40,1.00)' },
+            { at: 1.00, color: 'rgba(200,60,40,0.00)' }
+          ],
+          inner: 'rgba(255,240,235,1)',
+          outer: 'rgba(200,60,40,0.00)'
+        },
+        stops: [
+          { at: 0.00, color: 'rgba(255,240,235,1)' },
+          { at: 0.20, color: 'rgba(255,120,90,0.80)' },
+          { at: 0.40, color: 'rgba(200,60,40,0.60)' },
+          { at: 0.70, color: 'rgba(60,20,20,0.40)' },
+          { at: 1.00, color: 'rgba(60,20,20,0.00)' }
+        ]
+      },
 
-  // 4. KRYPTON GLOW (ruby red → rose)
-  {
-    id: 'krypton_glow',
-    stops: [
-      { at: 0.00, color: 'rgba(255,240,250,1.00)' },   // almost‐white  
-      { at: 0.20, color: 'rgba(255, 90,120,0.80)' },   // ruby pink  
-      { at: 0.40, color: 'rgba(220,  0, 60,0.60)' },   // deep ruby  
-      { at: 0.70, color: 'rgba(180,  0, 80,0.40)' },   // rose shadow  
-      { at: 1.00, color: 'rgba(180,  0, 80,0.00)' }    // vanish  
-    ]
-  },
+      // 3. NEON BLAST (hot pink → magenta)
+      {
+        id: 'neon_blast',
+        head: {
+          stops: [
+            { at: 0.00, color: 'rgba(255,245,255,1)' },
+            { at: 0.30, color: 'rgba(220,0,180,1.00)' },
+            { at: 1.00, color: 'rgba(220,0,180,0.00)' }
+          ],
+          inner: 'rgba(255,245,255,1)',
+          outer: 'rgba(220,0,180,0.00)'
+        },
+        stops: [
+          { at: 0.00, color: 'rgba(255,245,255,1)' },
+          { at: 0.20, color: 'rgba(255,80,200,0.80)' },
+          { at: 0.40, color: 'rgba(220,0,180,0.60)' },
+          { at: 0.70, color: 'rgba(150,0,120,0.40)' },
+          { at: 1.00, color: 'rgba(150,0,120,0.00)' }
+        ]
+      },
 
-  // 5. ARGON DREAM (cosmic purple → indigo)
-  {
-    id: 'argon_dream',
-    stops: [
-      { at: 0.00, color: 'rgba(250,240,255,1.00)' },   // white‐lavender  
-      { at: 0.20, color: 'rgba(200,140,255,0.80)' },   // soft violet  
-      { at: 0.40, color: 'rgba(140, 80,255,0.60)' },   // vivid purple  
-      { at: 0.70, color: 'rgba( 80, 20,180,0.40)' },   // deep indigo  
-      { at: 1.00, color: 'rgba( 80, 20,180,0.00)' }    // fade  
-    ]
-  },
+      // 4. KRYPTON GLOW (ruby red → rose)
+      {
+        id: 'krypton_glow',
+        head: {
+          stops: [
+            { at: 0.00, color: 'rgba(255,240,250,1.00)' },
+            { at: 0.30, color: 'rgba(220,0,60,1)' },
+            { at: 1.00, color: 'rgba(220,0,60,0.00)' }
+          ],
+          inner: 'rgba(255,240,250,1)',
+          outer: 'rgba(220,0,60,0.00)'
+        },
+        stops: [
+          { at: 0.00, color: 'rgba(255,240,250,1)' },
+          { at: 0.20, color: 'rgba(255,90,120,0.80)' },
+          { at: 0.40, color: 'rgba(220,0,60,0.60)' },
+          { at: 0.70, color: 'rgba(180,0,80,0.40)' },
+          { at: 1.00, color: 'rgba(180,0,80,0.00)' }
+        ]
+      },
 
-  // 6. XENON RIPPLES (cerulean → navy)
-  {
-    id: 'xenon_ripples',
-    stops: [
-      { at: 0.00, color: 'rgba(240,255,255,1.00)' },   // white‐cyan  
-      { at: 0.20, color: 'rgba(120,230,255,0.80)' },   // bright cerulean  
-      { at: 0.40, color: 'rgba( 60,180,255,0.60)' },   // ocean blue  
-      { at: 0.70, color: 'rgba(  0,100,200,0.40)' },   // deep sea blue  
-      { at: 1.00, color: 'rgba(  0,100,200,0.00)' }    // vanish  
-    ]
-  },
+      // 5. ARGON DREAM (cosmic purple → indigo)
+      {
+        id: 'argon_dream',
+        head: {
+          stops: [
+            { at: 0.00, color: 'rgba(250,240,255,1)' },
+            { at: 0.30, color: 'rgba(140,80,255,1.00)' },
+            { at: 1.00, color: 'rgba(140,80,255,0.00)' }
+          ],
+          inner: 'rgba(250,240,255,1)',
+          outer: 'rgba(140,80,255,0.00)'
+        },
+        stops: [
+          { at: 0.00, color: 'rgba(250,240,255,1)' },
+          { at: 0.20, color: 'rgba(200,140,255,0.80)' },
+          { at: 0.40, color: 'rgba(140,80,255,0.60)' },
+          { at: 0.70, color: 'rgba(80,20,180,0.40)' },
+          { at: 1.00, color: 'rgba(80,20,180,0.00)' }
+        ]
+      },
 
-  // 7. URANIUM GREEN (neon chartreuse → olive)
-  {
-    id: 'uranium_green',
-    stops: [
-      { at: 0.00, color: 'rgba(245,255,230,1.00)' },   // white‐green  
-      { at: 0.20, color: 'rgba(180,255,  0,0.80)' },   // neon chartreuse  
-      { at: 0.40, color: 'rgba(140,220,  0,0.60)' },   // acid green  
-      { at: 0.70, color: 'rgba(100,160,  0,0.40)' },   // olive shadow  
-      { at: 1.00, color: 'rgba(100,160,  0,0.00)' }    // fade  
-    ]
-  },
+      // 6. XENON RIPPLES (cerulean → navy)
+      {
+        id: 'xenon_ripples',
+        head: {
+          stops: [
+            { at: 0.00, color: 'rgba(240,255,255,1)' },
+            { at: 0.30, color: 'rgba(0,100,200,1.00)' },
+            { at: 1.00, color: 'rgba(0,100,200,0.00)' }
+          ],
+          inner: 'rgba(240,255,255,1)',
+          outer: 'rgba(0,100,200,0.00)'
+        },
+        stops: [
+          { at: 0.00, color: 'rgba(240,255,255,1)' },
+          { at: 0.20, color: 'rgba(120,230,255,0.80)' },
+          { at: 0.40, color: 'rgba(60,180,255,0.60)' },
+          { at: 0.70, color: 'rgba(0,100,200,0.40)' },
+          { at: 1.00, color: 'rgba(0,100,200,0.00)' }
+        ]
+      },
 
-  // 8. THORIUM TIDE (neon cyan → electric blue)
-  {
-    id: 'thorium_tide',
-    stops: [
-      { at: 0.00, color: 'rgba(230,255,255,1.00)' },   // white‐cyan  
-      { at: 0.20, color: 'rgba( 80,255,240,0.80)' },   // neon cyan  
-      { at: 0.40, color: 'rgba(  0,200,220,0.60)' },   // bright teal  
-      { at: 0.70, color: 'rgba(  0,120,200,0.40)' },   // electric blue  
-      { at: 1.00, color: 'rgba(  0,120,200,0.00)' }    // vanish  
-    ]
-  }
-];
+      // 7. URANIUM GREEN (neon chartreuse → olive)
+      {
+        id: 'uranium_green',
+        head: {
+          stops: [
+            { at: 0.00, color: 'rgba(245,255,230,1)' },
+            { at: 0.30, color: 'rgba(140,220,0,1.00)' },
+            { at: 1.00, color: 'rgba(140,220,0,0.00)' }
+          ],
+          inner: 'rgba(245,255,230,1)',
+          outer: 'rgba(140,220,0,0.00)'
+        },
+        stops: [
+          { at: 0.00, color: 'rgba(245,255,230,1)' },
+          { at: 0.20, color: 'rgba(180,255,0,0.80)' },
+          { at: 0.40, color: 'rgba(140,220,0,0.60)' },
+          { at: 0.70, color: 'rgba(100,160,0,0.40)' },
+          { at: 1.00, color: 'rgba(100,160,0,0.00)' }
+        ]
+      },
 
+      // 8. THORIUM TIDE (neon cyan → electric blue)
+      {
+        id: 'thorium_tide',
+        head: {
+          stops: [
+            { at: 0.00, color: 'rgba(230,255,255,1)' },
+            { at: 0.30, color: 'rgba(0,200,220,1.00)' },
+            { at: 1.00, color: 'rgba(0,200,220,0.00)' }
+          ],
+          inner: 'rgba(230,255,255,1)',
+          outer: 'rgba(0,200,220,0.00)'
+        },
+        stops: [
+          { at: 0.00, color: 'rgba(230,255,255,1)' },
+          { at: 0.20, color: 'rgba(80,255,240,0.80)' },
+          { at: 0.40, color: 'rgba(0,200,220,0.60)' },
+          { at: 0.70, color: 'rgba(0,120,200,0.40)' },
+          { at: 1.00, color: 'rgba(0,120,200,0.00)' }
+        ]
+      }
+    ];
+
+    // =====================
+    // State
+    // =====================
 
     let meteors = [], width = 0, height = 0, staticStarsLayer = null;
     let lastFrameTime = performance.now();
@@ -223,9 +293,13 @@ document.addEventListener('DOMContentLoaded', () => {
     let MAX_METEORS = window.innerWidth < 600 ? 1 : 2;
     const METEOR_INTERVAL = 3200;
 
-    function getStarCount(width) {
-      if (width < 600) return 40;
-      if (width < 900) return 80;
+    // =====================
+    // Helper functions
+    // =====================
+
+    function getStarCount(w) {
+      if (w < 600) return 40;
+      if (w < 900) return 80;
       return 120;
     }
 
@@ -234,7 +308,7 @@ document.addEventListener('DOMContentLoaded', () => {
       off.width = w;
       off.height = h;
       const offctx = off.getContext('2d');
-      offctx.clearRect(0, 0, w, h);
+
       const count = getStarCount(w);
       for (let i = 0; i < count; i++) {
         const x = Math.random() * w;
@@ -251,9 +325,12 @@ document.addEventListener('DOMContentLoaded', () => {
         offctx.fill();
         offctx.restore();
       }
-      offctx.globalAlpha = 1;
       return off;
     }
+
+    // =====================
+    // Meteor class
+    // =====================
 
     class Meteor {
       constructor(w, h) {
@@ -265,69 +342,80 @@ document.addEventListener('DOMContentLoaded', () => {
         this.vx = Math.cos(angle) * speed;
         this.vy = Math.sin(angle) * speed;
         this.length = Math.random() * 70 + 90;
-        this.maxLife = Math.random() * 1.2 + 2.2;
+        this.maxLife = Math.random() * 1.2 + 2.5;
         this.life = 0;
         this.alpha = 1;
-        this.palette = cosmicEmissionPalettesRgba[Math.floor(Math.random() * cosmicEmissionPalettesRgba.length)];
+        this.palette = cosmicPalettes[Math.floor(Math.random() * cosmicPalettes.length)];
         this.x = this.x0;
         this.y = this.y0;
       }
+
       update(dt) {
         this.life += dt;
         this.x += this.vx * dt * 60;
         this.y += this.vy * dt * 60;
         this.alpha = 1 - (this.life / this.maxLife);
       }
+
       draw(ctx) {
         if (this.alpha <= 0.01) return;
         ctx.save();
-        ctx.globalAlpha = this.alpha;
-        const headColor = this.palette.stops[0].color;
-        const glow = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, 14);
-        glow.addColorStop(0, headColor);
-        glow.addColorStop(0.5, headColor);
-        glow.addColorStop(1, 'transparent');
-        ctx.fillStyle = glow;
+
+        // Draw glow (outer head)
+        ctx.globalAlpha = this.alpha * 0.6;
+        const glow = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, 18);
+        // Use head.stops if available, else fallback to inner/outer
+        if (this.palette.head && Array.isArray(this.palette.head.stops)) {
+          this.palette.head.stops.forEach(stop => {
+            glow.addColorStop(stop.at, stop.color);
+          });
+        } else {
+          glow.addColorStop(0, this.palette.head.inner || '#fff');
+          glow.addColorStop(1, this.palette.head.outer || '#fff0');
+        }
         ctx.beginPath();
-        ctx.arc(this.x, this.y, 9, 0, 2 * Math.PI);
+        ctx.arc(this.x, this.y, 12, 0, 2 * Math.PI);
+        ctx.fillStyle = glow;
         ctx.fill();
+
+        // Draw core (inner head)
+        ctx.globalAlpha = Math.min(1, this.alpha * 1.5);
         ctx.beginPath();
         ctx.arc(this.x, this.y, 2.8, 0, 2 * Math.PI);
-        ctx.fillStyle = headColor;
-        ctx.shadowColor = headColor;
-        ctx.shadowBlur = 8;
+        ctx.fillStyle = this.palette.head.inner || '#fff';
+        ctx.shadowColor = this.palette.head.inner || '#fff';
+        ctx.shadowBlur = 6;
         ctx.fill();
+
+        // Draw trail
+        ctx.globalAlpha = this.alpha * 0.85;
         const norm = Math.hypot(this.vx, this.vy);
         const tx = this.x - this.vx / norm * this.length;
         const ty = this.y - this.vy / norm * this.length;
         const grad = ctx.createLinearGradient(this.x, this.y, tx, ty);
-        this.palette.stops.forEach((stop => {
-          grad.addColorStop(stop.at, stop.color);
-        }));
-        ctx.globalAlpha *= 0.85;
+        this.palette.stops.forEach(stop => grad.addColorStop(stop.at, stop.color));
         ctx.strokeStyle = grad;
         ctx.lineWidth = 2.2;
         ctx.beginPath();
         ctx.moveTo(this.x, this.y);
         ctx.lineTo(tx, ty);
         ctx.stroke();
+
         ctx.restore();
       }
+
       isAlive(w, h) {
         return this.alpha > 0.01 && this.life < this.maxLife && this.x > -200 && this.x < w + 200 && this.y > -200 && this.y < h + 200;
       }
     }
 
+    // =====================
+    // Canvas functions
+    // =====================
+
     function resizeCanvas() {
-      let w = hero.clientWidth;
-      let h = hero.clientHeight;
-      if (!w || !h) {
-        let rect = hero.getBoundingClientRect();
-        w = Math.round(rect.width) || window.innerWidth;
-        h = Math.round(rect.height) || window.innerHeight;
-      }
-      width = Math.max(1, w);
-      height = Math.max(1, h);
+      width = hero.clientWidth || window.innerWidth;
+      height = hero.clientHeight || window.innerHeight;
       canvas.width = width;
       canvas.height = height;
       staticStarsLayer = renderStaticStarsLayer(width, height);
@@ -342,18 +430,19 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function drawFrame(now) {
-      // Animation throttle for performance
       if (window.__shouldAnimate === false) {
         requestAnimationFrame(drawFrame);
         return;
       }
       const dt = Math.min((now - lastFrameTime) / 1000, 0.07);
       lastFrameTime = now;
+
       ctx.clearRect(0, 0, width, height);
       if (staticStarsLayer) ctx.drawImage(staticStarsLayer, 0, 0);
       meteors.forEach(m => m.update(dt));
       meteors = meteors.filter(m => m.isAlive(width, height));
       meteors.forEach(m => m.draw(ctx));
+
       if (now - lastMeteorTime > METEOR_INTERVAL) {
         spawnMeteor();
         lastMeteorTime = now;
@@ -361,12 +450,22 @@ document.addEventListener('DOMContentLoaded', () => {
       requestAnimationFrame(drawFrame);
     }
 
+    // =====================
+    // Init
+    // =====================
+
     function ensureCanvasReady() {
       resizeCanvas();
       lastFrameTime = performance.now();
       lastMeteorTime = performance.now();
       requestAnimationFrame(drawFrame);
     }
+
+    hero.style.position = 'relative';
+    Object.assign(canvas.style, {
+      position: 'absolute', left: '0', top: '0', right: '0', bottom: '0',
+      width: '100%', height: '100%', display: 'block', pointerEvents: 'none', zIndex: '0'
+    });
 
     ensureCanvasReady();
     window.addEventListener('resize', () => {

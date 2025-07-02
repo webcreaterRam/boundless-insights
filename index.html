@@ -440,7 +440,7 @@
             My personal cosmic-themed portfolio built with HTML, CSS, JavaScript, and Tailwind CSS. Features animated hero section, theme switcher, responsive design, and a custom starfield background.
           </p>
           <ul class="list-disc list-inside text-gray-400 mb-4 text-sm space-y-1" style="text-shadow:0 1px 2px rgba(0,0,0,0.13);">
-            <li>Custom GSAP-powered hero animation and star canvas</li>
+            <li>Custom JavaScript-powered hero animation and star canvas</li>
             <li>Theme switching (Cosmic, Nebula, Eclipse)</li>
             <li>Mobile-first, accessible, and SEO-optimized</li>
           </ul>
@@ -491,49 +491,50 @@
       </div>
     </section>
     <!-- BLOG -->
-    <section id="blog" aria-labelledby="blog-title" class="py-20 px-4 md:p-5 bg-[#181a22]/90 rounded-2xl themed-shadow max-w-5xl mx-auto mb-12 border themed-border backdrop-blur-md">
-      <header>
-        <h2 id="blog-title" class="font-orbitron text-4xl md:text-5xl themed-heading font-bold mb-6 tracking-widest text-center" style="text-shadow:0 2px 7px rgba(0,0,0,0.2);">Blog</h2>
-        <p class="text-gray-400 text-lg md:text-xl text-center max-w-2xl mx-auto mb-8" style="text-shadow:0 1px 2px rgba(0,0,0,0.13);">
-          Insights, tutorials, and stories from my journey in frontend development and UI/UX.
-        </p>
-      </header>
-      <div class="grid gap-8 md:grid-cols-3 sm:grid-cols-2">
-        <!-- Blog Post 1 -->
-        <article class="blog-card bg-[#232946]/80 rounded-xl themed-shadow border themed-border flex flex-col p-6 hover:scale-[1.03]">
-          <div class="flex items-center gap-2 mb-3">
-            <span class="text-xl themed-heading" style="text-shadow:0 1px 2px rgba(0,0,0,0.13);"><i class="fas fa-rocket"></i></span>
-            <h3 class="font-orbitron text-lg themed-heading font-bold" style="text-shadow:0 1px 3px rgba(0,0,0,0.13);">How I Designed a Portfolio That Gets Interviews</h3>
-          </div>
-          <p class="text-gray-300 mb-4 text-sm" style="text-shadow:0 1px 2px rgba(0,0,0,0.13);">
-            My process for building a standout portfolio that attracts recruiters and showcases both technical and creative skills.
-          </p>
-          <a href="https://dev.to/webcreaterram/" target="_blank" rel="noopener" class="mt-auto inline-block px-4 py-2 themed-btn tracking-wide transition" style="box-shadow:0 0 2px 0 var(--color-primary-glow);">Read More →</a>
-        </article>
-        <!-- Blog Post 2 -->
-        <article class="blog-card bg-[#232946]/80 rounded-xl themed-shadow border themed-border flex flex-col p-6 hover:scale-[1.03]">
-          <div class="flex items-center gap-2 mb-3">
-            <span class="text-xl themed-heading" style="text-shadow:0 1px 2px rgba(0,0,0,0.13);"><i class="fas fa-code"></i></span>
-            <h3 class="font-orbitron text-lg themed-heading font-bold" style="text-shadow:0 1px 2px rgba(0,0,0,0.13);">Modern CSS Tricks for Responsive UI</h3>
-          </div>
-          <p class="text-gray-300 mb-4 text-sm" style="text-shadow:0 1px 2px rgba(0,0,0,0.13);">
-            Explore practical CSS techniques and Tailwind utilities for building beautiful, responsive layouts that work on every device.
-          </p>
-          <a href="https://dev.to/webcreaterram/" target="_blank" rel="noopener" class="mt-auto inline-block px-4 py-2 themed-btn tracking-wide transition" style="box-shadow:0 0 2px 0 var(--color-primary-glow);">Read More →</a>
-        </article>
-        <!-- Blog Post 3 -->
-        <article class="blog-card bg-[#232946]/80 rounded-xl themed-shadow border themed-border flex flex-col p-6 hover:scale-[1.03]">
-          <div class="flex items-center gap-2 mb-3">
-            <span class="text-xl themed-heading" style="text-shadow:0 1px 2px rgba(0,0,0,0.13);"><i class="fas fa-lightbulb"></i></span>
-            <h3 class="font-orbitron text-lg themed-heading font-bold">Animating with GSAP: Tips & Best Practices</h3>
-          </div>
-          <p class="text-gray-300 mb-4 text-sm" style="text-shadow:0 1px 2px rgba(0,0,0,0.13);">
-            A guide to using GSAP for smooth, performant animations in your web projects, with code samples and real-world advice.
-          </p>
-          <a href="https://dev.to/webcreaterram/" target="_blank" rel="noopener" class="mt-auto inline-block px-4 py-2 themed-btn tracking-wide transition" style="box-shadow:0 0 2px 0 var(--color-primary-glow);">Read More →</a>
-        </article>
+<section id="blog" aria-labelledby="blog-title" class="py-20 px-4 md:p-5 bg-[#181a22]/90 rounded-2xl themed-shadow max-w-5xl mx-auto mb-12 border themed-border backdrop-blur-md">
+  <header>
+    <h2 id="blog-title" class="font-orbitron text-4xl md:text-5xl themed-heading font-bold mb-6 tracking-widest text-center" style="text-shadow:0 2px 7px rgba(0,0,0,0.2);">Blog</h2>
+    <p class="text-gray-400 text-lg md:text-xl text-center max-w-2xl mx-auto mb-8" style="text-shadow:0 1px 2px rgba(0,0,0,0.13);">
+      Insights, tutorials, and stories from my journey in frontend development and UI/UX.
+    </p>
+  </header>
+  <div class="grid gap-8 md:grid-cols-3 sm:grid-cols-2">
+    <!-- Blog Post 1 -->
+    <article class="blog-card bg-[#232946]/80 rounded-xl themed-shadow border themed-border flex flex-col p-6 hover:scale-[1.03] transform-gpu [will-change:transform] backface-hidden antialiased">
+      <div class="flex items-center gap-2 mb-3">
+        <span class="text-xl themed-heading" style="text-shadow:0 1px 2px rgba(0,0,0,0.13);"><i class="fas fa-briefcase"></i></span>
+        <h3 class="font-orbitron text-lg themed-heading font-bold" style="text-shadow:0 1px 3px rgba(0,0,0,0.13);">How I Designed a Portfolio That Gets Interviews</h3>
       </div>
-    </section>
+      <p class="text-gray-300 mb-4 text-sm" style="text-shadow:0 1px 2px rgba(0,0,0,0.13);">
+        My process for building a standout portfolio that attracts recruiters and showcases both technical and creative skills.
+      </p>
+      <span class="mt-auto inline-block px-4 py-2 themed-btn tracking-wide transition opacity-60 cursor-not-allowed" style="box-shadow:0 0 2px 0 var(--color-primary-glow);">Coming Soon</span>
+    </article>
+    <!-- Blog Post 2 -->
+    <article class="blog-card bg-[#232946]/80 rounded-xl themed-shadow border themed-border flex flex-col p-6 hover:scale-[1.03] transform-gpu [will-change:transform] backface-hidden antialiased">
+      <div class="flex items-center gap-2 mb-3">
+        <span class="text-xl themed-heading" style="text-shadow:0 1px 2px rgba(0,0,0,0.13);"><i class="fab fa-css3-alt"></i></span>
+        <h3 class="font-orbitron text-lg themed-heading font-bold" style="text-shadow:0 1px 2px rgba(0,0,0,0.13);">Modern CSS Tricks for Responsive UI</h3>
+      </div>
+      <p class="text-gray-300 mb-4 text-sm" style="text-shadow:0 1px 2px rgba(0,0,0,0.13);">
+        Explore practical CSS techniques and Tailwind utilities for building beautiful, responsive layouts that work on every device.
+      </p>
+      <a href="https://css-tricks.com/snippets/css/a-guide-to-flexbox/" target="_blank" rel="noopener" class="mt-auto inline-block px-4 py-2 themed-btn tracking-wide transition" style="box-shadow:0 0 2px 0 var(--color-primary-glow);">Read More →</a>
+    </article>
+    <!-- Blog Post 3 -->
+    <article class="blog-card bg-[#232946]/80 rounded-xl themed-shadow border themed-border flex flex-col p-6 hover:scale-[1.03] transform-gpu [will-change:transform] backface-hidden antialiased">
+      <div class="flex items-center gap-2 mb-3">
+        <span class="text-xl themed-heading" style="text-shadow:0 1px 2px rgba(0,0,0,0.13);"><i class="fas fa-wave-square"></i></span>
+        <h3 class="font-orbitron text-lg themed-heading font-bold">Animating with GSAP: Tips & Best Practices</h3>
+      </div>
+      <p class="text-gray-300 mb-4 text-sm" style="text-shadow:0 1px 2px rgba(0,0,0,0.13);">
+        A guide to using GSAP for smooth, performant animations in your web projects, with code samples and real-world advice.
+      </p>
+      <span class="mt-auto inline-block px-4 py-2 themed-btn tracking-wide transition opacity-60 cursor-not-allowed" style="box-shadow:0 0 2px 0 var(--color-primary-glow);">Coming Soon</span>
+    </article>
+  </div>
+  <p class="text-xs text-gray-400 text-center mt-6">These are placeholders. My own blog posts will appear here soon </p>
+  </section>
     <!-- TESTIMONIALS -->
     <section id="testimonials" aria-labelledby="testimonials-title" class="py-20 px-4 md:p-5 bg-[#12131a]/90 rounded-2xl themed-shadow max-w-3xl mx-auto mb-12 border themed-border backdrop-blur-md">
       <header>

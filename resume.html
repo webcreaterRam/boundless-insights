@@ -535,18 +535,18 @@
       }
     });
 
-    // Ofline message handling
-    function showOfflineMessage() {
+    // Offline message handling
+    function showOfflineMessage(show) {
       const offlineMessage = document.getElementById('offline-message');
       if (offlineMessage) {
-        offlineMessage.style.display = show  ? 'block' : 'none';
+        offlineMessage.style.display = show ? 'block' : 'none';
       }
     }
 
     window.addEventListener('offline', () => showOfflineMessage(true));
     window.addEventListener('online', () => showOfflineMessage(false));
     // Show offline message if already offline
-    if (!navigator.online) showOfflineMessage(true);
+    if (!navigator.onLine) showOfflineMessage(true);
   </script>
 </body>
 </html>

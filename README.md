@@ -1,6 +1,6 @@
 # Boundless Insights
 
-Welcome to **Boundless Insights** – a modern, responsive blog platform designed for sharing knowledge, stories, and perspectives across a wide range of topics. This project is built with clean HTML, CSS, JavaScript, Tailwind CSS and GSAP, offering a robust foundation for personal blogging or further web development.
+Welcome to **Boundless Insights** – a modern, responsive blog platform designed for sharing knowledge, stories, and perspectives across a wide range of topics. This project is built with clean HTML, CSS, JavaScript, Tailwind CSS, offering a robust foundation for personal blogging or further web development.
 
 ---
 
@@ -33,7 +33,6 @@ Welcome to **Boundless Insights** – a modern, responsive blog platform designe
 - **Meteor & Star Animations:** Dynamic meteor showers and twinkling stars create a visually engaging, cosmic-themed background, implemented using CSS and JavaScript for smooth, performant effects.
 - **Theme Switcher (Dark/Light Mode):** Instantly toggle between light and dark themes, enhancing accessibility and user comfort. Theme preferences are saved for a consistent experience.
 - **Text Flicker & Scale Effects:** Interactive text elements feature flickering and scaling animations on hover, achieved with advanced utility classes such as `transform-gpu`, `[will-change:transform]`, `backface-hidden`, and `antialiased` for smooth, crisp transitions.
-- **GSAP Animations:** Leveraging the GreenSock Animation Platform (GSAP) for high-performance, timeline-based animations and scroll-triggered effects.
 - **Tailwind CSS Utility Classes:** Rapid styling and responsive design using Tailwind CSS, allowing for efficient, maintainable, and consistent UI development.
 - **Accessibility Considerations:** Semantic HTML, keyboard navigation support, and ARIA attributes for an inclusive user experience.
 - **Performance Optimizations:** GPU-accelerated transforms and optimized asset loading for fast, fluid interactions.
