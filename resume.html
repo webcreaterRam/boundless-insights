@@ -153,27 +153,18 @@
     justify-content: center;
     background: linear-gradient(120deg, #232946 0%, #0b0c10 100%);
     transition: all 0.5s;
-    will-change: opacity;
-    min-height: 100vh; /* Prevent layout shift */
-    min-width: 100vw;
   }
 
     #cosmic-preloader .preloader-inner {
       display: flex;
       flex-direction: column;
       align-items: center;
-      min-width: 320px;
-      min-height: 340px; /* Increased to ensure no collapse */
-      box-sizing: border-box;
-      justify-content: center;
     }
     #cosmic-preloader .spinner-wrap {
       position: relative;
       margin-bottom: 1.5rem;
       width: 5rem;
       height: 5rem;
-      min-width: 5rem;
-      min-height: 5rem;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -182,8 +173,6 @@
       border-radius: 50%;
       width: 5rem;
       height: 5rem;
-      min-width: 5rem;
-      min-height: 5rem;
       border-top: 4px solid #00fff7;
       border-bottom: 4px solid #00fff7;
       border-left: 4px solid transparent;
@@ -191,7 +180,6 @@
       opacity: 0.6;
       animation: spin 1s linear infinite;
       box-sizing: border-box;
-      display: block;
     }
     #cosmic-preloader .preloader-logo {
       position: absolute;
@@ -199,25 +187,51 @@
       transform: translate(-50%, -50%);
       width: 3rem;
       height: 3rem;
-      min-width: 3rem;
-      min-height: 3rem;
       border-radius: 50%;
       box-shadow: 0 0 12px 2px #00fff7cc;
       background: #181a22;
       object-fit: contain;
       display: block;
     }
+    #cosmic-preloader .preloader-title {
+      font-family: 'Orbitron', Arial, sans-serif;
+      font-size: 2rem;
+      color: #00fff7;
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.15em;
+      text-align: center;
+    }
+    #cosmic-preloader .preloader-desc {
+      color: #d1d5db;
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+      text-align: center;
+    }
+    #cosmic-preloader .preloader-note {
+      color: #7e869e;
+      font-size: 0.85rem;
+      text-align: center;
+    }
     @keyframes spin {
       to { transform: rotate(360deg); }
     }
-
-    /* Hide main content while preloader is visible to prevent CLS */
-    #main-content.preloader-active {
-      visibility: hidden;
-    }
-    #main-content {
-      transition: visibility 0s linear 0.5s;
-    }
+  /* LCP h1 optimization */
+  #lcp-h1 {
+    position: absolute;
+    top: 0; left: 0; width: 100vw;
+    z-index: 100000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s;
+    text-align: center;
+    margin-top: 8vh;
+  }
+  body.lcp-ready #lcp-h1 {
+    opacity: 1;
+    pointer-events: auto;
+    position: static;
+    margin-top: 0;
+  }
   </style>
 </head>
 <body class="text-gray-100 font-inter" style="overflow-y: hidden;">
@@ -468,7 +482,7 @@
     </div>
   </div>
   <!-- Cosmic Preloader Overlay -->
-  <div id="cosmic-preloader">
+  <div id="cosmic-preloader" class="text-white">
     <div class="preloader-inner">
       <div class="spinner-wrap">
         <div class="spinner"></div>
