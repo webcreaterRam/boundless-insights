@@ -521,49 +521,18 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
   }
-
   initializePortfolio();
+
+  //   // Initialize GSAP ScrollSmoother (only once, after DOM is ready)
+  //   if (window.gsap && window.ScrollTrigger && window.ScrollSmoother) {
+  //     gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+  //     ScrollSmoother.create({
+  //       wrapper: "#main-wrapper",
+  //       content: "#main-content",
+  //       smooth: 1.5,
+  //       effects: true,
+  //     });
+  //   }
+  // }
+
 });
-  // =====================
-  function setupThemeDynamicCss() {
-    function updateThemedClasses() {
-      // CSS variables update automatically with theme class
-      // This is a no-op, but can be used to force repaint if needed
-      document.querySelectorAll('.themed-shadow, .themed-border, .themed-btn, .themed-heading').forEach(el => {
-        el.style.boxShadow = '';
-        el.style.borderColor = '';
-        el.style.color = '';
-      });
-    }
-    document.documentElement.addEventListener('themechange', updateThemedClasses);
-    document.addEventListener('DOMContentLoaded', updateThemedClasses);
-  }
-  
-  // =====================
-  // 6. INITIALIZATION
-  // =====================
-  function initializePortfolio() {
-    setupThemeSwitcher();
-    setupStarCanvas();
-    setupCtaSmoothScroll();
-    setupThemeDynamicCss();
-    setupHamburger();
-
-    // Initialize GSAP ScrollSmoother (only once, after DOM is ready)
-    if (window.gsap && window.ScrollTrigger && window.ScrollSmoother) {
-      gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
-      ScrollSmoother.create({
-        wrapper: "#main-wrapper",
-        content: "#main-content",
-        smooth: 1.5,
-        effects: true,
-      });
-    }
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initializePortfolio);
-  } else {
-    initializePortfolio();
-  }
-

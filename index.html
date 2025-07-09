@@ -3,10 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Boundless Insights</title>
-  <meta name="description" content="Cosmic Portfolio of Ramkumar, a self-taught frontend developer with a passion for cosmic-themed web designs, showcasing skills in HTML, CSS, and Javascript." />
-  <meta property="og:title" content="Ramkumar's Cosmic Portfolio" />
-  <meta property="og:description" content="Explore the cosmic-themed portfolio of Ramkumar, a self-taught frontend developer." />
+  <title>Cosmic Portfolio of Ramkumar | Web Design, UI, UX, Personal Blog, and More</title>
+  <meta name="description" content="Explore the cosmic-themed portfolio of Ramkumar, a self-taught frontend developer with a passion for web design, UI, UX, and personal blogging. Discover his latest projects, tutorials, and insights on cosmic web design, space-themed UI, and more." />
+  <meta name="keywords" content="cosmic portfolio, web design, UI, UX, personal blog, personal portfolio, frontend developer, self-taught, web development, space-themed, galaxy-inspired, cosmic web design, UI design, user experience, user interface, blogging, blog, tutorials, insights, space, galaxy, astronomy, science, technology, coding, programming, HTML, CSS, JavaScript, React, Angular, Vue.js" />
+  <meta property="og:title" content="Ramkumar's Cosmic Portfolio | Web Design, UI, UX, and More" />
+  <meta property="og:description" content="Explore the cosmic-themed portfolio of Ramkumar, a self-taught frontend developer with a passion for web design, UI, UX, and personal blogging." />
+  <meta property="og:keywords" content="cosmic portfolio, web design, UI, UX, personal blog, personal portfolio, frontend developer, self-taught, web development, space-themed, galaxy-inspired" />
+
   <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-LM7VXTFSG9"></script>
 <script>
@@ -152,7 +155,7 @@
         </a>
       </div>
       <!-- Search Bar (show on md and up) -->
-      <form class="relative flex-1 mx-4 hidden md:flex" style="max-width:460px; min-width:260px; width:100%;" autocomplete="off" role="search" action="https://www.google.com/search" method="GET" target="_blank">
+      <form class="relative flex-1 mx-4 hidden md:flex" style="max-width:460px; min-width:260px; width:100%;" autocomplete="off" role="search" action="https://www.google.com/search" method="GET" target="_blank" aria-label="Search Google for content">
         <span class="absolute left-3 top-1/2 -translate-y-1/2 text-xl text-current pointer-events-none">
           <svg class="w-5 h-5 themed-heading" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
             <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/>
@@ -169,7 +172,7 @@
       </form>
       <!-- Theme Switcher Button -->
       <div class="flex items-center justify-center mx-4 theme-switcher-order">
-        <button id="theme-switcher" class="theme-switcher-btn min-w-[116px] self-center ml-[0.5rem] mr-[0.5rem] border-radius-[9999px] font-bold cursor-pointer select-none">Cosmic</button>
+        <button id="theme-switcher" class="theme-switcher-btn min-w-[116px] self-center ml-[0.5rem] mr-[0.5rem] border-radius-[9999px] font-bold cursor-pointer select-none" aria-label="Theme Switcher">Cosmic</button>
       </div>
       <!-- Hamburger (show on md and up, hide on xl) -->
       <button id="menu-btn" class="block md:block xl:hidden focus:outline-none z-50">
@@ -610,9 +613,9 @@
       </header>
       <div class="contact-container">
         <form class="contact-form space-y-6" action="https://formspree.io/f/xzzggkyn" method="POST">
-          <input type="text" name="name" placeholder="Your Name" required class="w-full px-4 py-3 rounded-lg bg-[#232946]/80" />
-          <input type="email" name="email" placeholder="Your Email" required class="w-full px-4 py-3 rounded-lg bg-[#232946]/80" />
-          <textarea name="message" placeholder="Your Message..." required class="w-full px-4 py-3 rounded-lg bg-[#232946]/80"></textarea>
+          <input type="text" name="name" placeholder="Your Name" required class="w-full px-4 py-3 rounded-lg bg-[#232946]/80" aria-label="Your Name"/>
+          <input type="email" name="email" placeholder="Your Email" required class="w-full px-4 py-3 rounded-lg bg-[#232946]/80" aria-label="Your Email" />
+          <textarea name="message" placeholder="Your Message..." required class="w-full px-4 py-3 rounded-lg bg-[#232946]/80" aria-label="Your Message..."></textarea>
           <button type="submit"
             class="px-8 py-3 themed-btn text-lg tracking-wide backdrop-blur-md transition-all duration-300">
             Send Message
@@ -673,9 +676,9 @@
       <!-- Newsletter Signup -->
       <div class="w-full max-w-xs">
         <h4 class="font-orbitron text-lg font-bold text-[var(--color-primary)] mb-2">Newsletter</h4>
-        <form class="flex flex-col sm:flex-row gap-2" action="https://formspree.io/f/xzzggkyn" method="POST">
-          <input type="email" name="newsletter-email" required placeholder="Your email" class="flex-1 px-3 py-2 rounded-full bg-[#232946]/80 border themed-border text-sm focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]" />
-          <button type="submit" class="px-4 py-2 rounded-full bg-[var(--color-primary)] text-[#181a22] font-bold font-orbitron hover:scale-105 transition-all duration-200 transform-gpu [will-change:transform] backface-hidden antialiased">Subscribe</button>
+        <form class="flex flex-col sm:flex-row gap-2" action="https://formspree.io/f/xzzggkyn" method="POST" aria-labelledby="newsletter">
+          <input type="email" name="newsletter-email" required placeholder="Your email" class="flex-1 px-3 py-2 rounded-full bg-[#232946]/80 border themed-border text-sm focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]"  aria-label="Your email for newsletter"/>
+          <button type="submit" class="px-4 py-2 rounded-full bg-[var(--color-primary)] text-[#181a22] font-bold font-orbitron hover:scale-105 transition-all duration-200 transform-gpu [will-change:transform] backface-hidden antialiased" aria-label="Subscribe">Subscribe</button>
         </form>
         <p class="text-xs text-gray-400 mt-1 text-left">Get updates on new projects & articles. No spam.</p>
       </div>
@@ -717,7 +720,7 @@
         <span>|</span>
         <a href="#contact" class="hover:text-[var(--color-primary)] transition">Contact</a>
       </div>
-      <div class="mt-4 text-xs text-gray-500">
+      <div class="mt-4 text-xs text-[#cccccc]">
         <span>“Striving for creativity, accessibility, and performance in every pixel.”</span>
       </div>
     </div>
@@ -810,8 +813,7 @@
   });
   // In your animation loop, check: if (!window.__shouldAnimate) return;
   </script>
-  <!-- Only load script.js if it is essential for your site functionality -->
-  <script src="script.js" defer></script>
+  
   <style>
     #main-content.preloader-active {
   visibility: hidden;
@@ -821,5 +823,6 @@
   min-height: 100vh;
 }
   </style>
+    <script src="script.js" defer></script>
 </body>
 </html>
