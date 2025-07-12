@@ -219,6 +219,9 @@
 
   .themed.btn, button, a {
     user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
   }
 
     /* --- CARD & SECTION STYLES --- */

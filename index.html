@@ -39,6 +39,11 @@
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.11.5/dist/ScrollTrigger.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.11.5/dist/ScrollSmoother.min.js" defer></script> -->
   <style>
+    :host,
+html {
+    -webkit-text-size-adjust: 100%;
+}
+
   /* Critical preloader styles - INLINED, NO TAILWIND CLASSES */
   #cosmic-preloader {
     position: fixed;
@@ -189,7 +194,7 @@
         <button id="theme-switcher" class="theme-switcher-btn min-w-[116px] self-center ml-[0.5rem] mr-[0.5rem] border-radius-[9999px] font-bold cursor-pointer select-none" aria-label="Theme Switcher">Cosmic</button>
       </div>
       <!-- Hamburger (show on md and up, hide on xl) -->
-      <button id="menu-btn" class="block md:block xl:hidden focus:outline-none z-50">
+      <button id="menu-btn" aria-label="Menu" class="block md:block xl:hidden focus:outline-none z-50">
         <svg class="w-7 h-7 text-gray-100" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
         </svg>
