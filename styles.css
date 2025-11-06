@@ -24,6 +24,7 @@
       --color-footer-link-hover: #fff;
       --transition: 0.3s cubic-bezier(.4,0,.2,1);
       --glow: 0 0 6px 0 var(--color-primary-glow);
+      --stardust-url: https://www.transparenttextures.com/patterns/stardust.png;
     }
     /* === NEBULA THEME === */
     .theme-nebula {
@@ -77,7 +78,7 @@
       --color-footer-link-hover: #fff;
       --glow: 0 0 6px 0 #ffb347cc;
     }
-    /* === BASE STYLES USING VARIABLES === */
+    /* === BASE STYLES USING VARIABLES === 
     body {
       background: var(--color-bg);
       color: var(--color-secondary);
@@ -87,7 +88,8 @@
       overflow-x: hidden;
       transition: background var(--transition), color var(--transition);
     }
-
+       */
+       
     /* --- NAVBAR --- */
     .navbar-bg {
       display: flex;
@@ -218,6 +220,7 @@
     }
 
   .themed.btn, button, a {
+    -ms-user-select: none;
     user-select: none;
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -540,4 +543,106 @@
   .theme-switcher-btn {
     box-shadow: none !important;
   }
+}
+
+/* ===== Theme-aware page background (restores dark background per active theme) ===== */
+html, body {
+  height: 100%;
+  background: var(--color-bg, #0b0c10);
+  color: var(--color-secondary, #cccccc);
+  font-family: system-ui, -apple-system, "Inter", "Poppins", "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  min-height: 100vh;
+  margin: 0;
+  overflow-x: hidden;
+  transition: background var(--transition, 0.3s) ease, color var(--transition, 0.3s) ease;
+}
+
+/* Ensure the star canvas is above the stardust overlay (no JS changes required) */
+#star-canvas {
+	/* must be higher than the overlay (50000) so the starfield remains visible */
+	z-index: 60000 !important;
+	pointer-events: none;
+}
+
+/* Theme-aware body background (keeps dark themes visible) */
+html.theme-cosmic body,
+html.theme-nebula body,
+html.theme-eclipse body {
+  background: var(--color-bg);
+  color: var(--color-secondary);
+}
+
+/* Stardust overlay — 3 layered depth effect using the provided texture.
+   - image: https://www.transparenttextures.com/patterns/stardust.png
+   - layers drift from top-right to bottom-left, layer1 fastest -> layer3 slowest
+   - overlay is behind UI but under the star canvas (#star-canvas)
+*/
+body {
+  /* custom properties for each layer's position */
+  --sd1-x: 100%; --sd1-y: 0%;
+  --sd2-x: 100%; --sd2-y: 0%;
+  --sd3-x: 100%; --sd3-y: 0%;
+  position: relative; /* keep existing layout behavior */
+}
+
+/* single fixed pseudo-element with three repeated images (explicit URLs for reliability) */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0; /* behind content but above page background */
+  pointer-events: none;
+  /* don't rely on blend modes that can hide subtle texture on some themes */
+  mix-blend-mode: normal;
+  /* slightly stronger but still subtle */
+  opacity: 0.10;
+  background-image:
+    url("https://www.transparenttextures.com/patterns/stardust.png"),
+    url("https://www.transparenttextures.com/patterns/stardust.png"),
+    url("https://www.transparenttextures.com/patterns/stardust.png");
+  background-repeat: repeat, repeat, repeat;
+  /* different sizes per layer to create depth */
+  background-size: 320px 320px, 680px 680px, 1200px 1200px;
+  /* positions controlled by CSS custom properties that animations will update */
+  background-position:
+    var(--sd1-x) var(--sd1-y),
+    var(--sd2-x) var(--sd2-y),
+    var(--sd3-x) var(--sd3-y);
+  will-change: background-position, opacity;
+}
+
+/* Animations: move from top-right toward bottom-left */
+@keyframes stardust-move-1 { from { --sd1-x: 100%; --sd1-y: 0%; } to { --sd1-x: 0%; --sd1-y: 100%; } }
+@keyframes stardust-move-2 { from { --sd2-x: 100%; --sd2-y: 0%; } to { --sd2-x: 0%; --sd2-y: 100%; } }
+@keyframes stardust-move-3 { from { --sd3-x: 100%; --sd3-y: 0%; } to { --sd3-x: 0%; --sd3-y: 100%; } }
+
+/* attach animations with staggered durations (layer1 fastest) */
+body::before {
+  animation:
+    stardust-move-1 12s linear infinite,
+    stardust-move-2 30s linear infinite,
+    stardust-move-3 72s linear infinite;
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  body::before {
+    animation: none !important;
+    /* static centered sprinkling */
+    --sd1-x: 50%; --sd1-y: 50%;
+    --sd2-x: 50%; --sd2-y: 50%;
+    --sd3-x: 50%; --sd3-y: 50%;
+    opacity: 0.04;
+  }
+}
+
+/* Disable old pseudo-element stardust overlay (we inject a reliable DOM overlay via JS) */
+body::before {
+  display: none !important;
+}
+
+/* Ensure the main content sits above the stardust overlay so UI remains fully visible */
+#main-content {
+  position: relative;
+  z-index: 10; /* higher than overlay (0) but lower than intentionally high UI like #star-canvas or nav */
 }
